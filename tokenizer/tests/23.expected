@@ -1,0 +1,5 @@
+      INT_CONST	              3               0               0               0        0,000000
+        DBL_DOT	             ..               0               1               0        0,000000
+      INT_CONST	             15               0               3              15        0,000000
+      SEMICOLON	              ;               0               5               0        0,000000
+            EOF	            EOF               0               6               0        0,000000
