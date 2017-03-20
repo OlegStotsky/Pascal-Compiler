@@ -8,7 +8,7 @@ public class Tokenizer {
 	private final int NUM_STATES = State.values().length;
 	private final int NUM_CHARS = 128;
 	private final String ERR_PREF = "Error at line %d,column %d : ";
-		
+	
 	private enum State {
 		BEGIN, NUMBER, 
 		NUMBER_DBL_SECOND, NUMBER_DBL_FIRST,
@@ -34,6 +34,7 @@ public class Tokenizer {
 	Boolean eof;
 	byte lastByte;
 	Boolean twoDots = false;
+	Token lastToken;
 	
 	public Tokenizer(String fileName) throws IOException {
 		try {
@@ -47,6 +48,7 @@ public class Tokenizer {
 		this.curRow = 0;
 		this.eof = false;
 		this.lastByte = (byte)input.read();
+		this.lastToken = null;
 		
 		for (int i = 0; i < NUM_STATES; ++i) {
 			for (int j = 0; j < NUM_CHARS; ++j) {
@@ -213,16 +215,19 @@ public class Tokenizer {
 					result.type = TokenTypes.TokenType.INT_CONST;
 					result.intVal = (int) (Integer.parseInt(raw.toString()));
 					result.text = raw.toString();
+					this.lastToken = result;
 					return result;
 					
 				case ID:
 					if (TokenTypes.getInstance().isKeyWord(raw.toString())) {
 						result.type = TokenTypes.getInstance().getType(raw.toString());
 						result.text = raw.toString();
+						this.lastToken = result;
 						return result;
 					}
 					result.type = TokenTypes.TokenType.ID;
 					result.text = raw.toString().toLowerCase();
+					this.lastToken = result;
 					return result;
 					
 				case NUMBER_DBL_SECOND:
@@ -230,6 +235,7 @@ public class Tokenizer {
 					result.text = raw.toString();
 					result.type = TokenTypes.TokenType.FLOAT_CONST;
 					result.realVal = Double.parseDouble(raw.toString());
+					this.lastToken = result;
 					return result;
 					
 				case DOT:	
@@ -242,6 +248,7 @@ public class Tokenizer {
 				case SPECIAL_DBL:
 					result.text = raw.toString();
 					result.type = TokenTypes.getInstance().getType(result.text);
+					this.lastToken = result;
 					return result;
 					
 				case CHAR_CONST:
@@ -249,6 +256,7 @@ public class Tokenizer {
 					result.text = raw.substring(1);
 					result.type = result.text.length() == 1? TokenTypes.TokenType.CHAR_CONST : TokenTypes.TokenType.STRING_CONST;
 					this.lastByte = (byte)input.read();
+					this.lastToken = result;
 					return result;
 					
 				case COMMENT_MULTI:
@@ -269,6 +277,7 @@ public class Tokenizer {
 					result.type = TokenTypes.TokenType.INT_CONST;
 					twoDots = true;
 					this.lastByte = curByte;
+					this.lastToken = result;
 					return result;
 			  }
 			  break;
@@ -325,7 +334,8 @@ public class Tokenizer {
 				if (twoDots) {
 					twoDots = false;
 					lastByte = (byte)input.read();
-					return new Token("..", curRow, curColumn-2, 0, 0, TokenTypes.TokenType.DBL_DOT);
+					this.lastToken = new Token("..", curRow, curColumn-2, 0, 0, TokenTypes.TokenType.DBL_DOT);
+					return this.lastToken;
 				}
 				raw.append((char)curByte);
 				break;
@@ -368,9 +378,14 @@ public class Tokenizer {
 				
 			case EOF:
 				this.eof = true;
-				return new Token("EOF", this.curRow, this.curColumn, 0, 0, TokenTypes.TokenType.EOF);
+				this.lastToken = new Token("EOF", this.curRow, this.curColumn, 0, 0, TokenTypes.TokenType.EOF);
+				return this.lastToken;
 		  }
 	    }
+	}
+	
+	public Token curToken() {
+		return this.curToken();
 	}
 	
 	public Boolean eof() {
