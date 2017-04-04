@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import parser.Parser;
 import tokenizer.Token;
 import tokenizer.TokenTypes;
 import tokenizer.Tokenizer;
@@ -17,23 +18,18 @@ import tokenizer.Tokenizer;
 public class Compiler {
 	private static final int ERR_WRONG_NUMBER_OF_ARGS = -1;
 	
-	public static void main(String[] args) throws IOException {
-		if (args.length < 2) {
+	public static void main(String[] args) throws Exception {
+		if (args.length < 1) {
 			System.out.println(args.length);
 			System.exit(ERR_WRONG_NUMBER_OF_ARGS);
 		}
-		Tokenizer tokenizer = new Tokenizer(args[0]);
+		Parser parser = new Parser(new Tokenizer(args[0]));
 		PrintStream outStream = new PrintStream(new FileOutputStream(args[1]));
 		System.setOut(outStream);
-		while (!tokenizer.eof()) {
-			Token curToken;
-			try {
-				curToken = tokenizer.nextToken();
-				curToken.print();
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-				break;
-			}
+		try {
+			parser.parse();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 }

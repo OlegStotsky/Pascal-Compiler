@@ -185,8 +185,6 @@ public class Tokenizer {
 	
 	/**
 	 * Returns new token from the stream specified by constructor argument
-	 * @return Token
-	 * @throws Exception
 	 */
 	public Token nextToken() throws Exception {
 		StringBuffer raw = new StringBuffer();
@@ -385,7 +383,7 @@ public class Tokenizer {
 	}
 	
 	public Token curToken() {
-		return this.curToken();
+		return this.lastToken;
 	}
 	
 	public Boolean eof() {

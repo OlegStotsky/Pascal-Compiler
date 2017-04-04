@@ -10,7 +10,7 @@ public class TokenTypes {
 		CHAR_CONST, PLUS, MINUS, 
 		MUL, DIV, POINTER, 
 		GRT, LESS, ADDR, 
-		DOT, LB, RB, 
+		DOT, LEFT_PARENTH, RIGHT_PARENTH, 
 		LSQB, RSQB, SEMICOLON, 
 		COLON, COMMA, EQUAL, 
 		PLUS_E, MINUS_E, MUL_E, 
@@ -99,14 +99,13 @@ public class TokenTypes {
 			new SpecialSymbol(">", TokenType.GRT),
 			new SpecialSymbol("@", TokenType.ADDR),
 			new SpecialSymbol(".", TokenType.DOT),
-			new SpecialSymbol("(", TokenType.LB),
-			new SpecialSymbol(")", TokenType.RB),
+			new SpecialSymbol("(", TokenType.LEFT_PARENTH),
+			new SpecialSymbol(")", TokenType.RIGHT_PARENTH),
 			new SpecialSymbol("[", TokenType.LSQB),
 			new SpecialSymbol("]", TokenType.RSQB),
 			new SpecialSymbol(";", TokenType.SEMICOLON),
 			new SpecialSymbol(":", TokenType.COLON),
 			new SpecialSymbol(",", TokenType.COMMA),
-			new SpecialSymbol("=", TokenType.EQUAL)
 	};
 	
 	public SpecialSymbolPair specialSymbolPairs[] = {
@@ -118,7 +117,8 @@ public class TokenTypes {
 			new SpecialSymbolPair("*=", TokenType.MUL_E),
 			new SpecialSymbolPair("/=", TokenType.DIV_E),
 			new SpecialSymbolPair(":=", TokenType.ASSIGN),
-			new SpecialSymbolPair("..", TokenType.DBL_DOT)
+			new SpecialSymbolPair("..", TokenType.DBL_DOT),
+			new SpecialSymbolPair("==", TokenType.EQUAL)
 	};
 	
 	static TokenTypes instance = new TokenTypes();
@@ -177,5 +177,27 @@ public class TokenTypes {
 		}
 		
 		return TokenType.UNKNOWN;
+	}
+
+	public String getText(TokenType type) throws Exception {
+		for (KeyWord keyWord: keyWords) {
+			if (keyWord.type == type) {
+				return keyWord.text;
+			}
+		}
+
+		for (SpecialSymbol operator: specialSymbols) {
+			if (operator.type == type) {
+				return operator.text;
+			}
+		}
+
+		for (SpecialSymbolPair specialOperator: specialSymbolPairs) {
+			if (specialOperator.type == type) {
+				return specialOperator.text;
+			}
+		}
+
+		throw new Exception("Unknown token type");
 	}
 }

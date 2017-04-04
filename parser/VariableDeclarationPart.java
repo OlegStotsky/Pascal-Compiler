@@ -8,7 +8,7 @@ public class VariableDeclarationPart extends Node {
 	public VariableDeclarationPart() {
 		this.varDecls = null;
 	}
-	
+
 	public VariableDeclarationPart(ArrayList<VariableDeclaration> varDecls) {
 		this.varDecls = varDecls;
 	}
