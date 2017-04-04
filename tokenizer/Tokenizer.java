@@ -7,7 +7,7 @@ import java.io.IOException;
 public class Tokenizer {
 	private final int NUM_STATES = State.values().length;
 	private final int NUM_CHARS = 128;
-	private final String ERR_PREF = "Error at line %d,column %d : ";
+	private final String ERR_PREF = "Error at line %d, column %d : ";
 	
 	private enum State {
 		BEGIN, NUMBER, 
