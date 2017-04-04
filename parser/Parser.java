@@ -264,7 +264,7 @@ public class Parser {
 
 	private void expect(Token token, TokenTypes.TokenType tokenType) throws Exception {
 		if (token.type != tokenType) {
-			throw new Exception(String.format("Syntax error at (%d,%d) : %s expected but %s found", 
+			throw new Exception(String.format("Syntax error at line %d, column %d : %s expected but %s found",
 					token.row, 
 					token.column, 
 					tokenType.toString(), 
