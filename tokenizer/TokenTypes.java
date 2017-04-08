@@ -121,7 +121,7 @@ public class TokenTypes {
 			new SpecialSymbolPair("==", TokenType.EQUAL)
 	};
 	
-	static TokenTypes instance = new TokenTypes();
+	private static TokenTypes instance = new TokenTypes();
 	
 	public static TokenTypes getInstance() {
 		return instance;
