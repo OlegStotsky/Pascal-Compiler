@@ -1,5 +1,6 @@
 package parser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import tokenizer.Token;
@@ -12,11 +13,13 @@ public class Parser {
 	private Tokenizer tokenizer;
 	private AbstractSyntaxTree ast;
 	private HashMap<TokenTypes.TokenType, Precedence> priorities;
+	private SymTable symTable;
 	
 	public Parser(Tokenizer tokenizer) {
 		this.tokenizer = tokenizer;
 		this.ast = new AbstractSyntaxTree();
 		this.priorities = new HashMap<>();
+		this.symTable = new SymTable();
 		
 		this.priorities.put(TokenTypes.TokenType.NOT, Precedence.FIRST);
 		this.priorities.put(TokenTypes.TokenType.ADDR, Precedence.FIRST);
@@ -40,68 +43,66 @@ public class Parser {
 	
 	public void parse() throws Exception {
 		tokenizer.nextToken();
-		this.ast.root = parseExpression();
+		parseVarBlock();
 		ast.print();
 	}
-	
+
 	/**
 	 * Parses variable declaration part of form
-	 * <variable declaration part> ::= 
+	 * <variable declaration part> ::=
 	 * <empty> | var <variable declaration>; {variable declaration;}
 	 */
-	private VariableDeclarationPart parseVariableDeclarationPart() throws Exception {
-		Token token = tokenizer.nextToken();
-		VariableDeclarationPart varDeclPart = new VariableDeclarationPart();
-		if (token.type == TokenTypes.TokenType.VAR) {
-			while (true) {
-				VariableDeclaration varDecl = parseVariableDeclaration();
-				varDeclPart.varDecls.add(varDecl);
-				token = tokenizer.nextToken();
-				if (token.type == TokenTypes.TokenType.BEGIN || token.type == TokenTypes.TokenType.PROCEDURE ||
-					token.type == TokenTypes.TokenType.FUNCTION) {
-					break;
-				}
+	private void parseVarBlock() throws Exception {
+		Token token = tokenizer.curToken();
+		tokenizer.nextToken();
+		do {
+			token = tokenizer.curToken();
+			ArrayList<Token> identifiers = parseIdentifiersList();
+			token = tokenizer.curToken();
+			expect(token, TokenTypes.TokenType.COLON);
+			tokenizer.nextToken();
+			SymType type = parseType();
+			token = tokenizer.curToken();
+			expect(token, TokenTypes.TokenType.SEMICOLON);
+			tokenizer.nextToken();
+			for (Token identifier : identifiers) {
+				symTable.addSymbol(new SymVar(identifier.text, type));
 			}
-		}
-		
-		return varDeclPart;
+		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
 	}
 	
 	/**
 	 * Parses variable declaration of form 
 	 * <variable declaration> ::= <identifier> {, <identifier>} : <type>
 	 */
-	private VariableDeclaration parseVariableDeclaration() throws Exception {
-		VariableDeclaration varDecl = new VariableDeclaration();
-		while (true) {
-			Token identifier = tokenizer.nextToken();
+	private ArrayList<Token> parseIdentifiersList() throws Exception {
+		ArrayList<Token> identifiers = new ArrayList<Token>();
+		do {
+			Token identifier = tokenizer.curToken();
 			expect(identifier, TokenTypes.TokenType.ID);
+			identifiers.add(identifier);
 			Token token = tokenizer.nextToken();
-			if (token.type == TokenTypes.TokenType.COLON) {
-				break;
-			}
 			if (token.type == TokenTypes.TokenType.COMMA) {
-				varDecl.identifiers.add(new Identifier(identifier.text));
+				tokenizer.nextToken();
 			}
-		}
-		
-		Type type = parseType();
-		varDecl.type = type;
-		return varDecl;
+		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
+
+		return identifiers;
 	}
 	
 	/**
 	 * Parses type of form
 	 * <type> ::= <simple type> | <array type>
 	 */
-	private Type parseType() throws Exception {
-		Token token = tokenizer.nextToken();
-		Type type;
+	private SymType parseType() throws Exception {
+		Token token = tokenizer.curToken();
+		SymType type;
 		if (token.type == TokenTypes.TokenType.ARRAY) {
 			type = parseArrayType();
-			return type;
+		} else {
+			type = parseSimpleType();
 		}
-		type = parseSimpleType();
+
 		return type;
 	}
 	
@@ -109,15 +110,16 @@ public class Parser {
 	 * Parses simple type of form
 	 * <simple type> ::= integer | float | char
 	 */
-	private SimpleType parseSimpleType() throws Exception {
-		Token token = tokenizer.nextToken();
-		if (token.text.equals("integer") ||
-			token.text.equals("float") ||
-			token.text.equals("char")) {
-			
-			return new SimpleType(token.text);
+	private SymType parseSimpleType() throws Exception {
+		Token token = tokenizer.curToken();
+		tokenizer.nextToken();
+		if (token.text.equals("integer")) {
+			return new SymTypeInteger();
 		}
-		
+		if (token.text.equals("float")) {
+			return new SymTypeFloat();
+		}
+
 		throw new Exception(String.format("Syntar error at line %d, column %d: error in type definition",
 				token.row,
 				token.column)
@@ -127,30 +129,13 @@ public class Parser {
 	/**
 	 * Parses array type of form
 	 * <array type> ::= array[<index range>] of <simple type>
-	 * Note that when this method is called, 'array' token has already been eaten
 	 */
-	private ArrayType parseArrayType() throws Exception {
+	private SymTypeArray parseArrayType() throws Exception {
 		//Eat left square bracket
-		Token token = tokenizer.nextToken();
+		Token token = tokenizer.curToken();
 		expect(token, TokenTypes.TokenType.LSQB);
 		
-		//Get <index range>. After this method is finished, tokenizer`s state is right square bracket
-		IndexRange indexRange = parseIndexRange();
-		
-		//Eat of
-		token = tokenizer.nextToken();
-		expect(token, TokenTypes.TokenType.OF);
-		
-		SimpleType type = parseSimpleType();
-		
-		return new ArrayType(indexRange, type);
-	}
-
-	/**
-	 * Parses index range of form
-	 * <index range> ::= <integer constant>..<integer constant>
-	 */
-	private IndexRange parseIndexRange() throws Exception {
+		//Get range
 		Token startIndex = tokenizer.nextToken();
 		expect(startIndex, TokenTypes.TokenType.INT_CONST);
 		Token doubleDot = tokenizer.nextToken();
@@ -158,7 +143,16 @@ public class Parser {
 		Token endIndex = tokenizer.nextToken();
 		expect(endIndex, TokenTypes.TokenType.INT_CONST);
 		
-		return new IndexRange(startIndex.intVal, endIndex.intVal);
+		//Eat of
+		token = tokenizer.nextToken();
+		expect(token, TokenTypes.TokenType.OF);
+
+		//Get type
+		SymType type = parseType();
+
+		tokenizer.nextToken();
+
+		return new SymTypeArray(type, startIndex.intVal, endIndex.intVal);
 	}
 
 	/**
@@ -192,7 +186,11 @@ public class Parser {
 
 		return result;
 	}
-	
+
+	/**
+	 * Parses term of form
+	 * <term> ::= <factor> {(*|/) <factor>}*
+	 */
 	private Node parseTerm() throws Exception {
 		Node result = parseFactor();
 		while (priorities.get(tokenizer.curToken().type) == Precedence.SECOND) {
@@ -205,6 +203,10 @@ public class Parser {
 		return result;
 	}
 
+	/**
+	 * Parses factor of form
+	 * <factor> ::= (+|-) id | int_const | (expression)
+	 */
 	private Node parseFactor() throws Exception {
 		UnaryOperation factor = new UnaryOperation();
 		Token token = tokenizer.curToken();
@@ -235,7 +237,7 @@ public class Parser {
 				token.type.toString())
 				);
 	}
-
+	
 	private Node parseIdentifier(Boolean isRecursive) throws Exception {
 		Token token = tokenizer.curToken();
 		expect(token, TokenTypes.TokenType.ID);
