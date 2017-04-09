@@ -118,7 +118,7 @@ public class Parser {
 			return new SimpleType(token.text);
 		}
 		
-		throw new Exception(String.format("Syntar error at (%d,%d): error in type definition",
+		throw new Exception(String.format("Syntar error at line %d, column %d: error in type definition",
 				token.row,
 				token.column)
 				);
