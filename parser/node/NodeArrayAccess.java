@@ -1,4 +1,4 @@
-package parser.Node;
+package parser.node;
 
 public class NodeArrayAccess extends Node {
     public Node id;

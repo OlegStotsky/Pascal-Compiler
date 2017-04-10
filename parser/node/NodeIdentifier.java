@@ -1,4 +1,4 @@
-package parser.Node;
+package parser.node;
 
 public class NodeIdentifier extends Node {
 	public String name;

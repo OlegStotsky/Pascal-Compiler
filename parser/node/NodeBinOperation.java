@@ -1,17 +1,17 @@
-package parser.Node;
+package parser.node;
 
 public class NodeBinOperation extends Node {
 	public Node left;
 	public Node right;
 	public String operation;
 	
-	NodeBinOperation() {
+	public NodeBinOperation() {
 		this.operation = null;
 		this.left = null;
 		this.right = null;
 	}
 
-	NodeBinOperation(String operation, Node left, Node right) {
+	public NodeBinOperation(String operation, Node left, Node right) {
 		this.operation = operation;
 		this.left = left;
 		this.right = right;

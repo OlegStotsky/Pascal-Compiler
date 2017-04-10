@@ -1,4 +1,4 @@
-package parser.Symbol;
+package parser.symbol;
 
 import java.util.HashMap;
 

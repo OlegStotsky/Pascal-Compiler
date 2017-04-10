@@ -1,4 +1,4 @@
-package parser.Symbol;
+package parser.symbol;
 
 /**
  * Created by olegstotsky on 07.04.17.

@@ -1,4 +1,4 @@
-package parser.Node;
+package parser.node;
 
 public class NodeStringConstant extends Node {
 	public String value;

@@ -1,4 +1,4 @@
-package parser.Node;
+package parser.node;
 
 public class NodeRecordAccess extends Node {
     public Node left, right;

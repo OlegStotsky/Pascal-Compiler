@@ -1,4 +1,4 @@
-package parser.Node;
+package parser.node;
 
 public class NodeIntConst extends Node {
 	public int val;

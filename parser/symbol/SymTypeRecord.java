@@ -2,19 +2,17 @@ package parser.symbol;
 
 import parser.node.Node;
 
-import java.util.ArrayList;
-
 /**
  * Created by olegstotsky on 10.04.17.
  */
 public class SymTypeRecord extends Node {
-    ArrayList<Symbol> vars;
+    SymTable table;
 
     public SymTypeRecord() {
-        this.vars = null;
+        this.table = null;
     }
 
-    public SymTypeRecord(ArrayList<Symbol> vars) {
-        this.vars = vars;
+    public SymTypeRecord(SymTable table) {
+        this.table = table;
     }
 }

@@ -1,4 +1,4 @@
-package parser.Node;
+package parser.node;
 
 public abstract class Node {
     public void print(int depth) {

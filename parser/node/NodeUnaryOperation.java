@@ -1,4 +1,4 @@
-package parser.Node;
+package parser.node;
 
 public class NodeUnaryOperation extends Node {
     public String operation;
