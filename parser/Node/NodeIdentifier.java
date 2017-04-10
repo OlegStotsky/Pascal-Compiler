@@ -1,13 +1,13 @@
-package parser;
+package parser.Node;
 
-public class Identifier extends Node {
+public class NodeIdentifier extends Node {
 	public String name;
 	
-	public Identifier() {
+	public NodeIdentifier() {
 		this.name = null;
 	}
 
-	public Identifier(String name) {
+	public NodeIdentifier(String name) {
 		this.name = name;
 	}
 

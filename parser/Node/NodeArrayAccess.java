@@ -1,15 +1,15 @@
-package parser;
+package parser.Node;
 
-public class ArrayAccess extends Node {
+public class NodeArrayAccess extends Node {
     public Node id;
     public Node index;
 
-    public ArrayAccess() {
+    public NodeArrayAccess() {
         this.id = null;
         this.index = null;
     }
 
-    public ArrayAccess(Node name, Node index) {
+    public NodeArrayAccess(Node name, Node index) {
         this.id = name;
         this.index = index;
     }

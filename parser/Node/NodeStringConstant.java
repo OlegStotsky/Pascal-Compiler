@@ -1,7 +1,7 @@
-package parser;
+package parser.Node;
 
-public class StringConstant extends Node {
-	public StringConstant() {
+public class NodeStringConstant extends Node {
+	public NodeStringConstant() {
 		
 	}
 }

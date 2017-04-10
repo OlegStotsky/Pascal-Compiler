@@ -1,13 +1,13 @@
-package parser;
+package parser.Node;
 
-public class IntConst extends Node {
+public class NodeIntConst extends Node {
 	public int val;
 	
-	public IntConst() {
+	public NodeIntConst() {
 		this.val = 0;
 	}
 
-	public IntConst(int val) {
+	public NodeIntConst(int val) {
 		this.val = val;
 	}
 

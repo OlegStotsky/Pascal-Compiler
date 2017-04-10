@@ -1,15 +1,15 @@
-package parser;
+package parser.Node;
 
-public class UnaryOperation extends Node {
+public class NodeUnaryOperation extends Node {
     public String operation;
     public Node value;
 
-    public UnaryOperation() {
+    public NodeUnaryOperation() {
         this.operation = null;
         this.value = null;
     }
 
-    public UnaryOperation(String sign, Node value) {
+    public NodeUnaryOperation(String sign, Node value) {
         this.operation = sign;
         this.value = value;
     }

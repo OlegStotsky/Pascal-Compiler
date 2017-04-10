@@ -1,14 +1,14 @@
-package parser;
+package parser.Node;
 
-public class RecordAccess extends Node {
+public class NodeRecordAccess extends Node {
     public Node left, right;
 
-    public RecordAccess() {
+    public NodeRecordAccess() {
         this.left = null;
         this.right = null;
     }
 
-    public RecordAccess(Node left, Node right) {
+    public NodeRecordAccess(Node left, Node right) {
         this.left = left;
         this.right = right;
     }
