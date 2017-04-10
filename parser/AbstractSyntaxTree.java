@@ -1,5 +1,7 @@
 package parser;
 
+import parser.node.Node;
+
 public class AbstractSyntaxTree {
 	public Node root;
 	
