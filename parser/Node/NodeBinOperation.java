@@ -1,11 +1,9 @@
 package parser;
 
-import tokenizer.TokenTypes;
-
 public class BinOperation extends Node {
 	public Node left;
 	public Node right;
-	String operation;
+	public String operation;
 	
 	BinOperation() {
 		this.operation = null;
