@@ -1,9 +1,5 @@
 package tokenizer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-
 public class TokenTypes {
 	public enum TokenType {
 		INT_CONST, FLOAT_CONST, STRING_CONST,
@@ -12,7 +8,7 @@ public class TokenTypes {
 		GRT, LESS, ADDR, 
 		DOT, LEFT_PARENTH, RIGHT_PARENTH, 
 		LSQB, RSQB, SEMICOLON, 
-		COLON, COMMA, EQUAL, 
+		COLON, COMMA, IS_EQUAL,
 		PLUS_E, MINUS_E, MUL_E, 
 		DIV_E, GRT_E, LESS_E, 
 		NOT_E, ASSIGN, DBL_DOT, 
@@ -25,8 +21,8 @@ public class TokenTypes {
 		VAR, TYPE, ARRAY, 
 		OF, CONST, TRUE, 
 		FALSE, AND, NOT, 
-		OR, XOR, UNKNOWN, 
-		EOF
+		OR, XOR, UNKNOWN,
+		EQUAL, EOF
 	}
 	
 	class KeyWord {
@@ -60,7 +56,7 @@ public class TokenTypes {
 	}
 	
 	public KeyWord keyWords[] = {
-			new KeyWord("begin", TokenType.IF), 
+			new KeyWord("begin", TokenType.BEGIN),
 			new KeyWord("end", TokenType.END),
 			new KeyWord("forward", TokenType.FORWARD),
 			new KeyWord("do", TokenType.DO), 
@@ -118,7 +114,8 @@ public class TokenTypes {
 			new SpecialSymbolPair("/=", TokenType.DIV_E),
 			new SpecialSymbolPair(":=", TokenType.ASSIGN),
 			new SpecialSymbolPair("..", TokenType.DBL_DOT),
-			new SpecialSymbolPair("==", TokenType.EQUAL)
+			new SpecialSymbolPair("==", TokenType.IS_EQUAL),
+			new SpecialSymbolPair("=", TokenType.EQUAL)
 	};
 	
 	private static TokenTypes instance = new TokenTypes();
