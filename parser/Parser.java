@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import parser.node.*;
-import parser.symbol.SymTable;
-import parser.symbol.SymType;
-import parser.symbol.SymTypeArray;
-import parser.symbol.SymVar;
+import parser.symbol.*;
 import tokenizer.Token;
 import tokenizer.TokenTypes;
 import tokenizer.Tokenizer;
@@ -38,7 +35,7 @@ public class Parser {
 		this.priorities.put(TokenTypes.TokenType.OR, Precedence.THIRD);
 		this.priorities.put(TokenTypes.TokenType.XOR, Precedence.THIRD);
 		
-		this.priorities.put(TokenTypes.TokenType.EQUAL, Precedence.LAST);
+		this.priorities.put(TokenTypes.TokenType.IS_EQUAL, Precedence.LAST);
 		this.priorities.put(TokenTypes.TokenType.NOT_E, Precedence.LAST);
 		this.priorities.put(TokenTypes.TokenType.LESS, Precedence.LAST);
 		this.priorities.put(TokenTypes.TokenType.GRT, Precedence.LAST);
@@ -48,15 +45,73 @@ public class Parser {
 	
 	public void parse() throws Exception {
 		tokenizer.nextToken();
-		parseVarBlock();
-		ast.print();
+		tokenizer.nextToken();
+		parseTypeBlock();
+		this.symTable.print(0);
 	}
 
 	private void parseTypeBlock() throws Exception {
+		do {
+			ArrayList<Token> identifiers = parseIdentifiersList();
+			Token token = tokenizer.curToken();
+			expect(token, TokenTypes.TokenType.EQUAL);
+			token = tokenizer.nextToken();
+			if (token.type == TokenTypes.TokenType.RECORD) {
+				SymTable table = new SymTable();
+				parseVarBlock(table);
+				token = tokenizer.curToken();
+				expect(token, TokenTypes.TokenType.END);
+				token = tokenizer.nextToken();
+				expect(token, TokenTypes.TokenType.SEMICOLON);
+				for (Token identifier : identifiers) {
+					this.symTable.addType(identifier.text, new SymTypeRecord(identifier.text, table));
+				}
+				tokenizer.nextToken();
+			}
+			if (token.type == TokenTypes.TokenType.POINTER) {
+				Token ref = tokenizer.nextToken();
+				tokenizer.nextToken();
+				expect(token, TokenTypes.TokenType.SEMICOLON);
+				SymType refType = this.symTable.getType(ref.text);
+				if (refType == null) {
+					throw new Exception(String.format("Syntax error at line %d, column %d : unexpected token type %s",
+							token.row,
+							token.column,
+							token.type.toString())
+					);
+				}
+				for (Token identifier : identifiers) {
+					this.symTable.addType(identifier.text, new SymTypePointer(refType));
+				}
+				tokenizer.nextToken();
+			}
+			if (token.type == TokenTypes.TokenType.ID) {
+				SymType refType = this.symTable.getType(token.text);
+				if (refType == null) {
+					throw new Exception(String.format("Syntax error at (%d %d) : unexpected token type %s",
+							token.row,
+							token.column,
+							token.type.toString())
+					);
+				}
+				this.symTable.addType(token.text, new SymTypeAlias(refType));
+				token = tokenizer.nextToken();
+				expect(token, TokenTypes.TokenType.SEMICOLON);
+				tokenizer.nextToken();
+			}
+			if (token.type == TokenTypes.TokenType.ARRAY) {
+				SymTypeArray arrayType = parseArrayType();
+				expect(tokenizer.curToken(), TokenTypes.TokenType.SEMICOLON);
+				for (Token identifier : identifiers) {
+					this.symTable.addType(identifier.text, arrayType);
+				}
+				tokenizer.nextToken();
+			}
 
+		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
 	}
 
-	private void parseVarBlock() throws Exception {
+	private void parseVarBlock(SymTable table) throws Exception {
 		Token token = tokenizer.curToken();
 		tokenizer.nextToken();
 		do {
@@ -70,7 +125,7 @@ public class Parser {
 			expect(token, TokenTypes.TokenType.SEMICOLON);
 			tokenizer.nextToken();
 			for (Token identifier : identifiers) {
-				symTable.addSymbol(identifier.text, new SymVar(identifier.text, type));
+				table.addSymbol(identifier.text, new SymVar(identifier.text, type));
 			}
 		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
 	}
@@ -105,6 +160,7 @@ public class Parser {
 	private SymType parseSimpleType() throws Exception {
 		Token token = tokenizer.curToken();
 		SymType type = symTable.getType(token.text);
+		tokenizer.nextToken();
 		if (type == null) {
 			throw new Exception(String.format("Syntar error at line %d, column %d: error in type definition",
 					token.row,
@@ -116,23 +172,19 @@ public class Parser {
 	}
 
 	private SymTypeArray parseArrayType() throws Exception {
-		//Eat left square bracket
 		Token token = tokenizer.curToken();
 		expect(token, TokenTypes.TokenType.LSQB);
-		
-		//Get range
+
 		Token startIndex = tokenizer.nextToken();
 		expect(startIndex, TokenTypes.TokenType.INT_CONST);
 		Token doubleDot = tokenizer.nextToken();
 		expect(doubleDot, TokenTypes.TokenType.DBL_DOT);
 		Token endIndex = tokenizer.nextToken();
 		expect(endIndex, TokenTypes.TokenType.INT_CONST);
-		
-		//Eat of
+
 		token = tokenizer.nextToken();
 		expect(token, TokenTypes.TokenType.OF);
 
-		//Get type
 		SymType type = parseType();
 
 		tokenizer.nextToken();
@@ -223,6 +275,17 @@ public class Parser {
 				);
 	}
 
+//	private void parseConst() throws Exception {
+//		do {
+//			Token token = tokenizer.curToken();
+//			expect(token, TokenTypes.TokenType.ID);
+//			token = tokenizer.nextToken();
+//			expect(token, TokenTypes.TokenType.EQUAL);
+//			token = tokenizer.nextToken();
+//			Node val = parseIdentifier(true);
+//		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
+//	}
+
 	private Node parseIdentifier(Boolean isRecursive) throws Exception {
 		Token token = tokenizer.curToken();
 		expect(token, TokenTypes.TokenType.ID);
@@ -245,6 +308,7 @@ public class Parser {
 				isRecursive = false;
 			}
 		}
+
 		return result;
 	}
 

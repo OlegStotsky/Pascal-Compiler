@@ -1,5 +1,7 @@
 package parser.symbol;
 
+import parser.Utils;
+
 /**
  * Created by olegstotsky on 07.04.17.
  */
@@ -12,5 +14,11 @@ public class SymTypePointer extends SymType {
 
     public SymTypePointer(SymType refType) {
         this.refType = refType;
+    }
+
+    public void print(int depth) {
+        Utils.printIndent(depth);
+        System.out.println(String.format("%s : POINTER TO " + refType.toString(),
+                this.name));
     }
 }

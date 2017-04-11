@@ -13,4 +13,12 @@ public class Symbol {
     public Symbol(String name) {
         this.name = name;
     }
+
+    public void print(int depth) {
+
+    }
+
+    public String toString() {
+        return this.name;
+    }
 }

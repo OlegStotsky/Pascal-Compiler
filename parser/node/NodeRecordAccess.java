@@ -1,5 +1,7 @@
 package parser.node;
 
+import parser.Utils;
+
 public class NodeRecordAccess extends Node {
     public Node left, right;
 
@@ -15,7 +17,7 @@ public class NodeRecordAccess extends Node {
 
     public void print(int depth) {
         left.print(depth+1);
-        printIndent(depth);
+        Utils.printIndent(depth);
         System.out.println(".");
         right.print(depth+1);
     }

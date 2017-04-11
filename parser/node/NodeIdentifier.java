@@ -1,5 +1,7 @@
 package parser.node;
 
+import parser.Utils;
+
 public class NodeIdentifier extends Node {
 	public String name;
 	
@@ -12,7 +14,11 @@ public class NodeIdentifier extends Node {
 	}
 
 	public void print(int depth) {
-		printIndent(depth);
-		System.out.println(name);
+		Utils.printIndent(depth);
+		System.out.println(this.name);
+	}
+
+	public String toString() {
+		return this.name;
 	}
 }

@@ -102,6 +102,8 @@ public class TokenTypes {
 			new SpecialSymbol(";", TokenType.SEMICOLON),
 			new SpecialSymbol(":", TokenType.COLON),
 			new SpecialSymbol(",", TokenType.COMMA),
+			new SpecialSymbol("=", TokenType.EQUAL),
+			new SpecialSymbol("^", TokenType.POINTER)
 	};
 	
 	public SpecialSymbolPair specialSymbolPairs[] = {
@@ -114,8 +116,7 @@ public class TokenTypes {
 			new SpecialSymbolPair("/=", TokenType.DIV_E),
 			new SpecialSymbolPair(":=", TokenType.ASSIGN),
 			new SpecialSymbolPair("..", TokenType.DBL_DOT),
-			new SpecialSymbolPair("==", TokenType.IS_EQUAL),
-			new SpecialSymbolPair("=", TokenType.EQUAL)
+			new SpecialSymbolPair("==", TokenType.IS_EQUAL)
 	};
 	
 	private static TokenTypes instance = new TokenTypes();

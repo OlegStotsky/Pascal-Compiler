@@ -1,5 +1,7 @@
 package parser.symbol;
 
+import parser.Utils;
+
 /**
  * Created by olegstotsky on 07.04.17.
  */
@@ -18,5 +20,14 @@ public class SymTypeArray extends SymType {
         this.elemType = elemType;
         this.start = start;
         this.end = end;
+    }
+
+    public void print(int depth) {
+        Utils.printIndent(depth);
+        System.out.println(String.format("%s : TYPE ARRAY[%d...%d] OF %s",
+                this.name,
+                this.start,
+                this.end,
+                this.elemType.name));
     }
 }

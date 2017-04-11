@@ -1,5 +1,7 @@
 package parser.symbol;
 
+import parser.Utils;
+
 /**
  * Created by olegstotsky on 07.04.17.
  */
@@ -13,5 +15,10 @@ public class SymVar extends Symbol {
     public SymVar(String name, SymType type) {
         super(name);
         this.type = type;
+    }
+
+    public void print(int depth) {
+        Utils.printIndent(depth);
+        System.out.println(this.name + ":" + type.name);
     }
 }

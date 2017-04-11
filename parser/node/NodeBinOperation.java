@@ -1,5 +1,7 @@
 package parser.node;
 
+import parser.Utils;
+
 public class NodeBinOperation extends Node {
 	public Node left;
 	public Node right;
@@ -19,7 +21,7 @@ public class NodeBinOperation extends Node {
 
 	public void print(int depth) {
 		left.print(depth+1);
-		printIndent(depth);
+		Utils.printIndent(depth);
 		System.out.println(operation);
 		right.print(depth+1);
 	}

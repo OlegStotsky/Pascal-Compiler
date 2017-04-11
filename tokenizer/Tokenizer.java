@@ -118,6 +118,8 @@ public class Tokenizer {
 		this.statesTable[State.BEGIN.ordinal()][','] = State.SPECIAL_THIRD;
 		this.statesTable[State.BEGIN.ordinal()]['('] = State.SPECIAL_THIRD;
 		this.statesTable[State.BEGIN.ordinal()][')'] = State.SPECIAL_THIRD;
+		this.statesTable[State.BEGIN.ordinal()]['='] = State.SPECIAL_THIRD;
+		this.statesTable[State.BEGIN.ordinal()]['^'] = State.SPECIAL_THIRD;
 		this.statesTable[State.SPECIAL_FIRST.ordinal()]['='] = State.SPECIAL_DBL;
 		this.statesTable[State.SPECIAL_SECOND.ordinal()]['='] = State.SPECIAL_DBL;
 		this.statesTable[State.SPECIAL_SECOND.ordinal()]['>'] = State.SPECIAL_DBL;

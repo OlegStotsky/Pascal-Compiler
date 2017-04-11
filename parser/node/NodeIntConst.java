@@ -1,5 +1,7 @@
 package parser.node;
 
+import parser.Utils;
+
 public class NodeIntConst extends Node {
 	public int val;
 	
@@ -12,7 +14,7 @@ public class NodeIntConst extends Node {
 	}
 
 	public void print(int depth) {
-		printIndent(depth);
+		Utils.printIndent(depth);
 		System.out.println(val);
 	}
 }

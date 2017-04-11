@@ -1,5 +1,7 @@
 package parser.node;
 
+import parser.Utils;
+
 public class NodeArrayAccess extends Node {
     public Node id;
     public Node index;
@@ -16,7 +18,7 @@ public class NodeArrayAccess extends Node {
 
     public void print(int depth) {
         id.print(depth+1);
-        printIndent(depth);
+        Utils.printIndent(depth);
         System.out.println("[]");
         index.print(depth+1);
     }

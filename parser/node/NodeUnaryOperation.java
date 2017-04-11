@@ -1,5 +1,7 @@
 package parser.node;
 
+import parser.Utils;
+
 public class NodeUnaryOperation extends Node {
     public String operation;
     public Node value;
@@ -16,7 +18,7 @@ public class NodeUnaryOperation extends Node {
 
     public void print(int depth) {
         if (operation != null) {
-            printIndent(depth);
+            Utils.printIndent(depth);
             System.out.println(operation);
         }
         value.print(depth+1);
