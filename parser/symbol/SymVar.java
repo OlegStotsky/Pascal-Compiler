@@ -19,6 +19,6 @@ public class SymVar extends Symbol {
 
     public void print(int depth) {
         Utils.printIndent(depth);
-        System.out.println(this.name + ":" + type.name);
+        System.out.println("VAR" + " " + this.name + ":" + type.name);
     }
 }

@@ -24,8 +24,7 @@ public class SymTypeArray extends SymType {
 
     public void print(int depth) {
         Utils.printIndent(depth);
-        System.out.println(String.format("%s : TYPE ARRAY[%d...%d] OF %s",
-                this.name,
+        System.out.println(String.format("TYPE %s : ARRAY[%d...%d] OF %s",
                 this.start,
                 this.end,
                 this.elemType.name));

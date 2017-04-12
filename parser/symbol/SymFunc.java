@@ -1,5 +1,7 @@
 package parser.symbol;
 
+import parser.statement.StmtBlock;
+
 import java.util.ArrayList;
 
 /**
@@ -8,12 +10,13 @@ import java.util.ArrayList;
 public class SymFunc extends SymProc {
     public SymType returnType;
 
+
     public SymFunc() {
         this.returnType = null;
     }
 
-    public SymFunc(SymType returnType, ArrayList<SymVar> args, ArrayList<SymVar> locals) {
-        super(args, locals);
+    public SymFunc(String name, SymTable localTable, StmtBlock stmt, SymType returnType) {
+        super(name, localTable, stmt);
         this.returnType = returnType;
     }
 }

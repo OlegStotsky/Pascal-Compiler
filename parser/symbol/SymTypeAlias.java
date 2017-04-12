@@ -10,7 +10,8 @@ public class SymTypeAlias extends SymType {
         this.refType = null;
     }
 
-    public SymTypeAlias(SymType refType) {
+    public SymTypeAlias(String name, SymType refType) {
+        super(name);
         this.refType = refType;
     }
 }

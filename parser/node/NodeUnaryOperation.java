@@ -20,7 +20,9 @@ public class NodeUnaryOperation extends Node {
         if (operation != null) {
             Utils.printIndent(depth);
             System.out.println(operation);
+            value.print(depth+1);
+        } else {
+            value.print(depth);
         }
-        value.print(depth+1);
     }
 }

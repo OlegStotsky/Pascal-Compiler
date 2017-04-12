@@ -12,6 +12,6 @@ public class SymTypeFloat extends SymTypeScalar {
 
     public void print(int depth) {
         Utils.printIndent(depth);
-        System.out.println("TYPE Float");
+        System.out.println("TYPE" + " " + this.name);
     }
 }

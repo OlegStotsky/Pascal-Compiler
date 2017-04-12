@@ -12,6 +12,6 @@ public class SymTypeBoolean extends SymType {
 
     public void print(int depth) {
         Utils.printIndent(depth);
-        System.out.println("TYPE Boolean");
+        System.out.println("TYPE" + " " + this.name);
     }
 }

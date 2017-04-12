@@ -12,6 +12,6 @@ public class SymTypeInteger extends SymTypeScalar {
 
     public void print(int depth) {
         Utils.printIndent(depth);
-        System.out.println("TYPE Integer");
+        System.out.println("TYPE" + " " + this.name);
     }
 }

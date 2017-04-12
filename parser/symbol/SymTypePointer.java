@@ -18,7 +18,7 @@ public class SymTypePointer extends SymType {
 
     public void print(int depth) {
         Utils.printIndent(depth);
-        System.out.println(String.format("%s : POINTER TO " + refType.toString(),
+        System.out.println(String.format("TYPE %s : POINTER TO :" + " " + refType.toString(),
                 this.name));
     }
 }
