@@ -7,7 +7,7 @@ import parser.Utils;
  */
 public class SymTypeFloat extends SymTypeScalar {
     public SymTypeFloat() {
-        super("Float");
+        super("float");
     }
 
     public void print(int depth) {

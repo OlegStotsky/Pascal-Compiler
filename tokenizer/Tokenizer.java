@@ -219,9 +219,9 @@ public class Tokenizer {
 					return result;
 					
 				case ID:
-					if (TokenTypes.getInstance().isKeyWord(raw.toString())) {
-						result.type = TokenTypes.getInstance().getType(raw.toString());
-						result.text = raw.toString();
+					if (TokenTypes.getInstance().isKeyWord(raw.toString().toLowerCase())) {
+						result.type = TokenTypes.getInstance().getType(raw.toString().toLowerCase());
+						result.text = raw.toString().toLowerCase();
 						this.lastToken = result;
 						return result;
 					}

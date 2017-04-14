@@ -7,7 +7,7 @@ import parser.Utils;
  */
 public class SymTypeBoolean extends SymType {
     public SymTypeBoolean() {
-        super("Boolean");
+        super("boolean");
     }
 
     public void print(int depth) {

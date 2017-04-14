@@ -11,12 +11,12 @@ import java.util.Map;
 /**
  * Created by olegstotsky on 09.04.17.
  */
-public class SymTable {
+public class GlobalSymTable extends SymTable {
     public HashMap<String, Symbol> vars;
     public HashMap<String, SymType> types;
     public HashMap<TokenTypes.TokenType, SymType> tokToType;
 
-    public SymTable() {
+    public GlobalSymTable() {
         this.vars = new HashMap<>();
         this.types = new HashMap<>();
         this.types.put("integer", new SymTypeInteger());
@@ -24,7 +24,14 @@ public class SymTable {
         this.types.put("boolean", new SymTypeBoolean());
     }
 
-    public void addSymbol(String name, Symbol symbol) {
+    public void addVar(String name, Symbol symbol, SymType type) throws Exception {
+        if (getType(type.toString()) == null) {
+            throw new Exception("");
+        }
+        this.vars.put(name, symbol);
+    }
+
+    public void addVar(String name, Symbol symbol) throws Exception {
         this.vars.put(name, symbol);
     }
 
@@ -35,7 +42,7 @@ public class SymTable {
         this.types.put(name, type);
     }
 
-    public void addSymbols(ArrayList<Token> names, SymType type) throws Exception {
+    public void addTypes(ArrayList<Token> names, SymType type) throws Exception {
         for (Token name : names) {
             if (this.types.get(name) != null) {
                 throw new Exception(String.format("Type %s is already declared",
@@ -52,22 +59,22 @@ public class SymTable {
 
     public void print(int depth) {
         Utils.printIndent(depth);
-        System.out.println("BEGIN SYM TABLE");
+        System.out.println("BEGIN GLOBAL SYM TABLE");
         Utils.printIndent(depth+1);
-        System.out.println("BEGIN SYM TABLE VARS");
+        System.out.println("BEGIN GLOBAL SYM TABLE VARS");
         for (Map.Entry<String, Symbol> entry : this.vars.entrySet()) {
             entry.getValue().print(depth+2);
         }
         Utils.printIndent(depth+1);
-        System.out.println("END SYM TABLE VARS");
+        System.out.println("END GLOBAL SYM TABLE VARS");
         Utils.printIndent(depth+1);
-        System.out.println("BEGIN SYM TABLE TYPES");
+        System.out.println("BEGIN GLOBAL SYM TABLE TYPES");
         for (Map.Entry<String, SymType> entry : this.types.entrySet()) {
             entry.getValue().print(depth+2);
         }
         Utils.printIndent(depth+1);
-        System.out.println("END SYM TABLE TYPES");
+        System.out.println("END GLOBAL SYM TABLE TYPES");
         Utils.printIndent(depth);
-        System.out.println("END SYM TABLE");
+        System.out.println("END GLOBAL SYM TABLE");
     }
 }

@@ -3,8 +3,6 @@ package parser.symbol;
 import parser.Utils;
 import parser.statement.Statement;
 
-import java.util.ArrayList;
-
 /**
  * Created by olegstotsky on 07.04.17.
  */

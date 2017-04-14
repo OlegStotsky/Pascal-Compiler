@@ -7,7 +7,7 @@ import parser.Utils;
  */
 public class SymTypeInteger extends SymTypeScalar {
     public SymTypeInteger() {
-        super("Integer");
+        super("integer");
     }
 
     public void print(int depth) {

@@ -19,14 +19,14 @@ public class Parser {
 	private Tokenizer tokenizer;
 	private AbstractSyntaxTree ast;
 	private HashMap<TokenTypes.TokenType, Precedence> priorities;
-	private SymTable symTable;
+	private GlobalSymTable globalSymTable;
 	private StmtProgram program;
 	
 	public Parser(Tokenizer tokenizer) {
 		this.tokenizer = tokenizer;
 		this.ast = new AbstractSyntaxTree();
 		this.priorities = new HashMap<>();
-		this.symTable = new SymTable();
+		this.globalSymTable = new GlobalSymTable();
 		
 		this.priorities.put(TokenTypes.TokenType.NOT, Precedence.FIRST);
 		this.priorities.put(TokenTypes.TokenType.ADDR, Precedence.FIRST);
@@ -51,13 +51,14 @@ public class Parser {
 	public void parse() throws Exception {
 		tokenizer.nextToken();
 		parseProgram();
-		this.symTable.print(0);
+		this.globalSymTable.print(0);
 	}
 
 	private void parseProgram() throws Exception {
 		while (true) {
 			Token token = tokenizer.curToken();
 			if (token.type == TokenTypes.TokenType.TYPE) {
+				tokenizer.nextToken();
 				parseTypeBlock();
 			}
 			if (token.type == TokenTypes.TokenType.PROCEDURE) {
@@ -66,7 +67,7 @@ public class Parser {
 
 			if (token.type == TokenTypes.TokenType.VAR) {
 				tokenizer.nextToken();
-				parseVarBlock(this.symTable);
+				parseVarBlock(this.globalSymTable);
 			}
 			break;
 		}
@@ -79,14 +80,15 @@ public class Parser {
 			expect(token, TokenTypes.TokenType.EQUAL);
 			token = tokenizer.nextToken();
 			if (token.type == TokenTypes.TokenType.RECORD) {
-				SymTable table = new SymTable();
+				SymTable table = new LocalSymTable(this.globalSymTable);
+				tokenizer.nextToken();
 				parseVarBlock(table);
 				token = tokenizer.curToken();
 				expect(token, TokenTypes.TokenType.END);
 				token = tokenizer.nextToken();
 				expect(token, TokenTypes.TokenType.SEMICOLON);
 				for (Token identifier : identifiers) {
-					this.symTable.addType(identifier.text, new SymTypeRecord(identifier.text, table));
+					this.globalSymTable.addType(identifier.text, new SymTypeRecord(identifier.text, table));
 				}
 				tokenizer.nextToken();
 			}
@@ -94,7 +96,7 @@ public class Parser {
 				Token ref = tokenizer.nextToken();
 				tokenizer.nextToken();
 				expect(token, TokenTypes.TokenType.SEMICOLON);
-				SymType refType = this.symTable.getType(ref.text);
+				SymType refType = this.globalSymTable.getType(ref.text);
 				if (refType == null) {
 					throw new Exception(String.format("Syntax error at line %d, column %d : unexpected token type %s",
 							token.row,
@@ -103,12 +105,12 @@ public class Parser {
 					);
 				}
 				for (Token identifier : identifiers) {
-					this.symTable.addType(identifier.text, new SymTypePointer(refType));
+					this.globalSymTable.addType(identifier.text, new SymTypePointer(refType));
 				}
 				tokenizer.nextToken();
 			}
 			if (token.type == TokenTypes.TokenType.ID) {
-				SymType refType = this.symTable.getType(token.text);
+				SymType refType = this.globalSymTable.getType(token.text);
 				if (refType == null) {
 					throw new Exception(String.format("Syntax error at line %d, column %d : unexpected token type %s",
 							token.row,
@@ -116,7 +118,7 @@ public class Parser {
 							token.type.toString())
 					);
 				}
-				this.symTable.addType(token.text, new SymTypeAlias(token.text, refType));
+				this.globalSymTable.addType(token.text, new SymTypeAlias(token.text, refType));
 				token = tokenizer.nextToken();
 				expect(token, TokenTypes.TokenType.SEMICOLON);
 				tokenizer.nextToken();
@@ -125,7 +127,7 @@ public class Parser {
 				SymTypeArray arrayType = parseArrayType();
 				expect(tokenizer.curToken(), TokenTypes.TokenType.SEMICOLON);
 				for (Token identifier : identifiers) {
-					this.symTable.addType(identifier.text, arrayType);
+					this.globalSymTable.addType(identifier.text, arrayType);
 				}
 				tokenizer.nextToken();
 			}
@@ -146,7 +148,8 @@ public class Parser {
 			expect(token, TokenTypes.TokenType.SEMICOLON);
 			tokenizer.nextToken();
 			for (Token identifier : identifiers) {
-				table.addSymbol(identifier.text, new SymVar(identifier.text, type));
+				SymVar var = new SymVar(identifier.text, type);
+				table.addVar(identifier.text, var, type);
 			}
 		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
 	}
@@ -163,7 +166,7 @@ public class Parser {
 		expect(name, TokenTypes.TokenType.ID);
 		token = tokenizer.nextToken();
 		expect(token, TokenTypes.TokenType.LEFT_PARENTH);
-		SymTable localTable = new SymTable();
+		SymTable localTable = new LocalSymTable(this.globalSymTable);
 		tokenizer.nextToken();
 		parseParams(localTable);
 		token = tokenizer.curToken();
@@ -173,7 +176,7 @@ public class Parser {
 			token = tokenizer.nextToken();
 			expect(token, TokenTypes.TokenType.SEMICOLON);
 			token = tokenizer.nextToken();
-			retType = this.symTable.getType(token.text);
+			retType = this.globalSymTable.getType(token.text);
 			if (retType == null) {
 				throw new Exception("");
 			}
@@ -190,10 +193,10 @@ public class Parser {
 
 		if (isProcedure) {
 			result = new SymProc(name.text, localTable, stmt);
-			this.symTable.addSymbol(name.text, result);
+			this.globalSymTable.addVar(name.text, result);
 		} else {
 			result = new SymFunc(name.text, localTable, stmt, retType);
-			this.symTable.addSymbol(name.text , result);
+			this.globalSymTable.addVar(name.text , result);
 		}
 	}
 
@@ -243,12 +246,9 @@ public class Parser {
 			expect(token, TokenTypes.TokenType.COLON);
 			token = tokenizer.nextToken();
 			expect(token, TokenTypes.TokenType.ID);
-			SymType type = this.symTable.getType(token.text);
-			if (type == null) {
-				throw new Exception("");
-			}
+			SymType type = this.globalSymTable.getType(token.text);
 			var = new SymVar(name.text, type);
-			table.addSymbol(name.text, var);
+			table.addVar(name.text, var, type);
 			token = tokenizer.nextToken();
 			if (token.type == TokenTypes.TokenType.COMMA) {
 				tokenizer.nextToken();
@@ -290,7 +290,7 @@ public class Parser {
 
 	private SymType parseSimpleType() throws Exception {
 		Token token = tokenizer.curToken();
-		SymType type = symTable.getType(token.text);
+		SymType type = globalSymTable.getType(token.text);
 		tokenizer.nextToken();
 		if (type == null) {
 			throw new Exception(String.format("Syntar error at line %d, column %d: error in type definition",
@@ -415,7 +415,7 @@ public class Parser {
 //			token = tokenizer.nextToken();
 //			Token val = tokenizer.curToken();
 //			if (val.type == TokenTypes.TokenType.STRING_CONST) {
-//				this.symTable.addSymbol(name.text, new )
+//				this.globalSymTable.addVar(name.text, new )
 //			}
 //		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
 //	}

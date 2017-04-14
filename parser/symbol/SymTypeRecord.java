@@ -1,7 +1,6 @@
 package parser.symbol;
 
 import parser.Utils;
-import parser.node.Node;
 
 /**
  * Created by olegstotsky on 10.04.17.

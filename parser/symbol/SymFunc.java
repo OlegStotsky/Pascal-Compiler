@@ -2,8 +2,6 @@ package parser.symbol;
 
 import parser.statement.StmtBlock;
 
-import java.util.ArrayList;
-
 /**
  * Created by olegstotsky on 07.04.17.
  */
