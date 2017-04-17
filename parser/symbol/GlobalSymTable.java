@@ -12,6 +12,7 @@ import java.util.Map;
  * Created by olegstotsky on 09.04.17.
  */
 public class GlobalSymTable extends SymTable {
+    public static GlobalSymTable instance = new GlobalSymTable();
     public HashMap<String, Symbol> vars;
     public HashMap<String, SymType> types;
     public HashMap<TokenTypes.TokenType, SymType> tokToType;
@@ -19,12 +20,16 @@ public class GlobalSymTable extends SymTable {
     public GlobalSymTable() {
         this.vars = new HashMap<>();
         this.types = new HashMap<>();
-        this.types.put("integer", new SymTypeInteger());
-        this.types.put("float", new SymTypeFloat());
-        this.types.put("boolean", new SymTypeBoolean());
+        this.types.put("integer", SymTypeInteger.getInstance());
+        this.types.put("float", SymTypeFloat.getInstance());
+        this.types.put("boolean", SymTypeBoolean.getInstance());
     }
 
-    public void addVar(String name, Symbol symbol, SymType type) throws Exception {
+    public static GlobalSymTable getInstance() {
+        return instance;
+    }
+
+    public void addVarSafe(String name, Symbol symbol, SymType type) throws Exception {
         if (getType(type.toString()) == null) {
             throw new Exception("");
         }
