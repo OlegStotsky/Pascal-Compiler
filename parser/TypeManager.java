@@ -9,12 +9,11 @@ import java.util.HashMap;
  * Created by olegstotsky on 16.04.17.
  */
 public class TypeManager {
-    public GlobalSymTable globalSymTable;
+    public static TypeManager instance = new TypeManager();
     public ArrayList<Pair<SymType, SymType>> legalTypeCasts;
     public HashMap<Pair<SymType, SymType>, SymType> typeCasts;
 
-    public TypeManager(GlobalSymTable globalSymTable) {
-        this.globalSymTable = globalSymTable;
+    public TypeManager() {
         this.legalTypeCasts.add(new Pair<SymType, SymType>(SymTypeInteger.getInstance(), SymTypeBoolean.getInstance()));
         this.legalTypeCasts.add(new Pair<SymType, SymType>(SymTypeBoolean.getInstance(), SymTypeInteger.getInstance()));
         this.legalTypeCasts.add(new Pair<SymType, SymType>(SymTypeInteger.getInstance(), SymTypeFloat.getInstance()));
@@ -27,6 +26,10 @@ public class TypeManager {
         this.typeCasts.put(new Pair<SymType, SymType>(SymTypeFloat.getInstance(), SymTypeFloat.getInstance()), SymTypeFloat.getInstance());
         this.typeCasts.put(new Pair<SymType, SymType>(SymTypeInteger.getInstance(), SymTypeInteger.getInstance()), SymTypeInteger.getInstance());
         this.typeCasts.put(new Pair<SymType, SymType>(SymTypeChar.getInstance(), SymTypeChar.getInstance()), SymTypeChar.getInstance());
+    }
+
+    public static TypeManager getInstance() {
+        return instance;
     }
 
     public SymType resolveOperationResultType(SymType first, SymType second) {
