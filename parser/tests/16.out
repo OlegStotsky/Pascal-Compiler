@@ -1,9 +1,15 @@
-BEGIN SYM TABLE
- BEGIN SYM TABLE VARS
- END SYM TABLE VARS
- BEGIN SYM TABLE TYPES
-  TYPE Boolean
-  TYPE Integer
-  TYPE Float
- END SYM TABLE TYPES
-END SYM TABLE
+ a
++
+      a
+     .
+      b
+    []
+      4
+     +
+      3
+   .
+    a
+  +
+   5
+ *
+  4
