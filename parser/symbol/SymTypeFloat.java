@@ -6,8 +6,14 @@ import parser.Utils;
  * Created by olegstotsky on 07.04.17.
  */
 public class SymTypeFloat extends SymTypeScalar {
-    public SymTypeFloat() {
+    static SymTypeFloat instance = new SymTypeFloat();
+
+    private SymTypeFloat() {
         super("float");
+    }
+
+    public static SymTypeFloat getInstance() {
+        return instance;
     }
 
     public void print(int depth) {
