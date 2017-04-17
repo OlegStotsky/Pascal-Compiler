@@ -1,6 +1,8 @@
 package parser.node;
 
+import parser.TypeManager;
 import parser.Utils;
+import parser.symbol.SymType;
 
 public class NodeBinOperation extends Node {
 	public Node left;
@@ -24,5 +26,13 @@ public class NodeBinOperation extends Node {
 		Utils.printIndent(depth);
 		System.out.println(operation);
 		right.print(depth+1);
+	}
+
+	public SymType getType() throws Exception {
+		SymType type = TypeManager.getInstance().resolveOperationResultType(left.getType(), right.getType());
+		if (type == null) {
+			throw new Exception("Can't cast types"); //TODO
+		}
+		return type;
 	}
 }

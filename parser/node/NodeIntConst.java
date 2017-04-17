@@ -1,6 +1,8 @@
 package parser.node;
 
 import parser.Utils;
+import parser.symbol.SymType;
+import parser.symbol.SymTypeInteger;
 
 public class NodeIntConst extends Node {
 	public int val;
@@ -16,5 +18,9 @@ public class NodeIntConst extends Node {
 	public void print(int depth) {
 		Utils.printIndent(depth);
 		System.out.println(val);
+	}
+
+	public SymType getType() {
+		return SymTypeInteger.getInstance();
 	}
 }

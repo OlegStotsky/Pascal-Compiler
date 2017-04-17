@@ -17,7 +17,7 @@ public class LocalSymTable extends SymTable {
         this.globalSymTable = globalSymTable;
     }
 
-    public void addVar(String name, Symbol symbol, SymType type) throws Exception {
+    public void addVarSafe(String name, Symbol symbol, SymType type) throws Exception {
         if (this.globalSymTable.getType(type.toString()) == null) {
             throw new Exception("");
         }

@@ -2,14 +2,14 @@ package parser.node;
 
 import parser.Utils;
 
-public class NodeStringConstant extends Node {
+public class NodeStringConst extends Node {
 	public String value;
 
-	public NodeStringConstant() {
+	public NodeStringConst() {
 		this.value = null;
 	}
 
-	public NodeStringConstant(String value) {
+	public NodeStringConst(String value) {
 		this.value = value;
 	}
 
