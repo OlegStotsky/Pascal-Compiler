@@ -6,8 +6,14 @@ import parser.Utils;
  * Created by olegstotsky on 07.04.17.
  */
 public class SymTypeInteger extends SymTypeScalar {
-    public SymTypeInteger() {
+    private static SymTypeInteger instance = new SymTypeInteger();
+
+    private SymTypeInteger() {
         super("integer");
+    }
+
+    public static SymTypeInteger getInstance() {
+        return instance;
     }
 
     public void print(int depth) {
