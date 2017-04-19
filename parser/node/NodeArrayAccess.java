@@ -16,7 +16,7 @@ public class NodeArrayAccess extends Node {
         this.index = index;
     }
 
-    public void print(int depth) {
+    public void print(int depth) throws Exception {
         id.print(depth+1);
         Utils.printIndent(depth);
         System.out.println("[]");

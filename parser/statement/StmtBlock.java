@@ -18,7 +18,7 @@ public class StmtBlock extends Statement {
         this.statements = statements;
     }
 
-    public void print(int depth) {
+    public void print(int depth) throws Exception {
         Utils.printIndent(depth);
         System.out.println("BEGIN STMT BLOCK");
         for (Statement statement : statements) {

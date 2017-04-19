@@ -17,7 +17,7 @@ public class StmtAssign extends Statement {
         this.node = node;
     }
 
-    public void print(int depth) {
+    public void print(int depth) throws Exception {
         Utils.printIndent(depth);
         System.out.println("BEGIN STMT ASSIGN");
         node.print(depth+1);

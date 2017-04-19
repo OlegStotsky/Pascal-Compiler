@@ -21,7 +21,7 @@ public class SymProc extends Symbol {
         this.stmt = stmt;
     }
 
-    public void print(int depth) {
+    public void print(int depth) throws Exception {
         Utils.printIndent(depth);
         System.out.println(String.format("PROCEDURE %s", this.name));
         this.localTable.print(depth+1);

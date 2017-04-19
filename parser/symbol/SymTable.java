@@ -8,7 +8,11 @@ public abstract class SymTable {
 
     }
 
-    public void print(int depth) {
+    public void addVar(String name, Symbol symbol) throws Exception {
+
+    }
+
+    public void print(int depth) throws Exception {
 
     }
 }

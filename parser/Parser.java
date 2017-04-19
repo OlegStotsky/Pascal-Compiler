@@ -14,61 +14,73 @@ import tokenizer.TokenTypes;
 import tokenizer.Tokenizer;
 
 public class Parser {
-	private enum Precedence {FIRST, SECOND, THIRD, LAST}
+	public enum OperationPrecedence {FIRST, SECOND, THIRD, LAST}
 	
 	private Tokenizer tokenizer;
-	private AbstractSyntaxTree ast;
-	private HashMap<TokenTypes.TokenType, Precedence> priorities;
-	private StmtProgram program;
+	private HashMap<TokenTypes.TokenType, OperationPrecedence> priorities;
+	private Statement program;
 	
 	public Parser(Tokenizer tokenizer) {
 		this.tokenizer = tokenizer;
-		this.ast = new AbstractSyntaxTree();
 		this.priorities = new HashMap<>();
 		
-		this.priorities.put(TokenTypes.TokenType.NOT, Precedence.FIRST);
-		this.priorities.put(TokenTypes.TokenType.ADDR, Precedence.FIRST);
+		this.priorities.put(TokenTypes.TokenType.NOT, OperationPrecedence.FIRST);
+		this.priorities.put(TokenTypes.TokenType.ADDR, OperationPrecedence.FIRST);
 		
-		this.priorities.put(TokenTypes.TokenType.MUL, Precedence.SECOND);
-		this.priorities.put(TokenTypes.TokenType.DIV, Precedence.SECOND);
-		this.priorities.put(TokenTypes.TokenType.AND, Precedence.SECOND);
+		this.priorities.put(TokenTypes.TokenType.MUL, OperationPrecedence.SECOND);
+		this.priorities.put(TokenTypes.TokenType.DIV, OperationPrecedence.SECOND);
+		this.priorities.put(TokenTypes.TokenType.AND, OperationPrecedence.SECOND);
 		
-		this.priorities.put(TokenTypes.TokenType.PLUS, Precedence.THIRD);
-		this.priorities.put(TokenTypes.TokenType.MINUS, Precedence.THIRD);
-		this.priorities.put(TokenTypes.TokenType.OR, Precedence.THIRD);
-		this.priorities.put(TokenTypes.TokenType.XOR, Precedence.THIRD);
+		this.priorities.put(TokenTypes.TokenType.PLUS, OperationPrecedence.THIRD);
+		this.priorities.put(TokenTypes.TokenType.MINUS, OperationPrecedence.THIRD);
+		this.priorities.put(TokenTypes.TokenType.OR, OperationPrecedence.THIRD);
+		this.priorities.put(TokenTypes.TokenType.XOR, OperationPrecedence.THIRD);
 		
-		this.priorities.put(TokenTypes.TokenType.EQUAL, Precedence.LAST);
-		this.priorities.put(TokenTypes.TokenType.NOT_E, Precedence.LAST);
-		this.priorities.put(TokenTypes.TokenType.LESS, Precedence.LAST);
-		this.priorities.put(TokenTypes.TokenType.GRT, Precedence.LAST);
-		this.priorities.put(TokenTypes.TokenType.LESS_E, Precedence.LAST);
-		this.priorities.put(TokenTypes.TokenType.GRT_E, Precedence.LAST);
+		this.priorities.put(TokenTypes.TokenType.EQUAL, OperationPrecedence.LAST);
+		this.priorities.put(TokenTypes.TokenType.NOT_E, OperationPrecedence.LAST);
+		this.priorities.put(TokenTypes.TokenType.LESS, OperationPrecedence.LAST);
+		this.priorities.put(TokenTypes.TokenType.GRT, OperationPrecedence.LAST);
+		this.priorities.put(TokenTypes.TokenType.LESS_E, OperationPrecedence.LAST);
+		this.priorities.put(TokenTypes.TokenType.GRT_E, OperationPrecedence.LAST);
 	}
 	
 	public void parse() throws Exception {
 		tokenizer.nextToken();
 		parseProgram();
 		GlobalSymTable.getInstance().print(0);
+
 		expect(tokenizer.curToken(), TokenTypes.TokenType.EOF);
-		ast.print();
 	}
 
 	private void parseProgram() throws Exception {
-		while (true) {
+		while (!tokenizer.eof()) {
 			Token token = tokenizer.curToken();
 			if (token.type == TokenTypes.TokenType.TYPE) {
 				tokenizer.nextToken();
 				parseTypeBlock();
 			}
-			if (token.type == TokenTypes.TokenType.PROCEDURE) {
+			else if (token.type == TokenTypes.TokenType.PROCEDURE || token.type == TokenTypes.TokenType.FUNCTION) {
 				parseProcedureOrFunctionBlock();
 			}
-			if (token.type == TokenTypes.TokenType.VAR) {
+
+			else if (token.type == TokenTypes.TokenType.VAR) {
 				tokenizer.nextToken();
 				parseVarBlock(GlobalSymTable.getInstance());
 			}
-			break;
+			else if (token.type == TokenTypes.TokenType.CONST) {
+				tokenizer.nextToken();
+				parseConstBlock(GlobalSymTable.getInstance());
+			}
+			else if (token.type == TokenTypes.TokenType.BEGIN) {
+				tokenizer.nextToken();
+				this.program = parseStmtBlock();
+			}
+			else if (token.type == TokenTypes.TokenType.EOF) {
+				break;
+			}
+			else {
+				throw new Exception("Unexpected symbol");
+			}
 		}
 	}
 
@@ -84,14 +96,13 @@ public class Parser {
 				parseVarBlock(table);
 				token = tokenizer.curToken();
 				expect(token, TokenTypes.TokenType.END);
-				token = tokenizer.nextToken();
-				expect(token, TokenTypes.TokenType.SEMICOLON);
 				for (Token identifier : identifiers) {
-					GlobalSymTable.getInstance().addType(identifier.text, new SymTypeRecord(identifier.text, table));
+					SymTypeRecord record = new SymTypeRecord(identifier.text, table);
+					GlobalSymTable.getInstance().addType(identifier.text, record);
 				}
 				tokenizer.nextToken();
 			}
-			if (token.type == TokenTypes.TokenType.POINTER) {
+			else if (token.type == TokenTypes.TokenType.POINTER) {
 				Token ref = tokenizer.nextToken();
 				tokenizer.nextToken();
 				expect(token, TokenTypes.TokenType.SEMICOLON);
@@ -102,13 +113,14 @@ public class Parser {
 							token.column,
 							token.type.toString())
 					);
-				}
+				}2
 				for (Token identifier : identifiers) {
-					GlobalSymTable.getInstance().addType(identifier.text, new SymTypePointer(refType));
+					SymTypePointer pointer = new SymTypePointer(refType);
+					GlobalSymTable.getInstance().addType(identifier.text, pointer);
 				}
 				tokenizer.nextToken();
 			}
-			if (token.type == TokenTypes.TokenType.ID) {
+			else if (token.type == TokenTypes.TokenType.ID) {
 				SymType refType = GlobalSymTable.getInstance().getType(token.text);
 				if (refType == null) {
 					throw new Exception(String.format("Syntax error at line %d, column %d : unexpected token type %s",
@@ -117,13 +129,16 @@ public class Parser {
 							token.type.toString())
 					);
 				}
-				GlobalSymTable.getInstance().addType(token.text, new SymTypeAlias(token.text, refType));
+				SymTypeAlias alias = new SymTypeAlias(token.text, refType);
+				GlobalSymTable.getInstance().addType(token.text, alias);
 				token = tokenizer.nextToken();
 				expect(token, TokenTypes.TokenType.SEMICOLON);
 				tokenizer.nextToken();
 			}
-			if (token.type == TokenTypes.TokenType.ARRAY) {
+			else if (token.type == TokenTypes.TokenType.ARRAY) {
+				tokenizer.nextToken();
 				SymTypeArray arrayType = parseArrayType();
+				arrayType.name = identifiers.get(0).text;
 				expect(tokenizer.curToken(), TokenTypes.TokenType.SEMICOLON);
 				for (Token identifier : identifiers) {
 					GlobalSymTable.getInstance().addType(identifier.text, arrayType);
@@ -131,6 +146,23 @@ public class Parser {
 				tokenizer.nextToken();
 			}
 
+		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
+	}
+
+	private void parseConstBlock(SymTable table) throws Exception {
+		do {
+			Token id = tokenizer.curToken();
+			SymVar var;
+			Token token = tokenizer.nextToken();
+			expect(token, TokenTypes.TokenType.EQUAL);
+			token = tokenizer.nextToken();
+			Node node = parseExpression();
+			SymType type = node.getType();
+			var = new SymVar(id.text, type);
+			table.addVarSafe(id.text, var, type);
+			token = tokenizer.nextToken();
+			expect(token, TokenTypes.TokenType.SEMICOLON);
+			tokenizer.nextToken();
 		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
 	}
 
@@ -147,8 +179,8 @@ public class Parser {
 			expect(token, TokenTypes.TokenType.SEMICOLON);
 			tokenizer.nextToken();
 			for (Token identifier : identifiers) {
-				SymVar var = new SymVar(identifier.text, type);
-				table.addVarSafe(identifier.text, var, type);
+				Symbol var = new SymVar(identifier.text, type);
+				table.addVar(identifier.text, var);
 			}
 		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
 	}
@@ -186,9 +218,9 @@ public class Parser {
 		}
 		token = tokenizer.curToken();
 		expect(token, TokenTypes.TokenType.BEGIN);
+		tokenizer.nextToken();
 		StmtBlock stmt = parseStmtBlock();
 		token = tokenizer.curToken();
-		expect(token, TokenTypes.TokenType.END);
 
 		if (isProcedure) {
 			result = new SymProc(name.text, localTable, stmt);
@@ -200,7 +232,6 @@ public class Parser {
 	}
 
 	private StmtBlock parseStmtBlock() throws Exception {
-		tokenizer.nextToken();
 		ArrayList<Statement> stmts = new ArrayList<>();
 		while (true) {
 			Statement stmt = parseStatement();
@@ -208,6 +239,9 @@ public class Parser {
 			Token token = tokenizer.curToken();
 			if (token.type == TokenTypes.TokenType.END) {
 				break;
+			}
+			else if (token.type == TokenTypes.TokenType.EOF) {
+				throw new Exception("Unexpected EOF");
 			}
 		}
 
@@ -221,6 +255,10 @@ public class Parser {
 			NodeAssignment assignment = parseAssignment();
 			tokenizer.nextToken();
 			return new StmtAssign(assignment);
+		}
+		else if (token.type == TokenTypes.TokenType.BEGIN) {
+			tokenizer.nextToken();
+			return parseStmtBlock();
 		}
 
 		return null;
@@ -254,7 +292,7 @@ public class Parser {
 				tokenizer.nextToken();
 				continue;
 			}
-			if (token.type == TokenTypes.TokenType.RIGHT_PARENTH) {
+			else if (token.type == TokenTypes.TokenType.RIGHT_PARENTH) {
 				break;
 			}
 			throw new Exception("");
@@ -280,6 +318,7 @@ public class Parser {
 		Token token = tokenizer.curToken();
 		SymType type;
 		if (token.type == TokenTypes.TokenType.ARRAY) {
+			tokenizer.nextToken();
 			type = parseArrayType();
 		} else {
 			type = parseSimpleType();
@@ -303,6 +342,7 @@ public class Parser {
 	}
 
 	private SymTypeArray parseArrayType() throws Exception {
+		SymTypeArray result;
 		Token token = tokenizer.curToken();
 		expect(token, TokenTypes.TokenType.LSQB);
 
@@ -314,13 +354,15 @@ public class Parser {
 		expect(endIndex, TokenTypes.TokenType.INT_CONST);
 
 		token = tokenizer.nextToken();
+		expect(token, TokenTypes.TokenType.RSQB);
+		token = tokenizer.nextToken();
 		expect(token, TokenTypes.TokenType.OF);
+		tokenizer.nextToken();
 
 		SymType type = parseType();
 
-		tokenizer.nextToken();
-
-		return new SymTypeArray(type, startIndex.intVal, endIndex.intVal);
+		result = new SymTypeArray(type, startIndex.intVal, endIndex.intVal);
+		return result;
 	}
 
 	/**
@@ -329,11 +371,11 @@ public class Parser {
 	 */
 	private Node parseExpression() throws Exception {
 		Node result = parseSimpleExpression();
-		while (priorities.get(tokenizer.curToken().type) == Precedence.LAST) {
+		while (priorities.get(tokenizer.curToken().type) == OperationPrecedence.LAST) {
 			Token operation = tokenizer.curToken();
 			tokenizer.nextToken();
 			Node right = parseSimpleExpression();
-			result = new NodeBinOperation(operation.text, result, right);
+			result = new NodeBinOperation(operation.type, result, right);
 		}
 
 		return result;
@@ -345,11 +387,11 @@ public class Parser {
 	 */
 	private Node parseSimpleExpression() throws Exception {
 		Node result = parseTerm();
-		while (priorities.get(tokenizer.curToken().type) == Precedence.THIRD) {
+		while (priorities.get(tokenizer.curToken().type) == OperationPrecedence.THIRD) {
 			Token operation = tokenizer.curToken();
 			tokenizer.nextToken();
 			Node right = parseTerm();
-			result = new NodeBinOperation(operation.text, result, right);
+			result = new NodeBinOperation(operation.type, result, right);
 		}
 
 		return result;
@@ -361,11 +403,11 @@ public class Parser {
 	 */
 	private Node parseTerm() throws Exception {
 		Node result = parseFactor();
-		while (priorities.get(tokenizer.curToken().type) == Precedence.SECOND) {
+		while (priorities.get(tokenizer.curToken().type) == OperationPrecedence.SECOND) {
 			Token operation = tokenizer.curToken();
 			tokenizer.nextToken();
 			Node right = parseFactor();
-			result = new NodeBinOperation(operation.text, result, right);
+			result = new NodeBinOperation(operation.type, result, right);
 		}
 		
 		return result;
@@ -382,37 +424,37 @@ public class Parser {
 			factor.operation = token.text;
 			token = tokenizer.nextToken();
 		}
-		if (token.type == TokenTypes.TokenType.ID) {
+		else if (token.type == TokenTypes.TokenType.ID) {
 			factor.value = parseIdentifier(true);
 			return factor;
 		}
-		if (token.type == TokenTypes.TokenType.INT_CONST) {
+		else if (token.type == TokenTypes.TokenType.INT_CONST) {
 			factor.value = new NodeIntConst(token.intVal);
 			tokenizer.nextToken();
 			return factor;
 		}
-		if (token.type == TokenTypes.TokenType.FLOAT_CONST) {
+		else if (token.type == TokenTypes.TokenType.FLOAT_CONST) {
 			factor.value = new NodeFloatConst(token.realVal);
 			tokenizer.nextToken();
 			return factor;
 
 		}
-		if (token.type == TokenTypes.TokenType.STRING_CONST) {
+		else if (token.type == TokenTypes.TokenType.STRING_CONST) {
 			factor.value = new NodeStringConst(token.text);
 			tokenizer.nextToken();
 			return factor;
 		}
-		if (token.type == TokenTypes.TokenType.CHAR_CONST) {
+		else if (token.type == TokenTypes.TokenType.CHAR_CONST) {
 			factor.value = new NodeCharConst(token.text.charAt(0));
 			tokenizer.nextToken();
 			return factor;
 		}
-		if (token.type == TokenTypes.TokenType.TRUE || token.type == TokenTypes.TokenType.FALSE) {
+		else if (token.type == TokenTypes.TokenType.TRUE || token.type == TokenTypes.TokenType.FALSE) {
 			factor.value = new NodeBoolConst(new Boolean(token.text));
 			tokenizer.nextToken();
 			return factor;
 		}
-		if (token.type == TokenTypes.TokenType.LEFT_PARENTH) {
+		else if (token.type == TokenTypes.TokenType.LEFT_PARENTH) {
 			tokenizer.nextToken();
 			factor.value = parseExpression();
 			expect(tokenizer.curToken(), TokenTypes.TokenType.RIGHT_PARENTH);
@@ -427,19 +469,6 @@ public class Parser {
 				);
 	}
 
-//	private void parseConst() throws Exception {
-//		do {
-//			Token name = tokenizer.curToken();
-//			expect(name, TokenTypes.TokenType.ID);
-//			Token token = tokenizer.nextToken();
-//			expect(token, TokenTypes.TokenType.EQUAL);
-//			token = tokenizer.nextToken();
-//			Token val = tokenizer.curToken();
-//			if (val.type == TokenTypes.TokenType.STRING_CONST) {
-//				this.globalSymTable.addVarSafe(name.text, new )
-//			}
-//		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
-//	}
 
 	private Node parseIdentifier(Boolean isRecursive) throws Exception {
 		Token token = tokenizer.curToken();

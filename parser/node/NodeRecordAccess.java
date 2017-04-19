@@ -15,7 +15,7 @@ public class NodeRecordAccess extends Node {
         this.right = right;
     }
 
-    public void print(int depth) {
+    public void print(int depth) throws Exception {
         left.print(depth+1);
         Utils.printIndent(depth);
         System.out.println(".");

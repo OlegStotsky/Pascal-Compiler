@@ -17,7 +17,7 @@ public class GlobalSymTable extends SymTable {
     public HashMap<String, SymType> types;
     public HashMap<TokenTypes.TokenType, SymType> tokToType;
 
-    public GlobalSymTable() {
+    public GlobalSymTable() {//prelude predefined
         this.vars = new HashMap<>();
         this.types = new HashMap<>();
         this.types.put("integer", SymTypeInteger.getInstance());
@@ -49,7 +49,7 @@ public class GlobalSymTable extends SymTable {
 
     public void addTypes(ArrayList<Token> names, SymType type) throws Exception {
         for (Token name : names) {
-            if (this.types.get(name) != null) {
+            if (this.types.get(name.text) != null) {
                 throw new Exception(String.format("Type %s is already declared",
                         name));
             }
@@ -62,7 +62,7 @@ public class GlobalSymTable extends SymTable {
     }
 
 
-    public void print(int depth) {
+    public void print(int depth) throws Exception {
         Utils.printIndent(depth);
         System.out.println("BEGIN GLOBAL SYM TABLE");
         Utils.printIndent(depth+1);

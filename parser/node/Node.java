@@ -3,7 +3,7 @@ package parser.node;
 import parser.symbol.SymType;
 
 public abstract class Node {
-    public void print(int depth) {
+    public void print(int depth) throws Exception {
 
     }
 

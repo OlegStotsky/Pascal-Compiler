@@ -17,7 +17,7 @@ public class SymTypeRecord extends SymType {
         this.table = table;
     }
 
-    public void print(int depth) {
+    public void print(int depth) throws Exception {
         Utils.printIndent(depth);
         System.out.println(String.format("TYPE %s : RECORD",
                 this.name));

@@ -14,7 +14,7 @@ public abstract class Symbol {
         this.name = name;
     }
 
-    public void print(int depth) {
+    public void print(int depth) throws Exception {
 
     }
 

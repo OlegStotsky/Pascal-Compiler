@@ -1,6 +1,7 @@
 package parser.node;
 
 import parser.Utils;
+import parser.symbol.SymType;
 
 public class NodeUnaryOperation extends Node {
     public String operation;
@@ -16,7 +17,7 @@ public class NodeUnaryOperation extends Node {
         this.value = value;
     }
 
-    public void print(int depth) {
+    public void print(int depth) throws Exception {
         if (operation != null) {
             Utils.printIndent(depth);
             System.out.println(operation);
@@ -24,5 +25,9 @@ public class NodeUnaryOperation extends Node {
         } else {
             value.print(depth);
         }
+    }
+
+    public SymType getType() throws Exception {
+        return value.getType();
     }
 }

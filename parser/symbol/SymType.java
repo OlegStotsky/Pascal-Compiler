@@ -11,4 +11,6 @@ public class SymType extends Symbol {
     public SymType(String name) {
         super(name);
     }
+
+
 }

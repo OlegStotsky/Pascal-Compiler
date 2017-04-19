@@ -25,7 +25,7 @@ public class LocalSymTable extends SymTable {
         this.vars.put(name, symbol);
     }
 
-    public void print(int depth) {
+    public void print(int depth) throws Exception {
         Utils.printIndent(depth);
         System.out.println("BEGIN LOCAL SYM TABLE");
         Utils.printIndent(depth+1);
