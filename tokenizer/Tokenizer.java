@@ -89,11 +89,11 @@ public class Tokenizer {
 		this.statesTable[State.NUMBER_DBL_FIRST.ordinal()]['.'] = State.END;
 		
 		/* Words */
-		for (int i = 'a'; i < 'z'; ++i) {
+		for (int i = 'a'; i <= 'z'; ++i) {
 			this.statesTable[State.BEGIN.ordinal()][i] = State.ID;
 			this.statesTable[State.ID.ordinal()][i] = State.ID;
 		}
-		for (int i = 'A'; i < 'Z'; ++i) {
+		for (int i = 'A'; i <= 'Z'; ++i) {
 			this.statesTable[State.BEGIN.ordinal()][i] = State.ID;
 			this.statesTable[State.ID.ordinal()][i] = State.ID;
 		}
