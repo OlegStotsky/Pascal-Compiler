@@ -275,6 +275,7 @@ public class Tokenizer {
 				case NUMBER_DBL_FIRST:
 					result.text = raw.toString().substring(0, raw.length()-1);
 					result.type = TokenTypes.TokenType.INT_CONST;
+					result.intVal = Integer.valueOf(result.text);
 					twoDots = true;
 					this.lastByte = curByte;
 					this.lastToken = result;
