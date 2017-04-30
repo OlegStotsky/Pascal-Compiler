@@ -1,0 +1,12 @@
+BEGIN SYMTABLE
+ VAR
+  NAME : a
+  TYPE : integer
+ VAR
+  NAME : b
+  TYPE : boolean
+ TYPE : boolean
+ TYPE : char
+ TYPE : integer
+ TYPE : float
+END SYMTABLE

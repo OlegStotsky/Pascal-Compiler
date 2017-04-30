@@ -17,10 +17,20 @@ public class SymTypeRecord extends SymType {
         this.table = table;
     }
 
+    public SymTypeRecord(SymTable table) {
+        super("");
+        this.table = table;
+    }
+
     public void print(int depth) throws Exception {
         Utils.printIndent(depth);
-        System.out.println(String.format("TYPE %s : RECORD",
-                this.name));
+        if (name.equals("")) {
+            System.out.println(String.format("TYPE : RECORD",
+                    this.name));
+        } else {
+            System.out.println(String.format("TYPE %s : RECORD",
+                    this.name));
+        }
         table.print(depth+1);
         Utils.printIndent(depth);
         System.out.println("END");

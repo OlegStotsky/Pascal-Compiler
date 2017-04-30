@@ -6,19 +6,29 @@ import parser.Utils;
  * Created by olegstotsky on 07.04.17.
  */
 public class SymTypePointer extends SymType {
-    public SymType refType;
+    public Symbol refType;
 
     public SymTypePointer() {
         this.refType = null;
     }
 
-    public SymTypePointer(SymType refType) {
+    public SymTypePointer(String name, Symbol refType) {
+        super(name);
         this.refType = refType;
     }
 
-    public void print(int depth) {
+    public SymTypePointer(Symbol refType) {
+        super("");
+        this.refType = refType;
+    }
+
+    public void print(int depth) throws Exception {
         Utils.printIndent(depth);
-        System.out.println(String.format("TYPE %s : POINTER TO :" + " " + refType.toString(),
-                this.name));
+        if (this.name.equals("")) {
+            System.out.println("TYPE : POINTER TO");
+        } else {
+            System.out.println(String.format("TYPE %s : POINTER TO ", this.name));
+        }
+        refType.print(depth+1);
     }
 }

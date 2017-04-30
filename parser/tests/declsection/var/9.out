@@ -1,0 +1,10 @@
+BEGIN SYMTABLE
+ VAR
+  NAME : a
+  TYPE : POINTER TO
+   TYPE : integer
+ TYPE : boolean
+ TYPE : char
+ TYPE : integer
+ TYPE : float
+END SYMTABLE

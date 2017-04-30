@@ -1,4 +1,0 @@
-procedure a (a : integer)
-begin
-a := 5;
-end

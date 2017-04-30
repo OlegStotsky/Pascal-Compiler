@@ -200,6 +200,9 @@ public class Tokenizer {
 			if (curByte == '\r') {
 				curByte = (byte)this.input.read();
 			}
+			if (curByte == 10) {
+				curByte = '\n';
+			}
 			isFirst = false;
 			this.lastByte = curByte;
  			if (curByte == -1) {
@@ -280,6 +283,10 @@ public class Tokenizer {
 					this.lastByte = curByte;
 					this.lastToken = result;
 					return result;
+				
+				case SKIP:
+					newState = State.BEGIN;
+					break;
 			  }
 			  break;
 			

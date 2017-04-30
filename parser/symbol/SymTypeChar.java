@@ -18,6 +18,6 @@ public class SymTypeChar extends SymType {
 
     public void print(int depth) {
         Utils.printIndent(depth);
-        System.out.println("TYPE" + " " + this.name);
+        System.out.println("TYPE : " + this.name);
     }
 }

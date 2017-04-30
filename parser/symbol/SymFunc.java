@@ -6,14 +6,14 @@ import parser.statement.StmtBlock;
  * Created by olegstotsky on 07.04.17.
  */
 public class SymFunc extends SymProc {
-    public SymType returnType;
+    public Symbol returnType;
 
 
     public SymFunc() {
         this.returnType = null;
     }
 
-    public SymFunc(String name, SymTable localTable, StmtBlock stmt, SymType returnType) {
+    public SymFunc(String name, SymTable localTable, StmtBlock stmt, Symbol returnType) {
         super(name, localTable, stmt);
         this.returnType = returnType;
     }

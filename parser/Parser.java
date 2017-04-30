@@ -7,7 +7,6 @@ import parser.node.*;
 import parser.statement.Statement;
 import parser.statement.StmtAssign;
 import parser.statement.StmtBlock;
-import parser.statement.StmtProgram;
 import parser.symbol.*;
 import tokenizer.Token;
 import tokenizer.TokenTypes;
@@ -19,10 +18,17 @@ public class Parser {
 	private Tokenizer tokenizer;
 	private HashMap<TokenTypes.TokenType, OperationPrecedence> priorities;
 	private Statement program;
+	private SymTable symTable;
+	private Node root;
 	
 	public Parser(Tokenizer tokenizer) {
 		this.tokenizer = tokenizer;
 		this.priorities = new HashMap<>();
+		this.symTable = new SymTable(null);
+		this.symTable.symbols.put("integer", SymTypeInteger.getInstance());
+		this.symTable.symbols.put("float", SymTypeFloat.getInstance());
+		this.symTable.symbols.put("boolean", SymTypeBoolean.getInstance());
+		this.symTable.symbols.put("char", SymTypeChar.getInstance());
 		
 		this.priorities.put(TokenTypes.TokenType.NOT, OperationPrecedence.FIRST);
 		this.priorities.put(TokenTypes.TokenType.ADDR, OperationPrecedence.FIRST);
@@ -47,157 +53,138 @@ public class Parser {
 	public void parse() throws Exception {
 		tokenizer.nextToken();
 		parseProgram();
-		GlobalSymTable.getInstance().print(0);
-
 		expect(tokenizer.curToken(), TokenTypes.TokenType.EOF);
+		this.symTable.print(0);
 	}
 
 	private void parseProgram() throws Exception {
 		while (!tokenizer.eof()) {
 			Token token = tokenizer.curToken();
-			if (token.type == TokenTypes.TokenType.TYPE) {
-				tokenizer.nextToken();
-				parseTypeBlock();
-			}
-			else if (token.type == TokenTypes.TokenType.PROCEDURE || token.type == TokenTypes.TokenType.FUNCTION) {
-				parseProcedureOrFunctionBlock();
-			}
-
-			else if (token.type == TokenTypes.TokenType.VAR) {
-				tokenizer.nextToken();
-				parseVarBlock(GlobalSymTable.getInstance());
-			}
-			else if (token.type == TokenTypes.TokenType.CONST) {
-				tokenizer.nextToken();
-				parseConstBlock(GlobalSymTable.getInstance());
-			}
-			else if (token.type == TokenTypes.TokenType.BEGIN) {
+			parseDeclSection(this.symTable);
+			if (token.type == TokenTypes.TokenType.BEGIN) {
 				tokenizer.nextToken();
 				this.program = parseStmtBlock();
 			}
-			else if (token.type == TokenTypes.TokenType.EOF) {
-				break;
+//			else {
+//				throw new Exception("Unexpected symbol");
+//			}
+		}
+	}
+
+	private void parseDeclSection(SymTable symTable) throws Exception {
+		while (!tokenizer.eof()) {
+			Token token = tokenizer.curToken();
+			if (token.type == TokenTypes.TokenType.TYPE) {
+				parseTypeBlock(symTable);
+			}
+			else if (token.type == TokenTypes.TokenType.VAR) {
+				tokenizer.nextToken();
+				parseVarBlock(this.symTable);
+			}
+			else if (token.type == TokenTypes.TokenType.CONST) {
+				parseConstBlock(this.symTable);
+			}
+			else if (token.type == TokenTypes.TokenType.PROCEDURE) {
+				parseProcedureOrFunctionBlock(true, symTable);
+			}
+			else if (token.type == TokenTypes.TokenType.FUNCTION) {
+				parseProcedureOrFunctionBlock(false, symTable);
 			}
 			else {
-				throw new Exception("Unexpected symbol");
+				break;
 			}
 		}
 	}
 
-	private void parseTypeBlock() throws Exception {
+	private void parseTypeBlock(SymTable symTable) throws Exception {
+		Token token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.TYPE);
+		tokenizer.nextToken();
 		do {
-			ArrayList<Token> identifiers = parseIdentifiersList();
-			Token token = tokenizer.curToken();
+			Token identifier = tokenizer.curToken();
+			expect(identifier, TokenTypes.TokenType.ID);
+			token = tokenizer.nextToken();
 			expect(token, TokenTypes.TokenType.EQUAL);
 			token = tokenizer.nextToken();
+			Symbol type = null;
 			if (token.type == TokenTypes.TokenType.RECORD) {
-				SymTable table = new LocalSymTable(GlobalSymTable.getInstance());
-				tokenizer.nextToken();
-				parseVarBlock(table);
-				token = tokenizer.curToken();
-				expect(token, TokenTypes.TokenType.END);
-				for (Token identifier : identifiers) {
-					SymTypeRecord record = new SymTypeRecord(identifier.text, table);
-					GlobalSymTable.getInstance().addType(identifier.text, record);
-				}
+				type = parseRecordType(symTable);
+				type.name = identifier.text;
 				tokenizer.nextToken();
 			}
 			else if (token.type == TokenTypes.TokenType.POINTER) {
-				Token ref = tokenizer.nextToken();
-				tokenizer.nextToken();
-				expect(token, TokenTypes.TokenType.SEMICOLON);
-				SymType refType = GlobalSymTable.getInstance().getType(ref.text);
-				if (refType == null) {
-					throw new Exception(String.format("Syntax error at line %d, column %d : unexpected token type %s",
-							token.row,
-							token.column,
-							token.type.toString())
-					);
-				}2
-				for (Token identifier : identifiers) {
-					SymTypePointer pointer = new SymTypePointer(refType);
-					GlobalSymTable.getInstance().addType(identifier.text, pointer);
-				}
+				type = parsePointerType(symTable);
+				type.name = identifier.text;
 				tokenizer.nextToken();
 			}
 			else if (token.type == TokenTypes.TokenType.ID) {
-				SymType refType = GlobalSymTable.getInstance().getType(token.text);
-				if (refType == null) {
-					throw new Exception(String.format("Syntax error at line %d, column %d : unexpected token type %s",
-							token.row,
-							token.column,
-							token.type.toString())
-					);
-				}
-				SymTypeAlias alias = new SymTypeAlias(token.text, refType);
-				GlobalSymTable.getInstance().addType(token.text, alias);
+				Symbol refType = symTable.getSymbol(token.text);
+				type = new SymTypeAlias(identifier.text, refType);
 				token = tokenizer.nextToken();
 				expect(token, TokenTypes.TokenType.SEMICOLON);
 				tokenizer.nextToken();
 			}
 			else if (token.type == TokenTypes.TokenType.ARRAY) {
-				tokenizer.nextToken();
-				SymTypeArray arrayType = parseArrayType();
-				arrayType.name = identifiers.get(0).text;
+				type = parseArrayType(symTable);
+				type.name = identifier.text;
 				expect(tokenizer.curToken(), TokenTypes.TokenType.SEMICOLON);
-				for (Token identifier : identifiers) {
-					GlobalSymTable.getInstance().addType(identifier.text, arrayType);
-				}
 				tokenizer.nextToken();
 			}
+
+			symTable.addSymbol(identifier.text, type);
 
 		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
 	}
 
 	private void parseConstBlock(SymTable table) throws Exception {
 		do {
+			Token token = tokenizer.curToken();
+			expect(token, TokenTypes.TokenType.CONST);
 			Token id = tokenizer.curToken();
 			SymVar var;
-			Token token = tokenizer.nextToken();
+			token = tokenizer.nextToken();
 			expect(token, TokenTypes.TokenType.EQUAL);
 			token = tokenizer.nextToken();
 			Node node = parseExpression();
-			SymType type = node.getType();
+			SymType type = node.getType(); //TODO: Probably need to check if type exists
 			var = new SymVar(id.text, type);
-			table.addVarSafe(id.text, var, type);
 			token = tokenizer.nextToken();
 			expect(token, TokenTypes.TokenType.SEMICOLON);
 			tokenizer.nextToken();
 		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
 	}
 
-	private void parseVarBlock(SymTable table) throws Exception {
-		Token token;
+	private void parseVarBlock(SymTable symTable) throws Exception {
 		do {
-			token = tokenizer.curToken();
 			ArrayList<Token> identifiers = parseIdentifiersList();
-			token = tokenizer.curToken();
+			Token token = tokenizer.curToken();
 			expect(token, TokenTypes.TokenType.COLON);
 			tokenizer.nextToken();
-			SymType type = parseType();
+			Symbol type = parseType(symTable);
 			token = tokenizer.curToken();
 			expect(token, TokenTypes.TokenType.SEMICOLON);
 			tokenizer.nextToken();
 			for (Token identifier : identifiers) {
 				Symbol var = new SymVar(identifier.text, type);
-				table.addVar(identifier.text, var);
+				symTable.addSymbol(identifier.text, var);
 			}
 		} while (tokenizer.curToken().type == TokenTypes.TokenType.ID);
 	}
 
-	private void parseProcedureOrFunctionBlock() throws Exception {
+	private void parseProcedureOrFunctionBlock(Boolean isProcedure, SymTable parent) throws Exception {
 		Token token = tokenizer.curToken();
-		Boolean isProcedure = false;
-		SymType retType = null;
-		Symbol result;
-		if (token.type == TokenTypes.TokenType.PROCEDURE) {
-			isProcedure = true;
+		if (isProcedure) {
+			expect(token, TokenTypes.TokenType.PROCEDURE);
+		} else {
+			expect(token, TokenTypes.TokenType.FUNCTION);
 		}
-		Token name  = tokenizer.nextToken();
-		expect(name, TokenTypes.TokenType.ID);
+		Symbol retType = null;
+		Symbol result;
+		Token identifier = tokenizer.nextToken();
+		expect(identifier, TokenTypes.TokenType.ID);
 		token = tokenizer.nextToken();
 		expect(token, TokenTypes.TokenType.LEFT_PARENTH);
-		SymTable localTable = new LocalSymTable(GlobalSymTable.getInstance());
+		SymTable localTable = new SymTable(parent);
 		tokenizer.nextToken();
 		parseParams(localTable);
 		token = tokenizer.curToken();
@@ -207,36 +194,31 @@ public class Parser {
 			token = tokenizer.nextToken();
 			expect(token, TokenTypes.TokenType.SEMICOLON);
 			token = tokenizer.nextToken();
-			retType = GlobalSymTable.getInstance().getType(token.text);
-			if (retType == null) {
-				throw new Exception("");
-			}
+			retType = parseSimpleType(localTable);
 			tokenizer.nextToken();
 		}
-		if (token.type == TokenTypes.TokenType.VAR) {
-			parseVarBlock(localTable);
-		}
-		token = tokenizer.curToken();
-		expect(token, TokenTypes.TokenType.BEGIN);
-		tokenizer.nextToken();
+		parseDeclSection(localTable);
 		StmtBlock stmt = parseStmtBlock();
 		token = tokenizer.curToken();
 
 		if (isProcedure) {
-			result = new SymProc(name.text, localTable, stmt);
-			GlobalSymTable.getInstance().addVar(name.text, result);
+			result = new SymProc(identifier.text, localTable, stmt);
+			this.symTable.addSymbol(identifier.text, result);
 		} else {
-			result = new SymFunc(name.text, localTable, stmt, retType);
-			GlobalSymTable.getInstance().addVar(name.text , result);
+			result = new SymFunc(identifier.text, localTable, stmt, retType);
+			this.symTable.addSymbol(identifier.text , result);
 		}
 	}
 
 	private StmtBlock parseStmtBlock() throws Exception {
+		Token token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.BEGIN);
+		tokenizer.nextToken();
 		ArrayList<Statement> stmts = new ArrayList<>();
 		while (true) {
 			Statement stmt = parseStatement();
 			stmts.add(stmt);
-			Token token = tokenizer.curToken();
+			token = tokenizer.curToken();
 			if (token.type == TokenTypes.TokenType.END) {
 				break;
 			}
@@ -276,18 +258,17 @@ public class Parser {
 		return new NodeAssignment(left, right);
 	}
 
-	private void parseParams(SymTable table) throws Exception {
+	private void parseParams(SymTable symTable) throws Exception {
 		while (true) {
 			SymVar var;
 			Token name = tokenizer.curToken();
 			Token token = tokenizer.nextToken();
 			expect(token, TokenTypes.TokenType.COLON);
 			token = tokenizer.nextToken();
-			expect(token, TokenTypes.TokenType.ID);
-			SymType type = GlobalSymTable.getInstance().getType(token.text);
+			Symbol type = parseType(symTable);
 			var = new SymVar(name.text, type);
-			table.addVarSafe(name.text, var, type);
-			token = tokenizer.nextToken();
+			symTable.addSymbol(name.text, var);
+			token = tokenizer.curToken();
 			if (token.type == TokenTypes.TokenType.COMMA) {
 				tokenizer.nextToken();
 				continue;
@@ -295,7 +276,7 @@ public class Parser {
 			else if (token.type == TokenTypes.TokenType.RIGHT_PARENTH) {
 				break;
 			}
-			throw new Exception("");
+			throw new Exception("Error in param section");
 		}
 	}
 
@@ -314,54 +295,91 @@ public class Parser {
 		return identifiers;
 	}
 
-	private SymType parseType() throws Exception {
+	private Symbol parseType(SymTable symTable) throws Exception {
 		Token token = tokenizer.curToken();
-		SymType type;
+		Symbol type;
 		if (token.type == TokenTypes.TokenType.ARRAY) {
-			tokenizer.nextToken();
-			type = parseArrayType();
+			type = parseArrayType(symTable);
+		}
+		else if (token.type == TokenTypes.TokenType.RECORD) {
+			type = parseRecordType(symTable);
+		}
+		else if (token.type == TokenTypes.TokenType.POINTER) {
+			type = parsePointerType(symTable);
 		} else {
-			type = parseSimpleType();
+			type = parseSimpleType(symTable);
 		}
 
 		return type;
 	}
 
-	private SymType parseSimpleType() throws Exception {
+	private Symbol parsePointerType(SymTable symTable) throws Exception {
 		Token token = tokenizer.curToken();
-		SymType type = GlobalSymTable.getInstance().getType(token.text);
+		expect(token, TokenTypes.TokenType.POINTER);
+		Token ref = tokenizer.nextToken();
+		Symbol refType = symTable.getSymbol(ref.text);
+		if (!(refType instanceof SymType)) {
+			throw new Exception("Unknown type");
+		}
+		token = tokenizer.nextToken();
+		expect(token, TokenTypes.TokenType.SEMICOLON);
+		Symbol type = new SymTypePointer(refType);
+		return type;
+	}
+
+	private Symbol parseRecordType(SymTable symTable) throws Exception {
+		Token token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.RECORD);
+		SymTable table = new SymTable(symTable);
 		tokenizer.nextToken();
-		if (type == null) {
-			throw new Exception(String.format("Syntar error at line %d, column %d: error in type definition",
+		parseVarBlock(table);
+		token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.END);
+		Symbol type = new SymTypeRecord(table);
+		tokenizer.nextToken();
+		return type;
+	}
+
+	private Symbol parseSimpleType(SymTable symTable) throws Exception {
+		Token token = tokenizer.curToken();
+		Symbol type = symTable.getSymbol(token.text);
+		if (type == null || !(type instanceof SymType)) {
+			throw new Exception(String.format("Syntax error at line %d, column %d: error in type definition",
 					token.row,
 					token.column)
 			);
 		}
 
+		tokenizer.nextToken();
 		return type;
 	}
 
-	private SymTypeArray parseArrayType() throws Exception {
+	private Symbol parseArrayType(SymTable symTable) throws Exception {
 		SymTypeArray result;
 		Token token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.ARRAY);
+		token = tokenizer.nextToken();
 		expect(token, TokenTypes.TokenType.LSQB);
 
-		Token startIndex = tokenizer.nextToken();
-		expect(startIndex, TokenTypes.TokenType.INT_CONST);
-		Token doubleDot = tokenizer.nextToken();
+		tokenizer.nextToken();
+		Node startIndex = parseExpression();
+		Token doubleDot = tokenizer.curToken();
 		expect(doubleDot, TokenTypes.TokenType.DBL_DOT);
-		Token endIndex = tokenizer.nextToken();
-		expect(endIndex, TokenTypes.TokenType.INT_CONST);
+		tokenizer.nextToken();
+		Node endIndex = parseExpression();
 
-		token = tokenizer.nextToken();
+		token = tokenizer.curToken();
 		expect(token, TokenTypes.TokenType.RSQB);
 		token = tokenizer.nextToken();
 		expect(token, TokenTypes.TokenType.OF);
 		tokenizer.nextToken();
 
-		SymType type = parseType();
+		Symbol type = parseType(symTable);
+		if (!(type instanceof SymType)) {
+			throw new Exception("Not type");//TODO
+		}
 
-		result = new SymTypeArray(type, startIndex.intVal, endIndex.intVal);
+		result = new SymTypeArray(type, startIndex, endIndex);
 		return result;
 	}
 
@@ -424,37 +442,37 @@ public class Parser {
 			factor.operation = token.text;
 			token = tokenizer.nextToken();
 		}
-		else if (token.type == TokenTypes.TokenType.ID) {
+		if (token.type == TokenTypes.TokenType.ID) {
 			factor.value = parseIdentifier(true);
 			return factor;
 		}
-		else if (token.type == TokenTypes.TokenType.INT_CONST) {
+		if (token.type == TokenTypes.TokenType.INT_CONST) {
 			factor.value = new NodeIntConst(token.intVal);
 			tokenizer.nextToken();
 			return factor;
 		}
-		else if (token.type == TokenTypes.TokenType.FLOAT_CONST) {
+		if (token.type == TokenTypes.TokenType.FLOAT_CONST) {
 			factor.value = new NodeFloatConst(token.realVal);
 			tokenizer.nextToken();
 			return factor;
 
 		}
-		else if (token.type == TokenTypes.TokenType.STRING_CONST) {
+		if (token.type == TokenTypes.TokenType.STRING_CONST) {
 			factor.value = new NodeStringConst(token.text);
 			tokenizer.nextToken();
 			return factor;
 		}
-		else if (token.type == TokenTypes.TokenType.CHAR_CONST) {
+		if (token.type == TokenTypes.TokenType.CHAR_CONST) {
 			factor.value = new NodeCharConst(token.text.charAt(0));
 			tokenizer.nextToken();
 			return factor;
 		}
-		else if (token.type == TokenTypes.TokenType.TRUE || token.type == TokenTypes.TokenType.FALSE) {
+		if (token.type == TokenTypes.TokenType.TRUE || token.type == TokenTypes.TokenType.FALSE) {
 			factor.value = new NodeBoolConst(new Boolean(token.text));
 			tokenizer.nextToken();
 			return factor;
 		}
-		else if (token.type == TokenTypes.TokenType.LEFT_PARENTH) {
+		if (token.type == TokenTypes.TokenType.LEFT_PARENTH) {
 			tokenizer.nextToken();
 			factor.value = parseExpression();
 			expect(tokenizer.curToken(), TokenTypes.TokenType.RIGHT_PARENTH);

@@ -1,0 +1,14 @@
+BEGIN SYMTABLE
+ TYPE a : POINTER TO 
+  TYPE : integer
+ TYPE b : POINTER TO 
+  TYPE : float
+ TYPE : boolean
+ TYPE c : POINTER TO 
+  TYPE : char
+ TYPE d : POINTER TO 
+  TYPE : boolean
+ TYPE : char
+ TYPE : integer
+ TYPE : float
+END SYMTABLE

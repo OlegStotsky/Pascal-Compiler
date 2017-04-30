@@ -1,0 +1,5 @@
+type
+a = array[1..10] of float;
+
+var
+b : a;
