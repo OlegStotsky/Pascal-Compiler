@@ -1,0 +1,6 @@
+begin
+	if 3+5*4<19 then
+		a := 3;
+	else
+		a := 5;
+end;

@@ -1,0 +1,6 @@
+begin
+	if a < b then
+		a := 3;
+	else
+	
+end;
