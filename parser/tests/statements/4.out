@@ -1,0 +1,34 @@
+BEGIN STMT BLOCK
+ BEGIN STMT IF-ELSE
+  IF
+    a
+   <
+    b
+  THEN
+   BEGIN STMT BLOCK
+    BEGIN STMT ASSIGN
+      a
+     :=
+      4
+    END STMT ASSIGN
+    BEGIN STMT ASSIGN
+      a
+     :=
+      3
+    END STMT ASSIGN
+   END STMT BLOCK
+  ELSE
+   BEGIN STMT BLOCK
+    BEGIN STMT ASSIGN
+      a
+     :=
+      1
+    END STMT ASSIGN
+    BEGIN STMT ASSIGN
+      a
+     :=
+      2
+    END STMT ASSIGN
+   END STMT BLOCK
+ END STMT IF-ELSE
+END STMT BLOCK

@@ -1,0 +1,24 @@
+BEGIN STMT BLOCK
+ BEGIN STMT IF-ELSE
+  IF
+     3
+    +
+      5
+     *
+      4
+   <
+    19
+  THEN
+   BEGIN STMT ASSIGN
+     a
+    :=
+     3
+   END STMT ASSIGN
+  ELSE
+   BEGIN STMT ASSIGN
+     a
+    :=
+     5
+   END STMT ASSIGN
+ END STMT IF-ELSE
+END STMT BLOCK

@@ -7,6 +7,7 @@ import parser.node.*;
 import parser.statement.Statement;
 import parser.statement.StmtAssign;
 import parser.statement.StmtBlock;
+import parser.statement.StmtIfElse;
 import parser.symbol.*;
 import tokenizer.Token;
 import tokenizer.TokenTypes;
@@ -54,7 +55,7 @@ public class Parser {
 		tokenizer.nextToken();
 		parseProgram();
 		expect(tokenizer.curToken(), TokenTypes.TokenType.EOF);
-		this.symTable.print(0);
+		this.program.print(0);
 	}
 
 	private void parseProgram() throws Exception {
@@ -62,12 +63,12 @@ public class Parser {
 			Token token = tokenizer.curToken();
 			parseDeclSection(this.symTable);
 			if (token.type == TokenTypes.TokenType.BEGIN) {
-				tokenizer.nextToken();
+				//tokenizer.nextToken();
 				this.program = parseStmtBlock();
 			}
-//			else {
-//				throw new Exception("Unexpected symbol");
-//			}
+			else {
+				throw new Exception("Unexpected symbol");
+			}
 		}
 	}
 
@@ -220,6 +221,8 @@ public class Parser {
 			stmts.add(stmt);
 			token = tokenizer.curToken();
 			if (token.type == TokenTypes.TokenType.END) {
+				token = tokenizer.nextToken();
+				expect(token, TokenTypes.TokenType.SEMICOLON);
 				break;
 			}
 			else if (token.type == TokenTypes.TokenType.EOF) {
@@ -239,11 +242,39 @@ public class Parser {
 			return new StmtAssign(assignment);
 		}
 		else if (token.type == TokenTypes.TokenType.BEGIN) {
-			tokenizer.nextToken();
+			//tokenizer.nextToken();
 			return parseStmtBlock();
+		}
+		else if (token.type == TokenTypes.TokenType.IF) {
+			return parseIfElse();
 		}
 
 		return null;
+	}
+
+	private Statement parseIfElse() throws Exception {
+		Token token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.IF);
+		tokenizer.nextToken();
+		Node ifExpr = parseExpression();
+		//TODO: add type check here
+		token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.THEN);
+		tokenizer.nextToken();
+		Statement ifStmt = parseStatement();
+		token = tokenizer.curToken();
+		Statement elseStmt = null;
+		Statement result = null;
+		if (token.type == TokenTypes.TokenType.ELSE) {
+			tokenizer.nextToken();
+			elseStmt = parseStatement();
+			result = new StmtIfElse(ifExpr, ifStmt, elseStmt);
+			return result;
+		} else {
+			result = new StmtIfElse(ifExpr, ifStmt);
+			return result;
+		}
+
 	}
 
 	private NodeAssignment parseAssignment() throws Exception {
