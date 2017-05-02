@@ -34,7 +34,9 @@ public class Tokenizer {
 	private Boolean eof;
 	private byte lastByte;
 	private Boolean twoDots = false;
-	public Token lastToken;
+	public Token curToken;
+	public Token prevToken;
+	public boolean isBack;
 	
 	public Tokenizer(String fileName) throws IOException {
 		try {
@@ -48,8 +50,10 @@ public class Tokenizer {
 		this.curRow = 0;
 		this.eof = false;
 		this.lastByte = (byte)input.read();
-		this.lastToken = null;
-		
+		this.curToken = null;
+		this.prevToken = null;
+		this.isBack = false;
+
 		for (int i = 0; i < NUM_STATES; ++i) {
 			for (int j = 0; j < NUM_CHARS; ++j) {
 				statesTable[i][j] = State.END;
@@ -189,6 +193,11 @@ public class Tokenizer {
 	 * Returns new token from the stream specified by constructor argument
 	 */
 	public Token nextToken() throws Exception {
+		if (this.isBack) {
+			this.isBack = false;
+			return this.curToken;
+		}
+
 		StringBuffer raw = new StringBuffer();
 		Token result = new Token("", curRow, curColumn, 0, 0, TokenTypes.TokenType.UNKNOWN);
 		State curState = State.BEGIN;
@@ -218,19 +227,21 @@ public class Tokenizer {
 					result.type = TokenTypes.TokenType.INT_CONST;
 					result.intVal = (int) (Integer.parseInt(raw.toString()));
 					result.text = raw.toString();
-					this.lastToken = result;
+					this.prevToken = this.curToken;
+					this.curToken = result;
 					return result;
 					
 				case ID:
 					if (TokenTypes.getInstance().isKeyWord(raw.toString().toLowerCase())) {
 						result.type = TokenTypes.getInstance().getType(raw.toString().toLowerCase());
 						result.text = raw.toString().toLowerCase();
-						this.lastToken = result;
+						this.curToken = result;
 						return result;
 					}
 					result.type = TokenTypes.TokenType.ID;
 					result.text = raw.toString().toLowerCase();
-					this.lastToken = result;
+					this.prevToken = this.curToken;
+					this.curToken = result;
 					return result;
 					
 				case NUMBER_DBL_SECOND:
@@ -238,7 +249,8 @@ public class Tokenizer {
 					result.text = raw.toString();
 					result.type = TokenTypes.TokenType.FLOAT_CONST;
 					result.realVal = Double.parseDouble(raw.toString());
-					this.lastToken = result;
+					this.prevToken = this.curToken;
+					this.curToken = result;
 					return result;
 					
 				case DOT:	
@@ -251,7 +263,8 @@ public class Tokenizer {
 				case SPECIAL_DBL:
 					result.text = raw.toString();
 					result.type = TokenTypes.getInstance().getType(result.text);
-					this.lastToken = result;
+					this.prevToken = this.curToken;
+					this.curToken = result;
 					return result;
 					
 				case CHAR_CONST:
@@ -259,7 +272,8 @@ public class Tokenizer {
 					result.text = raw.substring(1);
 					result.type = result.text.length() == 1? TokenTypes.TokenType.CHAR_CONST : TokenTypes.TokenType.STRING_CONST;
 					this.lastByte = (byte)input.read();
-					this.lastToken = result;
+					this.prevToken = this.curToken;
+					this.curToken = result;
 					return result;
 					
 				case COMMENT_MULTI:
@@ -281,7 +295,8 @@ public class Tokenizer {
 					result.intVal = Integer.valueOf(result.text);
 					twoDots = true;
 					this.lastByte = curByte;
-					this.lastToken = result;
+					this.prevToken = this.curToken;
+					this.curToken = result;
 					return result;
 				
 				case SKIP:
@@ -342,8 +357,8 @@ public class Tokenizer {
 				if (twoDots) {
 					twoDots = false;
 					lastByte = (byte)input.read();
-					this.lastToken = new Token("..", curRow, curColumn-2, 0, 0, TokenTypes.TokenType.DBL_DOT);
-					return this.lastToken;
+					this.curToken = new Token("..", curRow, curColumn-2, 0, 0, TokenTypes.TokenType.DBL_DOT);
+					return this.curToken;
 				}
 				raw.append((char)curByte);
 				break;
@@ -386,14 +401,22 @@ public class Tokenizer {
 				
 			case EOF:
 				this.eof = true;
-				this.lastToken = new Token("EOF", this.curRow, this.curColumn, 0, 0, TokenTypes.TokenType.EOF);
-				return this.lastToken;
+				this.curToken = new Token("EOF", this.curRow, this.curColumn, 0, 0, TokenTypes.TokenType.EOF);
+				return this.curToken;
 		  }
 	    }
 	}
-	
+
+
 	public Token curToken() {
-		return this.lastToken;
+		if (this.isBack) {
+			return this.prevToken;
+		}
+		return this.curToken;
+	}
+
+	public void goBack() {
+		this.isBack = true;
 	}
 	
 	public Boolean eof() {
