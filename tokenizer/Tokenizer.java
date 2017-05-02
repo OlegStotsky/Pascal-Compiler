@@ -31,10 +31,10 @@ public class Tokenizer {
 	private FileReader input;
 	private int curColumn;
 	private int curRow;
-	Boolean eof;
-	byte lastByte;
-	Boolean twoDots = false;
-	Token lastToken;
+	private Boolean eof;
+	private byte lastByte;
+	private Boolean twoDots = false;
+	public Token lastToken;
 	
 	public Tokenizer(String fileName) throws IOException {
 		try {

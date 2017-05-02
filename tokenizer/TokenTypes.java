@@ -21,7 +21,7 @@ public class TokenTypes {
 		VAR, TYPE, ARRAY, 
 		OF, CONST, TRUE, 
 		FALSE, AND, NOT, 
-		OR, XOR, UNKNOWN,
+		OR, XOR, UNKNOWN, DOWNTO,
 		EQUAL, EOF
 	}
 	
@@ -68,6 +68,7 @@ public class TokenTypes {
 			new KeyWord("else", TokenType.ELSE),
 			new KeyWord("for", TokenType.FOR),
 			new KeyWord("to", TokenType.TO),
+			new KeyWord("downto", TokenType.DOWNTO),
 			new KeyWord("repeat", TokenType.REPEAT),
 			new KeyWord("until", TokenType.UNTIL),
 			new KeyWord("break", TokenType.BREAK),
