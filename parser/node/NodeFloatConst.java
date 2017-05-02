@@ -1,8 +1,7 @@
 package parser.node;
 
 import parser.Utils;
-import parser.symbol.SymType;
-import parser.symbol.SymTypeFloat;
+import parser.symbol.*;
 
 /**
  * Created by olegstotsky on 14.04.17.
@@ -23,7 +22,7 @@ public class NodeFloatConst extends Node {
         System.out.println(this.val);
     }
 
-    public SymType getType() {
+    public Symbol getType(SymTable symTable) throws Exception {
         return SymTypeFloat.getInstance();
     }
 }

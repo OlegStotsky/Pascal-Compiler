@@ -4,16 +4,17 @@ import parser.symbol.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import tokenizer.TokenTypes.TokenType;
 
 /**
  * Created by olegstotsky on 16.04.17.
  */
 public class TypeManager {
-    public enum BinaryOperationType { ARITHMETICAL, LOGICAL, COMPARISON}
+    public enum BinaryOperationType { ARITHMETICAL, LOGICAL, COMPARISON }
 
     public static TypeManager instance = new TypeManager();
-    public HashMap<SymType, SymType> legalTypeCasts;
+    public ArrayList<Pair<SymType, SymType>> legalTypeCasts;
     public HashMap<Pair<SymType, SymType>, SymType> arithmeticalTypeCasts;
     public HashMap<Pair<SymType, SymType>, SymType> logicalTypeCasts;
     public HashMap<Pair<SymType, SymType>, SymType> comparisonTypeCasts;
@@ -21,28 +22,37 @@ public class TypeManager {
 
 
     public TypeManager() {
-        this.legalTypeCasts.put(SymTypeInteger.getInstance(), SymTypeBoolean.getInstance());
-        this.legalTypeCasts.put(SymTypeBoolean.getInstance(), SymTypeInteger.getInstance());
-        this.legalTypeCasts.put(SymTypeInteger.getInstance(), SymTypeFloat.getInstance());
-        this.legalTypeCasts.put(SymTypeFloat.getInstance(), SymTypeInteger.getInstance());
-        this.legalTypeCasts.put(SymTypeInteger.getInstance(), SymTypeChar.getInstance());
-        this.legalTypeCasts.put(SymTypeChar.getInstance(), SymTypeInteger.getInstance());
+        this.legalTypeCasts = new ArrayList<>();
+        this.legalTypeCasts.add(new Pair<>(SymTypeInteger.getInstance(), SymTypeInteger.getInstance()));
+        this.legalTypeCasts.add(new Pair<>(SymTypeChar.getInstance(), SymTypeChar.getInstance()));
+        this.legalTypeCasts.add(new Pair<>(SymTypeBoolean.getInstance(), SymTypeBoolean.getInstance()));
+        this.legalTypeCasts.add(new Pair<>(SymTypeFloat.getInstance(), SymTypeFloat.getInstance()));
+        this.legalTypeCasts.add(new Pair<>(SymTypeBoolean.getInstance(), SymTypeInteger.getInstance()));
+        this.legalTypeCasts.add(new Pair<>(SymTypeInteger.getInstance(), SymTypeFloat.getInstance()));
+        this.legalTypeCasts.add(new Pair<>(SymTypeFloat.getInstance(), SymTypeInteger.getInstance()));
+        this.legalTypeCasts.add(new Pair<>(SymTypeInteger.getInstance(), SymTypeChar.getInstance()));
+        this.legalTypeCasts.add(new Pair<>(SymTypeChar.getInstance(), SymTypeInteger.getInstance()));
 
+        this.arithmeticalTypeCasts = new HashMap<>();
         this.arithmeticalTypeCasts.put(new Pair<SymType, SymType>(SymTypeInteger.getInstance(), SymTypeFloat.getInstance()), SymTypeFloat.getInstance());
         this.arithmeticalTypeCasts.put(new Pair<SymType, SymType>(SymTypeFloat.getInstance(), SymTypeInteger.getInstance()), SymTypeFloat.getInstance());
         this.arithmeticalTypeCasts.put(new Pair<SymType, SymType>(SymTypeFloat.getInstance(), SymTypeFloat.getInstance()), SymTypeFloat.getInstance());
         this.arithmeticalTypeCasts.put(new Pair<SymType, SymType>(SymTypeInteger.getInstance(), SymTypeInteger.getInstance()), SymTypeInteger.getInstance());
 
+
+        this.logicalTypeCasts = new HashMap<>();
         this.logicalTypeCasts.put(new Pair<SymType, SymType>(SymTypeInteger.getInstance(), SymTypeFloat.getInstance()), SymTypeFloat.getInstance());
         this.logicalTypeCasts.put(new Pair<SymType, SymType>(SymTypeFloat.getInstance(), SymTypeInteger.getInstance()), SymTypeFloat.getInstance());
         this.logicalTypeCasts.put(new Pair<SymType, SymType>(SymTypeFloat.getInstance(), SymTypeFloat.getInstance()), SymTypeFloat.getInstance());
         this.logicalTypeCasts.put(new Pair<SymType, SymType>(SymTypeInteger.getInstance(), SymTypeInteger.getInstance()), SymTypeInteger.getInstance());
 
+        this.comparisonTypeCasts = new HashMap<>();
         this.comparisonTypeCasts.put(new Pair<SymType, SymType>(SymTypeInteger.getInstance(), SymTypeFloat.getInstance()), SymTypeBoolean.getInstance());
         this.comparisonTypeCasts.put(new Pair<SymType, SymType>(SymTypeFloat.getInstance(), SymTypeInteger.getInstance()), SymTypeBoolean.getInstance());
         this.comparisonTypeCasts.put(new Pair<SymType, SymType>(SymTypeFloat.getInstance(), SymTypeFloat.getInstance()), SymTypeBoolean.getInstance());
         this.comparisonTypeCasts.put(new Pair<SymType, SymType>(SymTypeInteger.getInstance(), SymTypeInteger.getInstance()), SymTypeBoolean.getInstance());
 
+        this.tokTypeToOperationType = new HashMap<>();
         this.tokTypeToOperationType.put(TokenType.PLUS, BinaryOperationType.ARITHMETICAL);
         this.tokTypeToOperationType.put(TokenType.MINUS, BinaryOperationType.ARITHMETICAL);
         this.tokTypeToOperationType.put(TokenType.MUL, BinaryOperationType.ARITHMETICAL);
@@ -80,6 +90,6 @@ public class TypeManager {
     }
 
     public Boolean isLegalTypeCast(SymType from, SymType to) {
-        return this.legalTypeCasts.get(from) != null;
+        return this.legalTypeCasts.contains(new Pair<>(from, to));
     }
 }

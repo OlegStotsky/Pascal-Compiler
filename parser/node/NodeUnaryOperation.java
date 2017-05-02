@@ -1,7 +1,9 @@
 package parser.node;
 
 import parser.Utils;
+import parser.symbol.SymTable;
 import parser.symbol.SymType;
+import parser.symbol.Symbol;
 
 public class NodeUnaryOperation extends Node {
     public String operation;
@@ -27,7 +29,7 @@ public class NodeUnaryOperation extends Node {
         }
     }
 
-    public SymType getType() throws Exception {
-        return value.getType();
+    public Symbol getType(SymTable symTable) throws Exception {
+        return value.getType(symTable);
     }
 }

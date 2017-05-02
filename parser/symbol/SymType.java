@@ -12,5 +12,7 @@ public class SymType extends Symbol {
         super(name);
     }
 
-
+    public Symbol getType() {
+        return null;
+    }
 }

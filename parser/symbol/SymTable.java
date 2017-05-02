@@ -1,6 +1,9 @@
 package parser.symbol;
 
 import parser.Utils;
+import parser.exceptions.NotTypeException;
+import parser.exceptions.NotVarException;
+import parser.exceptions.NullSymbolException;
 import tokenizer.Token;
 import tokenizer.TokenTypes;
 
@@ -42,7 +45,31 @@ public class SymTable {
             }
     	}
 
-        throw new Exception(String.format("Coudn't find symbol %s", name));
+        throw new NullSymbolException(name);
+    }
+
+    public SymVar getVar(String name) throws Exception {
+        Symbol var = this.getSymbol(name);
+        if (var == null ) {
+            throw new NullSymbolException(name);
+        }
+        else if (!(var instanceof SymVar)) {
+            throw new NotVarException(name);
+        } else {
+            return (SymVar)var;
+        }
+    }
+
+    public SymType getType(String name) throws Exception {
+        Symbol type = this.getSymbol(name);
+        if (type == null) {
+            throw new NullSymbolException(name);
+        }
+        else if (!(type instanceof SymType)) {
+            throw new NotTypeException(name);
+        } else {
+            return (SymType)type;
+        }
     }
 
     public void print(int depth) throws Exception {

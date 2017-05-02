@@ -2,7 +2,10 @@ package parser.node;
 
 import parser.TypeManager;
 import parser.Utils;
+import parser.exceptions.IllegalOperandTypesException;
+import parser.symbol.SymTable;
 import parser.symbol.SymType;
+import parser.symbol.Symbol;
 import tokenizer.Token;
 import tokenizer.TokenTypes;
 
@@ -30,10 +33,11 @@ public class NodeBinOperation extends Node {
 		right.print(depth+1);
 	}
 
-	public SymType getType() throws Exception {
-		SymType type = TypeManager.getInstance().resolveBinOperationResultType(left.getType(), right.getType(), operation);
+	public Symbol getType(SymTable symTable) throws Exception {
+		TypeManager.getInstance();
+		SymType type = TypeManager.getInstance().resolveBinOperationResultType((SymType)left.getType(symTable), (SymType)right.getType(symTable), operation);
 		if (type == null) {
-			throw new Exception("Can't cast types"); //TODO
+			throw new IllegalOperandTypesException(TokenTypes.getInstance().getText(operation));
 		}
 		return type;
 	}

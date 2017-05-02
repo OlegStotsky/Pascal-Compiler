@@ -48,4 +48,8 @@ public class SymTypeArray extends SymType {
         System.out.println("ELEM TYPE");
         this.elemType.print(depth+2);
     }
+
+    public Symbol getType() {
+        return this;
+    }
 }

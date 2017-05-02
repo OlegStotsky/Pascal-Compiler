@@ -35,4 +35,8 @@ public class SymTypeRecord extends SymType {
         Utils.printIndent(depth);
         System.out.println("END");
     }
+
+    public Symbol getType() {
+        return this;
+    }
 }

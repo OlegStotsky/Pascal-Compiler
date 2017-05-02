@@ -2,8 +2,7 @@ package parser.node;
 
 import parser.Utils;
 import parser.node.Node;
-import parser.symbol.SymType;
-import parser.symbol.SymTypeChar;
+import parser.symbol.*;
 
 /**
  * Created by olegstotsky on 14.04.17.
@@ -24,7 +23,7 @@ public class NodeCharConst extends Node {
         System.out.println(this.val);
     }
 
-    public SymType getType() {
+    public Symbol getType(SymTable symTable) throws Exception {
         return SymTypeChar.getInstance();
     }
 }

@@ -17,7 +17,11 @@ public class Pair<U, V> {
         this.second = second;
     }
 
-    public Boolean equals(Pair<U, V> other) {
-        return this.first.equals(other.first) & this.second.equals(other.second);
+    public int hashCode() {
+        return first.hashCode()*10 ^ second.hashCode()*15;
+    }
+
+    public boolean equals(Object other) {
+        return this.hashCode() == other.hashCode();
     }
 }

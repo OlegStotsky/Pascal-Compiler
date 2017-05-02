@@ -1,0 +1,7 @@
+var
+a : integer;
+
+begin
+	if 3 then
+		a := a +1;
+end;

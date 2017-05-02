@@ -1,8 +1,7 @@
 package parser.node;
 
 import parser.Utils;
-import parser.symbol.SymType;
-import parser.symbol.SymTypeBoolean;
+import parser.symbol.*;
 
 /**
  * Created by olegstotsky on 16.04.17.
@@ -23,7 +22,7 @@ public class NodeBoolConst extends Node {
         System.out.println(val.toString());
     }
 
-    public SymType getType() {
+    public Symbol getType(SymTable symTable) throws Exception {
         return SymTypeBoolean.getInstance();
     }
 }

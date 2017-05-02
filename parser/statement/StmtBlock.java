@@ -22,7 +22,9 @@ public class StmtBlock extends Statement {
         Utils.printIndent(depth);
         System.out.println("BEGIN STMT BLOCK");
         for (Statement statement : statements) {
-            statement.print(depth+1);
+            if (statement != null) {
+                statement.print(depth + 1);
+            }
         }
         Utils.printIndent(depth);
         System.out.println("END STMT BLOCK");

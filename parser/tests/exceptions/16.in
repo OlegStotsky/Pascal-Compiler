@@ -1,0 +1,9 @@
+type
+a = char;
+
+var
+b : a;
+
+begin
+	b := 1.5;
+end;

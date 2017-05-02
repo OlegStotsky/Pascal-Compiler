@@ -32,4 +32,9 @@ public class SymTypeAlias extends SymType {
         }
         this.refType.print(depth+1);
     }
+
+    public Symbol getType() {
+       SymType buf = (SymType)refType;
+       return buf.getType();
+    }
 }

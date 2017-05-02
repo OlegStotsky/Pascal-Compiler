@@ -20,4 +20,8 @@ public class SymTypeBoolean extends SymType {
         Utils.printIndent(depth);
         System.out.println("TYPE : " + this.name);
     }
+
+    public Symbol getType() {
+        return instance;
+    }
 }

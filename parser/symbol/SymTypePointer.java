@@ -31,4 +31,8 @@ public class SymTypePointer extends SymType {
         }
         refType.print(depth+1);
     }
+
+    public Symbol getType() {
+        return this;
+    }
 }
