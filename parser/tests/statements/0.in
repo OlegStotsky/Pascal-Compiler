@@ -1,4 +1,0 @@
-begin
-	if 3 < 5 then
-		a := 5;
-end;
