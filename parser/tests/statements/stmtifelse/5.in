@@ -1,5 +1,0 @@
-begin
-	if a < b then
-		if q < b then
-			a := 5;
-end;
