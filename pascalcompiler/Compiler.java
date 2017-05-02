@@ -17,22 +17,50 @@ import tokenizer.Tokenizer;
 
 public class Compiler {
 	private static final int ERR_WRONG_NUMBER_OF_ARGS = -1;
-	
-	public static void main(String[] args) throws Exception {
-		if (args.length < 1) {
-			System.out.println(args.length);
-			System.exit(ERR_WRONG_NUMBER_OF_ARGS);
-		}
-		Parser parser = new Parser(new Tokenizer(args[0]));
-		PrintStream outStream = new PrintStream(new FileOutputStream(args[1]));
-		System.setOut(outStream);
-		try {
-			parser.parse();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			System.exit(0);
+
+	private static void parseArgs(String[] args) throws Exception {
+		if (args[0].toLowerCase().equals("-l") || args[0].toLowerCase().equals("-s")) {
+			if (args.length < 3) {
+				System.out.println("Number of args should be 3");
+				System.exit(-1);
+			}
+			PrintStream outStream = new PrintStream(new FileOutputStream(args[2]));
+			System.setOut(outStream);
 		}
 
+		if (args[0].toLowerCase().equals("-l")) {
+			Tokenizer tokenizer = new Tokenizer(args[1]);
+			while (!tokenizer.eof()) {
+				try {
+					Token token = tokenizer.nextToken();
+					token.print();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					System.exit(-1);
+				}
+			}
+		}
+		else if (args[0].toLowerCase().equals("-s")) {
+			Parser parser = new Parser(new Tokenizer(args[1]));
+			try {
+				parser.parse();
+				parser.print();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				System.exit(-1);
+			}
+		}
+		else if (args[0].toLowerCase().equals("-h")) {
+			System.out.println("2017 Pascal Compiler by Oleg Stotsky");
+			System.out.println("Usage: java -jar PascalCompiler.jar [options] [input file] [output file]");
+			System.out.println("Options:");
+			System.out.println("-l   lexical analysis");
+			System.out.println("-s   syntax analysis");
+		}
+	}
+
+	public static void main(String[] args) throws Exception {
+		parseArgs(args);
 		System.exit(0);
 	}
 }
