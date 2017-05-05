@@ -1,0 +1,12 @@
+var 
+a : integer;
+b : integer;
+
+procedure plus (first : float, second : float)
+begin
+	a := first + second;
+end;
+
+begin
+	plus(a, b, c);
+end;

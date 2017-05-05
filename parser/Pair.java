@@ -18,7 +18,7 @@ public class Pair<U, V> {
     }
 
     public int hashCode() {
-        return first.hashCode()*10 ^ second.hashCode()*15;
+        return first.hashCode() + second.hashCode();
     }
 
     public boolean equals(Object other) {

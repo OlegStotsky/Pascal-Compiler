@@ -76,6 +76,10 @@ public class TypeManager {
     public SymType resolveBinOperationResultType(SymType first, SymType second, TokenType operation) throws Exception {
         BinaryOperationType opType = this.tokTypeToOperationType.get(operation);
 
+        Pair<SymType, SymType> fi = new Pair<>(SymTypeInteger.getInstance(), SymTypeInteger.getInstance());
+        Pair<SymType, SymType> se = new Pair<>(first, second);
+        boolean q = fi.equals(se);
+        boolean a = fi.hashCode() == se.hashCode();
         if (opType == BinaryOperationType.ARITHMETICAL) {
             return this.arithmeticalTypeCasts.get(new Pair<>(first ,second));
         }

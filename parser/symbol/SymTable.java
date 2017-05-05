@@ -1,9 +1,7 @@
 package parser.symbol;
 
 import parser.Utils;
-import parser.exceptions.NotTypeException;
-import parser.exceptions.NotVarException;
-import parser.exceptions.NullSymbolException;
+import parser.exceptions.*;
 import tokenizer.Token;
 import tokenizer.TokenTypes;
 
@@ -70,6 +68,47 @@ public class SymTable {
         } else {
             return (SymType)type;
         }
+    }
+
+    public SymProc getProc(String name) throws Exception {
+        Symbol proc = this.getSymbol(name);
+        if (proc == null) {
+            throw new NullSymbolException(name);
+        }
+        else if (!(proc instanceof SymProc)) {
+            throw new NotProcedureException(name);
+        } else {
+            return (SymProc)proc;
+        }
+    }
+
+    public SymProc getFunc(String name) throws Exception {
+        Symbol proc = this.getSymbol(name);
+        if (proc == null) {
+            throw new NullSymbolException(name);
+        }
+        else if (!(proc instanceof SymFunc)) {
+            throw new NotProcedureException(name);
+        } else {
+            return (SymProc)proc;
+        }
+    }
+
+    public SymProc getCallable(String name) throws Exception {
+        Symbol callable = this.getSymbol(name);
+        if (callable == null) {
+            throw new NullSymbolException(name);
+        }
+        else if (!(callable instanceof SymFunc) && !(callable instanceof SymProc)) {
+            throw new NotCallableException(name);
+        }
+        else if (callable instanceof SymProc) {
+            return (SymProc)callable;
+        }
+        else if (callable instanceof SymFunc) {
+            return (SymFunc)callable;
+        }
+        return null;
     }
 
     public void print(int depth) throws Exception {

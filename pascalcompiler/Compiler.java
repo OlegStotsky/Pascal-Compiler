@@ -39,6 +39,7 @@ public class Compiler {
 					System.exit(-1);
 				}
 			}
+			return;
 		}
 		else if (args[0].toLowerCase().equals("-s")) {
 			Parser parser = new Parser(new Tokenizer(args[1]));
@@ -49,6 +50,7 @@ public class Compiler {
 				System.out.println(e.getMessage());
 				System.exit(-1);
 			}
+			return;
 		}
 		else if (args[0].toLowerCase().equals("-h")) {
 			System.out.println("2017 Pascal Compiler by Oleg Stotsky");
@@ -56,6 +58,7 @@ public class Compiler {
 			System.out.println("Options:");
 			System.out.println("-l   lexical analysis");
 			System.out.println("-s   syntax analysis");
+			return;
 		}
 	}
 

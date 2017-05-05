@@ -10,11 +10,11 @@ import tokenizer.TokenTypes;
  * Created by olegstotsky on 02.05.17.
  */
 public class UnexpectedTypeException extends Exception {
-    Token token;
-    Symbol[] expectedTypes;
-    int row;
-    int column;
-    String msg;
+    public Token token;
+    public Symbol[] expectedTypes;
+    public int row;
+    public int column;
+    public String msg;
 
     public UnexpectedTypeException(SymType foundType, SymType ... expectedTypes) {
         StringBuilder msg = new StringBuilder(("Error : "));

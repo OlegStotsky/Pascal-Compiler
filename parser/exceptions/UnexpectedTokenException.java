@@ -7,11 +7,11 @@ import tokenizer.TokenTypes;
  * Created by olegstotsky on 01.05.17.
  */
 public class UnexpectedTokenException extends Exception {
-    Token token;
-    TokenTypes.TokenType[] types;
-    int row;
-    int column;
-    String msg;
+    public Token token;
+    public TokenTypes.TokenType[] types;
+    public int row;
+    public int column;
+    public String msg;
 
     public UnexpectedTokenException(Token token, TokenTypes.TokenType ... types) {
         StringBuilder msg = new StringBuilder(String.format("Syntax error at line %d, column %d : ", token.row, token.column));

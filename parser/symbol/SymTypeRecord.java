@@ -25,7 +25,7 @@ public class SymTypeRecord extends SymType {
     public void print(int depth) throws Exception {
         Utils.printIndent(depth);
         if (name.equals("")) {
-            System.out.println(String.format("TYPE : RECORD",
+            System.out.println(String.format("BEGIN TYPE : RECORD",
                     this.name));
         } else {
             System.out.println(String.format("TYPE %s : RECORD",
@@ -33,7 +33,7 @@ public class SymTypeRecord extends SymType {
         }
         table.print(depth+1);
         Utils.printIndent(depth);
-        System.out.println("END");
+        System.out.println("END TYPE : RECORD");
     }
 
     public Symbol getType() {
