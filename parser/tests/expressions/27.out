@@ -1,1 +1,18 @@
-Syntax error at line 0, column 0 : unexpected token type TYPE
+BEGIN SYMTABLE
+ TYPE : boolean
+ TYPE : char
+ TYPE vector : RECORD
+  BEGIN SYMTABLE
+   VAR
+    NAME : x
+    TYPE : integer
+   VAR
+    NAME : y
+    TYPE : integer
+  END SYMTABLE
+ END TYPE : RECORD
+ TYPE : integer
+ TYPE : float
+END SYMTABLE
+BEGIN STMT BLOCK
+END STMT BLOCK

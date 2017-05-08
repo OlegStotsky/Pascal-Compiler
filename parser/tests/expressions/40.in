@@ -1,0 +1,12 @@
+var
+	a : integer;
+	b : integer;
+	c : boolean;
+
+begin
+	c := a <= b;
+	c := a < b;
+	c := a > b;
+	c := a >= b;
+	c := a = b;
+end;

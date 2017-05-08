@@ -1,0 +1,8 @@
+var
+	a : float;
+	b : integer;
+	c : char;
+	d : boolean;
+begin
+	d := a <= c;
+end;

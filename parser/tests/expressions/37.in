@@ -1,0 +1,11 @@
+function a (arg1 : integer, arg2 : integer) : char
+begin
+	a := 'a';
+end;
+
+var
+	b : char;
+
+begin
+	b := b + a(3, 5);
+end;

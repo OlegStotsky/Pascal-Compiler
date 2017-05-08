@@ -1,0 +1,6 @@
+var
+	a : char;
+
+begin
+	a := a + 1 + 2 + a;
+end;

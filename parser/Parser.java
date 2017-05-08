@@ -211,7 +211,7 @@ public class Parser {
 			for (Statement statement : stmt.statements) {
 				if (statement instanceof StmtAssign) {
 					if (((NodeIdentifier) ((NodeAssignment) ((StmtAssign) statement).nodeAssignment).left).name.equalsIgnoreCase(funcOrProcName.text)) {
-						if (!TypeManager.getInstance().isLegalTypeCast(
+						if (!TypeManager.getInstance().isLegalImplicitTypeCast(
 								((SymType)(((NodeAssignment) ((StmtAssign) statement).nodeAssignment).right.getType(localTable))), (SymType)retType)) {
 							throw new IllegalTypeCastException(((NodeAssignment) ((StmtAssign) statement).nodeAssignment).right.getType(localTable), retType,
 									tokenizer.curToken().row, tokenizer.curToken().column);
@@ -379,7 +379,7 @@ public class Parser {
 
 		SymType firstType = (SymType)left.getType(symTable);
 		SymType secondType = (SymType)right.getType(symTable);
-		if (!TypeManager.getInstance().isLegalTypeCast(secondType, firstType)) {
+		if (!TypeManager.getInstance().isLegalImplicitTypeCast(secondType, firstType)) {
 			throw new IllegalTypeCastException(firstType, secondType, token.row, token.column);
 		}
 
@@ -532,6 +532,14 @@ public class Parser {
 			result = new NodeBinOperation(operation.type, result, right);
 		}
 
+		Token token = tokenizer.curToken();
+		try {
+			result.getType(symTable);
+		} catch (IllegalOperandTypesException e) {
+			throw new IllegalOperandTypesException(token.row, token.column, e.operation);
+		}
+
+
 		return result;
 	}
 
@@ -548,6 +556,14 @@ public class Parser {
 			result = new NodeBinOperation(operation.type, result, right);
 		}
 
+		Token token = tokenizer.curToken();
+		try {
+			result.getType(symTable);
+		} catch (IllegalOperandTypesException e) {
+			throw new IllegalOperandTypesException(token.row, token.column, e.operation);
+		}
+
+
 		return result;
 	}
 
@@ -563,7 +579,14 @@ public class Parser {
 			Node right = parseFactor(symTable);
 			result = new NodeBinOperation(operation.type, result, right);
 		}
-		
+
+		Token token = tokenizer.curToken();
+		try {
+			result.getType(symTable);
+		} catch (IllegalOperandTypesException e) {
+			throw new IllegalOperandTypesException(token.row, token.column, e.operation);
+		}
+
 		return result;
 	}
 
@@ -704,7 +727,7 @@ public class Parser {
 		}
 
 		for (int i = 0; i < params.size(); ++i) {
-			if (!TypeManager.getInstance().isLegalTypeCast((SymType)params.get(i).getType(symTable), (SymType)callable.params.get(i).getType())) {
+			if (!TypeManager.getInstance().isLegalImplicitTypeCast((SymType)params.get(i).getType(symTable), (SymType)callable.params.get(i).getType())) {
 				throw new WrongParamTypeException(callable.name, callable.params.get(i).name, callable.params.get(i).getType(),
 						params.get(i).getType(symTable));
 			}
