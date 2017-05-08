@@ -6,12 +6,14 @@ import tokenizer.TokenTypes;
 /**
  * Created by olegstotsky on 01.05.17.
  */
-public class UnexpectedTokenException extends Exception {
+public class UnexpectedTokenException extends HasSuffixException {
     public Token token;
     public TokenTypes.TokenType[] types;
     public int row;
     public int column;
     public String msg;
+    public String msgSuffix;
+    public final int PREF_LENGTH = "Syntax error at line %d, column %d : ".length();
 
     public UnexpectedTokenException(Token token, TokenTypes.TokenType ... types) {
         StringBuilder msg = new StringBuilder(String.format("Syntax error at line %d, column %d : ", token.row, token.column));
@@ -23,14 +25,19 @@ public class UnexpectedTokenException extends Exception {
             }
         }
         msg.append(String.format("expected but %s found", token.type));
-        this.msg = msg.toString();
         this.token = token;
         this.types = types;
         this.row = row;
         this.column = column;
+        this.msg = msg.toString();
+        this.msgSuffix = this.msg.substring(PREF_LENGTH);
     }
 
     public String getMessage() {
         return this.msg;
+    }
+
+    public String getSuffix() {
+        return this.msgSuffix;
     }
 }

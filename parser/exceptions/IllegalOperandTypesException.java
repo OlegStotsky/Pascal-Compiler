@@ -5,16 +5,18 @@ import parser.symbol.Symbol;
 /**
  * Created by olegstotsky on 02.05.17.
  */
-public class IllegalOperandTypesException extends Exception {
+public class IllegalOperandTypesException extends HasSuffixException {
     public String operation;
     public int row;
     public int column;
     public String msg;
+    public String msgSuffix;
 
     public IllegalOperandTypesException(String operation) {
         this.operation = operation;
         String msg = String.format("Error : Illegal operand types of operation %s", operation);
         this.msg = msg;
+        this.msgSuffix = String.format("Illegal operand types of operation %s", operation);
     }
 
     public IllegalOperandTypesException(int row, int column, String operation) {
@@ -31,5 +33,9 @@ public class IllegalOperandTypesException extends Exception {
 
     public String getMessage() {
         return this.msg;
+    }
+
+    public String getSuffix() {
+        return this.msgSuffix;
     }
 }

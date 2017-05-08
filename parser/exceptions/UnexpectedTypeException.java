@@ -9,12 +9,14 @@ import tokenizer.TokenTypes;
 /**
  * Created by olegstotsky on 02.05.17.
  */
-public class UnexpectedTypeException extends Exception {
+public class UnexpectedTypeException extends HasSuffixException {
     public Token token;
     public Symbol[] expectedTypes;
     public int row;
     public int column;
-    public String msg;
+    String msg;
+    String msgSuffix;
+    public final int PREF_LENGTH = "Error at line %d, column %d : ".length();
 
     public UnexpectedTypeException(SymType foundType, SymType ... expectedTypes) {
         StringBuilder msg = new StringBuilder(("Error : "));
@@ -43,14 +45,19 @@ public class UnexpectedTypeException extends Exception {
             }
         }
         msg.append(String.format("expected but %s found", foundType.name));
-        this.msg = msg.toString();
         this.token = token;
         this.expectedTypes = expectedTypes;
         this.row = row;
         this.column = column;
+        this.msg = msg.toString();
+        this.msgSuffix = this.msg.substring(PREF_LENGTH);
     }
 
     public String getMessage() {
         return this.msg;
+    }
+
+    public String getSuffix() {
+        return this.msgSuffix;
     }
 }

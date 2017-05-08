@@ -11,6 +11,7 @@ public class WrongNumberOfParamsException extends Exception {
     public int column;
     public int expected;
     public int got;
+    public String msgSuffix;
 
     public WrongNumberOfParamsException(String functionName, int expectedNumberOfParams, int gotNumberOfParams) {
         super(String.format("Error in function %s call : %d number of params expected, but got %d",
