@@ -73,10 +73,10 @@ public class Parser {
 			}
 			else if (token.type == TokenTypes.TokenType.VAR) {
 				tokenizer.nextToken();
-				parseVarBlock(this.symTable);
+				parseVarBlock(symTable);
 			}
 			else if (token.type == TokenTypes.TokenType.CONST) {
-				parseConstBlock(this.symTable);
+				parseConstBlock(symTable);
 			}
 			else if (token.type == TokenTypes.TokenType.PROCEDURE) {
 				parseProcedureOrFunctionBlock(true, symTable);
@@ -182,8 +182,8 @@ public class Parser {
 		}
 		Symbol retType = null;
 		Symbol result;
-		Token identifier = tokenizer.nextToken();
-		expect(identifier, TokenTypes.TokenType.ID);
+		Token funcOrProcName = tokenizer.nextToken();
+		expect(funcOrProcName, TokenTypes.TokenType.ID);
 		token = tokenizer.nextToken();
 		expect(token, TokenTypes.TokenType.LEFT_PARENTH);
 		SymTable localTable = new SymTable(parent);
@@ -197,18 +197,42 @@ public class Parser {
 			expect(token, TokenTypes.TokenType.COLON);
 			token = tokenizer.nextToken();
 			retType = parseSimpleType(localTable);
-			tokenizer.nextToken();
+			SymVar returnValue = new SymVar(funcOrProcName.text, retType);
+			localTable.addSymbol(funcOrProcName.text, returnValue);
+			//tokenizer.nextToken();
 		}
 		parseDeclSection(localTable);
 		StmtBlock stmt = parseStmtBlock(localTable);
+
+		//If it's function - check that it has at least one return statement in the body, and
+		//that return type is legal.
+		if (!isProcedure) {
+			boolean wasFound = false;
+			for (Statement statement : stmt.statements) {
+				if (statement instanceof StmtAssign) {
+					if (((NodeIdentifier) ((NodeAssignment) ((StmtAssign) statement).nodeAssignment).left).name.equalsIgnoreCase(funcOrProcName.text)) {
+						if (!TypeManager.getInstance().isLegalTypeCast(
+								((SymType)(((NodeAssignment) ((StmtAssign) statement).nodeAssignment).right.getType(localTable))), (SymType)retType)) {
+							throw new IllegalTypeCastException(((NodeAssignment) ((StmtAssign) statement).nodeAssignment).right.getType(localTable), retType,
+									tokenizer.curToken().row, tokenizer.curToken().column);
+						}
+						wasFound = true;
+					}
+				}
+			}
+			if (!wasFound) {
+				throw new Exception(String.format("Error in function %s : function should have return statement",
+						funcOrProcName.text));
+			}
+		}
 		token = tokenizer.curToken();
 
 		if (isProcedure) {
-			result = new SymProc(identifier.text, localTable, stmt, params);
-			this.symTable.addSymbol(identifier.text, result);
+			result = new SymProc(funcOrProcName.text, localTable, stmt, params);
+			this.symTable.addSymbol(funcOrProcName.text, result);
 		} else {
-			result = new SymFunc(identifier.text, localTable, stmt, retType, params);
-			this.symTable.addSymbol(identifier.text , result);
+			result = new SymFunc(funcOrProcName.text, localTable, stmt, retType, params);
+			this.symTable.addSymbol(funcOrProcName.text , result);
 		}
 	}
 
@@ -244,7 +268,7 @@ public class Parser {
 				tokenizer.goBack();
 				Node call = parseCall(symTable);
 				stmt = new StatementCall(call);
-				token = tokenizer.nextToken();
+				token = tokenizer.curToken();
 				expect(token, TokenTypes.TokenType.SEMICOLON);
 				tokenizer.nextToken();
 			} else {
@@ -670,6 +694,7 @@ public class Parser {
 			result = new NodeProcedureCall(params, proc);
 		}
 
+		tokenizer.nextToken();
 		return result;
 	 }
 

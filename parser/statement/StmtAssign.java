@@ -7,20 +7,20 @@ import parser.node.Node;
  * Created by olegstotsky on 10.04.17.
  */
 public class StmtAssign extends Statement {
-    public Node node;
+    public Node nodeAssignment;
 
     public StmtAssign() {
-        this.node = null;
+        this.nodeAssignment = null;
     }
 
     public StmtAssign(Node node) {
-        this.node = node;
+        this.nodeAssignment = node;
     }
 
     public void print(int depth) throws Exception {
         Utils.printIndent(depth);
         System.out.println("BEGIN STMT ASSIGN");
-        node.print(depth+1);
+        nodeAssignment.print(depth+1);
         Utils.printIndent(depth);
         System.out.println("END STMT ASSIGN");
     }

@@ -28,13 +28,12 @@ public class NodeProcedureCall extends Node {
 
     public void print(int depth) throws Exception {
         Utils.printIndent(depth);
-        System.out.println("BEGIN PROCEDURE CALL");
+        System.out.println(String.format("BEGIN PROCEDURE %s CALL", this.callable.name));
         for (int i = 0; i < params.size(); ++i) {
             Utils.printIndent(depth+1);
             System.out.println("Arg number " + i);
             this.params.get(i).print(depth+2);
         }
-        this.callable.print(depth+1);
         Utils.printIndent(depth);
         System.out.println("END PROCEDURE CALL");
     }

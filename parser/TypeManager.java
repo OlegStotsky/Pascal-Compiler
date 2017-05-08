@@ -94,6 +94,7 @@ public class TypeManager {
     }
 
     public Boolean isLegalTypeCast(SymType from, SymType to) {
-        return this.legalTypeCasts.contains(new Pair<>(from, to));
+        Pair<SymType, SymType> target = new Pair<>(from, to);
+        return this.legalTypeCasts.contains(target);
     }
 }

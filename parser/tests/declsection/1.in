@@ -1,0 +1,11 @@
+procedure q (a: integer, b : integer)
+var
+	a : integer;
+	b : integer;
+begin
+	c := a;
+	d := b;
+end;
+
+begin
+end;

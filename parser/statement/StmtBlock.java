@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by olegstotsky on 11.04.17.
  */
 public class StmtBlock extends Statement {
-    ArrayList<Statement> statements;
+    public ArrayList<Statement> statements;
 
     public StmtBlock() {
         this.statements = null;

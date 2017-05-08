@@ -8,5 +8,5 @@ begin
 end;
 
 begin
-	plus(a, b, c);
+	a := plus(1, 2);
 end;

@@ -235,6 +235,7 @@ public class Tokenizer {
 					if (TokenTypes.getInstance().isKeyWord(raw.toString().toLowerCase())) {
 						result.type = TokenTypes.getInstance().getType(raw.toString().toLowerCase());
 						result.text = raw.toString().toLowerCase();
+						this.prevToken = this.curToken;
 						this.curToken = result;
 						return result;
 					}

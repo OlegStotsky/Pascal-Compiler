@@ -1,0 +1,9 @@
+function func (arg1 : integer, arg2 : integer) : integer
+	begin
+		arg1 := arg1 + arg2;
+		//func := arg1;
+	end;
+
+begin
+	func(1, 2);
+end;

@@ -1,6 +1,7 @@
 package parser.node;
 
 import parser.Utils;
+import parser.symbol.SymTable;
 import parser.symbol.SymType;
 import parser.symbol.Symbol;
 
@@ -23,14 +24,17 @@ public class NodeFunctionCall extends NodeProcedureCall {
 
     public void print(int depth) throws Exception {
         Utils.printIndent(depth);
-        System.out.println("BEGIN FUNCTION CALL");
+        System.out.println(String.format("BEGIN FUNCTION %s CALL", this.callable.name));
         for (int i = 0; i < params.size(); ++i) {
             Utils.printIndent(depth+1);
             System.out.println("Arg number " + i);
             this.params.get(i).print(depth+2);
         }
-        this.callable.print(depth+1);
         Utils.printIndent(depth);
         System.out.println("END FUNCTION CALL");
+    }
+
+    public Symbol getType(SymTable symTable) {
+        return retType;
     }
 }
