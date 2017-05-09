@@ -1,0 +1,12 @@
+var
+	vec : record
+		x : float;
+		y : float;
+	end;
+
+var
+	a : integer;
+
+begin
+	a := vec.x;
+end;

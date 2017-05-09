@@ -12,5 +12,5 @@ public abstract class HasSuffixException extends Exception {
         super(msg);
     }
 
-    abstract String getSuffix();
+    public abstract String getSuffix();
 }

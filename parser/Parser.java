@@ -112,7 +112,7 @@ public class Parser {
 				tokenizer.nextToken();
 			}
 			else if (token.type == TokenTypes.TokenType.ID) {
-				Symbol refType = symTable.getSymbol(token.text);
+				Symbol refType = symTable.getSymbol(token.text, true);
 				type = new SymTypeAlias(identifier.text, refType);
 				token = tokenizer.nextToken();
 				expect(token, TokenTypes.TokenType.SEMICOLON);
@@ -380,7 +380,7 @@ public class Parser {
 		SymType firstType = (SymType)left.getType(symTable);
 		SymType secondType = (SymType)right.getType(symTable);
 		if (!TypeManager.getInstance().isLegalImplicitTypeCast(secondType, firstType)) {
-			throw new IllegalTypeCastException(firstType, secondType, token.row, token.column);
+			throw new IllegalTypeCastException(secondType, firstType, token.row, token.column);
 		}
 
 		return new NodeAssignment(left, right);
@@ -535,10 +535,9 @@ public class Parser {
 		Token token = tokenizer.curToken();
 		try {
 			result.getType(symTable);
-		} catch (IllegalOperandTypesException e) {
-			throw new IllegalOperandTypesException(token.row, token.column, e.operation);
+		} catch (HasSuffixException e) {
+			throw new PositionalException(token.row, token.column, e.getMessage());
 		}
-
 
 		return result;
 	}
@@ -557,12 +556,6 @@ public class Parser {
 		}
 
 		Token token = tokenizer.curToken();
-		try {
-			result.getType(symTable);
-		} catch (IllegalOperandTypesException e) {
-			throw new IllegalOperandTypesException(token.row, token.column, e.operation);
-		}
-
 
 		return result;
 	}
@@ -581,19 +574,9 @@ public class Parser {
 		}
 
 		Token token = tokenizer.curToken();
-		try {
-			result.getType(symTable);
-		} catch (IllegalOperandTypesException e) {
-			throw new IllegalOperandTypesException(token.row, token.column, e.operation);
-		}
-
 		return result;
 	}
-
-	/**
-	 * Parses factor of form
-	 * <factor> ::= (+|-) id | int_const | (expression)
-	 */
+	
 	private Node parseFactor(SymTable symTable) throws Exception {
 		NodeUnaryOperation factor = new NodeUnaryOperation();
 		Token token = tokenizer.curToken();
@@ -667,6 +650,7 @@ public class Parser {
 				token = tokenizer.nextToken();
 				expect(token, TokenTypes.TokenType.ID);
 				Node right = parseIdentifier(symTable, false);
+
 				result = new NodeRecordAccess(result, right);
 			}
 			else if (token.type == TokenTypes.TokenType.LSQB) {

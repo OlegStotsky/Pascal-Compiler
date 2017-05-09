@@ -8,10 +8,12 @@ import parser.symbol.Symbol;
 public class NodeUnaryOperation extends Node {
     public String operation;
     public Node value;
+    public SymType type;
 
     public NodeUnaryOperation() {
         this.operation = null;
         this.value = null;
+        this.type = null;
     }
 
     public NodeUnaryOperation(String sign, Node value) {
@@ -30,6 +32,7 @@ public class NodeUnaryOperation extends Node {
     }
 
     public Symbol getType(SymTable symTable) throws Exception {
-        return value.getType(symTable);
+        this.type = (SymType)value.getType(symTable);
+        return this.type;
     }
 }

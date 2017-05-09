@@ -6,20 +6,20 @@ import parser.Utils;
  * Created by olegstotsky on 10.04.17.
  */
 public class SymTypeRecord extends SymType {
-    SymTable table;
+    public SymTable symTable;
 
     public SymTypeRecord() {
-        this.table = null;
+        this.symTable = null;
     }
 
     public SymTypeRecord(String name, SymTable table) {
         super(name);
-        this.table = table;
+        this.symTable = table;
     }
 
     public SymTypeRecord(SymTable table) {
         super("");
-        this.table = table;
+        this.symTable = table;
     }
 
     public void print(int depth) throws Exception {
@@ -31,7 +31,7 @@ public class SymTypeRecord extends SymType {
             System.out.println(String.format("TYPE %s : RECORD",
                     this.name));
         }
-        table.print(depth+1);
+        symTable.print(depth+1);
         Utils.printIndent(depth);
         System.out.println("END TYPE : RECORD");
     }

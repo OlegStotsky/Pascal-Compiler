@@ -32,7 +32,11 @@ public class SymTable {
 
     }
 
-    public Symbol getSymbol(String name) throws Exception {
+    public Symbol getSymbol(String name, boolean isRecursive) throws Exception {
+        if (!isRecursive) {
+            return this.symbols.get(name);
+        }
+
     	SymTable curTable = this;
     	while (curTable != null) {
     		Symbol target = curTable.symbols.get(name);
@@ -46,8 +50,8 @@ public class SymTable {
         throw new NullSymbolException(name);
     }
 
-    public SymVar getVar(String name) throws Exception {
-        Symbol var = this.getSymbol(name);
+    public SymVar getVar(String name, boolean isRecursive) throws Exception {
+        Symbol var = this.getSymbol(name, isRecursive);
         if (var == null ) {
             throw new NullSymbolException(name);
         }
@@ -59,7 +63,7 @@ public class SymTable {
     }
 
     public SymType getType(String name) throws Exception {
-        Symbol type = this.getSymbol(name);
+        Symbol type = this.getSymbol(name, true);
         if (type == null) {
             throw new NullSymbolException(name);
         }
@@ -71,7 +75,7 @@ public class SymTable {
     }
 
     public SymProc getProc(String name) throws Exception {
-        Symbol proc = this.getSymbol(name);
+        Symbol proc = this.getSymbol(name, true);
         if (proc == null) {
             throw new NullSymbolException(name);
         }
@@ -83,7 +87,7 @@ public class SymTable {
     }
 
     public SymProc getFunc(String name) throws Exception {
-        Symbol proc = this.getSymbol(name);
+        Symbol proc = this.getSymbol(name, true);
         if (proc == null) {
             throw new NullSymbolException(name);
         }
@@ -95,7 +99,7 @@ public class SymTable {
     }
 
     public SymProc getCallable(String name) throws Exception {
-        Symbol callable = this.getSymbol(name);
+        Symbol callable = this.getSymbol(name, true);
         if (callable == null) {
             throw new NullSymbolException(name);
         }

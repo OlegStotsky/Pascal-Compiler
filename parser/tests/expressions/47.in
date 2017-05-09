@@ -1,0 +1,19 @@
+var
+	a : record
+		b : record
+			x : integer;
+			y : record
+				g : integer;
+			end;
+		end;
+
+		c : integer;
+	end;
+
+var
+	q : integer;
+
+begin
+	q := a.b.x;
+	q := a.b.y.g;
+end;

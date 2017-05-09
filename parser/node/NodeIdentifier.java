@@ -8,9 +8,11 @@ import parser.symbol.Symbol;
 
 public class NodeIdentifier extends Node {
 	public String name;
-	
+	public SymType type;
+
 	public NodeIdentifier() {
 		this.name = null;
+		this.type = null;
 	}
 
 	public NodeIdentifier(String name) {
@@ -27,7 +29,12 @@ public class NodeIdentifier extends Node {
 	}
 
 	public Symbol getType(SymTable symTable) throws Exception {
-		SymVar var = symTable.getVar(this.name);
-		return var.getType();
+		if (this.type != null) {
+			return this.type;
+		}
+
+		SymVar var = symTable.getVar(this.name, true);
+		this.type = (SymType)var.getType();
+		return this.type;
 	}
 }
