@@ -18,10 +18,15 @@ public class Pair<U, V> {
     }
 
     public int hashCode() {
-        return first.hashCode() + second.hashCode();
+        return (first == null ? 0 : first.hashCode()) ^ (second == null ? 0 : second.hashCode());
     }
 
-    public boolean equals(Object other) {
-        return this.hashCode() == other.hashCode();
+    public boolean equals(Object o) {
+        if (!(o instanceof Pair)) {
+            return false;
+        }
+
+        Pair<?, ?> p = (Pair<?, ?>) o;
+        return p.first == this.first && p.second == this.second;
     }
 }
