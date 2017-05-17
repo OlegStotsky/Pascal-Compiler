@@ -1,0 +1,15 @@
+BEGIN SYMTABLE
+ TYPE a : RECORD
+  BEGIN SYMTABLE
+   VAR
+    NAME : a
+    TYPE : ARRAY[0...5] OF integer
+   VAR
+    NAME : b
+    TYPE : ARRAY[1...7] OF float
+  END SYMTABLE
+ END
+ TYPE : boolean
+ TYPE : integer
+ TYPE : float
+END SYMTABLE

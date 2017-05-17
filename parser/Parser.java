@@ -19,7 +19,8 @@ public class Parser {
 	private Statement program;
 	private SymTable symTable;
 	private Node root;
-	
+	private boolean inLoop;
+
 	public Parser(Tokenizer tokenizer) {
 		this.tokenizer = tokenizer;
 		this.priorities = new HashMap<>();
@@ -28,6 +29,7 @@ public class Parser {
 		this.symTable.symbols.put("float", SymTypeFloat.getInstance());
 		this.symTable.symbols.put("boolean", SymTypeBoolean.getInstance());
 		this.symTable.symbols.put("char", SymTypeChar.getInstance());
+		this.inLoop = false;
 
 		this.priorities.put(TokenTypes.TokenType.NOT, OperationPrecedence.FIRST);
 		this.priorities.put(TokenTypes.TokenType.ADDR, OperationPrecedence.FIRST);
@@ -62,7 +64,7 @@ public class Parser {
 
 	private void parseProgram() throws Exception {
 		parseDeclSection(this.symTable);
-		this.program = parseStmtBlock(this.symTable);
+		this.program = parseStmtBlock(this.symTable	);
 	}
 
 	private void parseDeclSection(SymTable symTable) throws Exception {
@@ -288,6 +290,24 @@ public class Parser {
 		}
 		else if (token.type == TokenTypes.TokenType.FOR) {
 			return parseForLoop(symTable);
+		}
+		else if (token.type == TokenTypes.TokenType.CONTINUE) {
+			if (this.inLoop) {
+				tokenizer.nextToken();
+				expect(tokenizer.curToken(), TokenTypes.TokenType.CONTINUE);
+				return new StmtContinue();
+			} else {
+				throw new PositionalException(tokenizer.curToken().row, tokenizer.curToken().column, "continue must be called loop");
+			}
+		}
+		else if (token.type == TokenTypes.TokenType.BREAK) {
+			if (this.inLoop) {
+				tokenizer.nextToken();
+				expect(tokenizer.curToken(), TokenTypes.TokenType.CONTINUE);
+				return new StmtBreak();
+			} else {
+				throw new PositionalException(tokenizer.curToken().row, tokenizer.curToken().column, "break must be called in loop");
+			}
 		}
 
 		return null;
@@ -705,7 +725,7 @@ public class Parser {
 		return result;
 	 }
 
-	void checkParams(SymProc callable, ArrayList<Node> params, SymTable symTable) throws Exception {
+	private void checkParams(SymProc callable, ArrayList<Node> params, SymTable symTable) throws Exception {
 		if (callable.params.size() != params.size()) {
 			throw new WrongNumberOfParamsException(callable.name, callable.params.size(), params.size());
 		}

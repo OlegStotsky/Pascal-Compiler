@@ -1,0 +1,21 @@
+BEGIN STMT BLOCK
+ BEGIN STMT IF-ELSE
+  IF
+    a
+   <
+    b
+  THEN
+   BEGIN STMT IF-ELSE
+    IF
+      q
+     <
+      b
+    THEN
+     BEGIN STMT ASSIGN
+       a
+      :=
+       5
+     END STMT ASSIGN
+   END STMT IF-ELSE
+ END STMT IF-ELSE
+END STMT BLOCK
