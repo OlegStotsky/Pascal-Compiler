@@ -3,6 +3,7 @@ package parser;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.geometry.Pos;
 import parser.exceptions.*;
 import parser.node.*;
 import parser.statement.*;
@@ -201,32 +202,31 @@ public class Parser {
 			retType = parseSimpleType(localTable);
 			SymVar returnValue = new SymVar(funcOrProcName.text, retType);
 			localTable.addSymbol(funcOrProcName.text, returnValue);
-			//tokenizer.nextToken();
 		}
 		parseDeclSection(localTable);
 		StmtBlock stmt = parseStmtBlock(localTable);
 
-		//If it's function - check that it has at least one return statement in the body, and
-		//that return type is legal.
-		if (!isProcedure) {
-			boolean wasFound = false;
-			for (Statement statement : stmt.statements) {
-				if (statement instanceof StmtAssign) {
-					if (((NodeIdentifier) ((NodeAssignment) ((StmtAssign) statement).nodeAssignment).left).name.equalsIgnoreCase(funcOrProcName.text)) {
-						if (!TypeManager.getInstance().isLegalImplicitTypeCast(
-								((SymType)(((NodeAssignment) ((StmtAssign) statement).nodeAssignment).right.getType(localTable))), (SymType)retType)) {
-							throw new IllegalTypeCastException(((NodeAssignment) ((StmtAssign) statement).nodeAssignment).right.getType(localTable), retType,
-									tokenizer.curToken().row, tokenizer.curToken().column);
-						}
-						wasFound = true;
-					}
-				}
-			}
-			if (!wasFound) {
-				throw new Exception(String.format("Error in function %s : function should have return statement",
-						funcOrProcName.text));
-			}
-		}
+//		//If it's function - check that it has at least one return statement in the body, and
+//		//that return type is legal.
+//		if (!isProcedure) {
+//			boolean wasFound = false;
+//			for (Statement statement : stmt.statements) {
+//				if (statement instanceof StmtAssign) {
+//					if (((NodeIdentifier) ((NodeAssignment) ((StmtAssign) statement).nodeAssignment).left).name.equalsIgnoreCase(funcOrProcName.text)) {
+//						if (!TypeManager.getInstance().isLegalImplicitTypeCast(
+//								((SymType)(((NodeAssignment) ((StmtAssign) statement).nodeAssignment).right.getType(localTable))), (SymType)retType)) {
+//							throw new IllegalTypeCastException(((NodeAssignment) ((StmtAssign) statement).nodeAssignment).right.getType(localTable), retType,
+//									tokenizer.curToken().row, tokenizer.curToken().column);
+//						}
+//						wasFound = true;
+//					}
+//				}
+//			}
+//			if (!wasFound) {
+//				throw new Exception(String.format("Error in function %s : function should have return statement",
+//						funcOrProcName.text));
+//			}
+//		}
 		token = tokenizer.curToken();
 
 		if (isProcedure) {
@@ -264,23 +264,22 @@ public class Parser {
 	private Statement parseStatement(SymTable symTable) throws Exception {
 		Token token = tokenizer.curToken();
 		if (token.type == TokenTypes.TokenType.ID) {
-			Statement stmt = null;
-			token = tokenizer.nextToken();
-			if (token.type == TokenTypes.TokenType.LEFT_PARENTH) {
-				tokenizer.goBack();
-				Node call = parseCall(symTable);
-				stmt = new StatementCall(call);
-				token = tokenizer.curToken();
-				expect(token, TokenTypes.TokenType.SEMICOLON);
+			Node identifier = parseIdentifier(symTable, true);
+			token = tokenizer.curToken();
+			if (token.type == TokenTypes.TokenType.ASSIGN) {
+				Node assign = parseAssignment(symTable, identifier);
+				StmtAssign result = new StmtAssign(assign);
 				tokenizer.nextToken();
-			} else {
-				tokenizer.goBack();
-				NodeAssignment assignment = parseAssignment(symTable);
-				stmt = new StmtAssign(assignment);
-				tokenizer.nextToken();
+				return result;
 			}
-
-			return stmt;
+			if (identifier instanceof NodeProcedureCall) {
+				tokenizer.nextToken();
+				return new StmtCall(identifier);
+			}
+			else {
+				token = tokenizer.curToken();
+				throw new PositionalException(token.row, token.column, "unknown statement");
+			}
 		}
 		else if (token.type == TokenTypes.TokenType.BEGIN) {
 			return parseStmtBlock(symTable);
@@ -388,8 +387,10 @@ public class Parser {
 		return result;
 	}
 
-	private NodeAssignment parseAssignment(SymTable symTable) throws Exception {
-		Node left  = parseIdentifier(symTable, true);
+	private NodeAssignment parseAssignment(SymTable symTable, Node left) throws Exception {
+		if (left == null) {
+			left = parseIdentifier(symTable, true);
+		}
 		Token token = tokenizer.curToken();
 		expect(token, TokenTypes.TokenType.ASSIGN);
 		tokenizer.nextToken();
@@ -399,6 +400,12 @@ public class Parser {
 
 		SymType firstType = (SymType)left.getType(symTable);
 		SymType secondType = (SymType)right.getType(symTable);
+		if (firstType == null) {
+			throw new PositionalException(token.row, token.column, "Left hand sand is not a l-value");
+		}
+		if (secondType == null) {
+			throw new PositionalException(token.row, token.column, "Right hand sand is not a r-value");
+		}
 		if (!TypeManager.getInstance().isLegalImplicitTypeCast(secondType, firstType)) {
 			throw new IllegalTypeCastException(secondType, firstType, token.row, token.column);
 		}
@@ -407,7 +414,7 @@ public class Parser {
 	}
 
 	private void parseParams(SymTable symTable, ArrayList<SymVar> params) throws Exception {
-		while (true) {
+		while (tokenizer.curToken().type != TokenTypes.TokenType.RIGHT_PARENTH) {
 			SymVar var;
 			Token name = tokenizer.curToken();
 			Token token = tokenizer.nextToken();
@@ -605,18 +612,7 @@ public class Parser {
 			token = tokenizer.nextToken();
 		}
 		if (token.type == TokenTypes.TokenType.ID) {
-			token = tokenizer.nextToken();
-			if (token.type == TokenTypes.TokenType.LEFT_PARENTH) {
-				tokenizer.goBack();
-				Node call =  parseCall(symTable);
-				if (! (call instanceof NodeFunctionCall)) {
-					throw new NotFunctionException(tokenizer.curToken().row, tokenizer.curToken().column, call.toString());
-				}
-				factor.value = call;
-			} else {
-				tokenizer.goBack();
-				factor.value = parseIdentifier(symTable, true);
-			}
+			factor.value = parseIdentifier(symTable, true);
 			return factor;
 		}
 		if (token.type == TokenTypes.TokenType.INT_CONST) {
@@ -666,12 +662,29 @@ public class Parser {
 		Node result = new NodeIdentifier(token.text);
 		while (isRecursive) {
 			token = tokenizer.nextToken();
-			if (token.type == TokenTypes.TokenType.DOT) {
+			if (token.type == TokenTypes.TokenType.LEFT_PARENTH) {
+				tokenizer.goBack();
+				result = parseCall(symTable);
+			}
+			else if (token.type == TokenTypes.TokenType.DOT) {
 				token = tokenizer.nextToken();
 				expect(token, TokenTypes.TokenType.ID);
 				Node right = parseIdentifier(symTable, false);
+				token = tokenizer.curToken();
+				Symbol type = result.getType(symTable);
+				SymVar var = null;
+				if (type instanceof SymTypeRecord) {
+					try {
+						var = ((SymTypeRecord) type).symTable.getVar(right.toString(), false);
+					} catch (HasSuffixException e) {
+						throw new PositionalException(token.row, token.column, e.getSuffix());
+					}
+				}
+				else {
+					throw new UnexpectedTypeException(token.row, token.column, type, "record");
+				}
 
-				result = new NodeRecordAccess(result, right);
+				result = new NodeRecordAccess(result, right, (SymType)var.getType());
 			}
 			else if (token.type == TokenTypes.TokenType.LSQB) {
 				tokenizer.nextToken();
@@ -721,7 +734,6 @@ public class Parser {
 			result = new NodeProcedureCall(params, proc);
 		}
 
-		tokenizer.nextToken();
 		return result;
 	 }
 
@@ -743,14 +755,14 @@ public class Parser {
 		Token token;
 		Node expr;
 		ArrayList<Node> params = new ArrayList<Node>();
-		do {
+		while (tokenizer.curToken().type != TokenTypes.TokenType.RIGHT_PARENTH) {
 			expr = parseExpression(symTable);
 			params.add(expr);
 			token = tokenizer.curToken();
 			if (token.type == TokenTypes.TokenType.COMMA) {
 				tokenizer.nextToken();
 			}
-		} while (tokenizer.curToken().type != TokenTypes.TokenType.RIGHT_PARENTH);
+		}
 
 		return params;
 	}

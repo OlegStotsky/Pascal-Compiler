@@ -1,0 +1,12 @@
+type
+	a = record
+		x : integer;
+	end;
+
+function func() : a
+begin
+end;
+
+begin
+	func().x := 1;
+end;
