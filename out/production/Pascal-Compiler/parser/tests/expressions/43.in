@@ -1,0 +1,7 @@
+var
+	a : integer;
+	b : integer;
+
+begin
+	a := a and b;
+end;

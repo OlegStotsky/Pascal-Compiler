@@ -1,0 +1,5 @@
+type
+a = array[0..10] of integer;
+
+var
+b : a;

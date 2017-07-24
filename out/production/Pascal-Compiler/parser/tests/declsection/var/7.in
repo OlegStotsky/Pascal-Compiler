@@ -1,0 +1,4 @@
+var
+a : record
+a : integer;
+end;

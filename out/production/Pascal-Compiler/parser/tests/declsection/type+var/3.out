@@ -1,0 +1,22 @@
+BEGIN SYMTABLE
+ TYPE a : ARRAY
+  START INDEX
+   1
+  END INDEX
+   10
+  ELEM TYPE
+   TYPE : float
+ VAR
+  NAME : b
+  TYPE a : ARRAY
+   START INDEX
+    1
+   END INDEX
+    10
+   ELEM TYPE
+    TYPE : float
+ TYPE : boolean
+ TYPE : char
+ TYPE : integer
+ TYPE : float
+END SYMTABLE

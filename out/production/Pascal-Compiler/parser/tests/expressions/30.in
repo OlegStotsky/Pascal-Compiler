@@ -1,0 +1,12 @@
+var 
+a : char;
+b : char;
+
+procedure plus (first : integer, second : integer)
+begin
+	a := first + second;
+end;
+
+begin
+	plus(a, b);
+end;

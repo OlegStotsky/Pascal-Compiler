@@ -1,0 +1,36 @@
+BEGIN SYMTABLE
+ TYPE a : RECORD
+  BEGIN SYMTABLE
+   VAR
+    NAME : a
+    TYPE : integer
+   VAR
+    NAME : q
+    TYPE : boolean
+   VAR
+    NAME : b
+    TYPE : integer
+   VAR
+    NAME : c
+    TYPE : integer
+   VAR
+    NAME : e
+    TYPE : boolean
+   VAR
+    NAME : w
+    TYPE : boolean
+   VAR
+    NAME : x
+    TYPE : float
+   VAR
+    NAME : y
+    TYPE : float
+   VAR
+    NAME : z
+    TYPE : float
+  END SYMTABLE
+ END
+ TYPE : boolean
+ TYPE : integer
+ TYPE : float
+END SYMTABLE

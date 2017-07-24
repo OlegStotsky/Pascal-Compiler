@@ -1,0 +1,8 @@
+var
+a : integer;
+b : integer;
+
+begin
+	for i := 1 to a<b do
+		a := a +1;
+end;

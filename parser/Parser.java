@@ -20,7 +20,7 @@ public class Parser {
 	private Statement program;
 	private SymTable symTable;
 	private Node root;
-	private boolean inLoop;
+	private int inLoopCnt;
 
 	public Parser(Tokenizer tokenizer) {
 		this.tokenizer = tokenizer;
@@ -30,7 +30,7 @@ public class Parser {
 		this.symTable.symbols.put("float", SymTypeFloat.getInstance());
 		this.symTable.symbols.put("boolean", SymTypeBoolean.getInstance());
 		this.symTable.symbols.put("char", SymTypeChar.getInstance());
-		this.inLoop = false;
+		this.inLoopCnt = 0;
 
 		this.priorities.put(TokenTypes.TokenType.NOT, OperationPrecedence.FIRST);
 		this.priorities.put(TokenTypes.TokenType.ADDR, OperationPrecedence.FIRST);
@@ -274,7 +274,7 @@ public class Parser {
 			}
 			if (identifier instanceof NodeProcedureCall) {
 				tokenizer.nextToken();
-				return new StmtCall(identifier);
+				return new StatementCall(identifier);
 			}
 			else {
 				token = tokenizer.curToken();
@@ -291,21 +291,22 @@ public class Parser {
 			return parseForLoop(symTable);
 		}
 		else if (token.type == TokenTypes.TokenType.CONTINUE) {
-			if (this.inLoop) {
+			if (this.inLoopCnt != 0) {
 				tokenizer.nextToken();
-				expect(tokenizer.curToken(), TokenTypes.TokenType.CONTINUE);
+				expect(tokenizer.curToken(), TokenTypes.TokenType.SEMICOLON);
 				return new StmtContinue();
 			} else {
-				throw new PositionalException(tokenizer.curToken().row, tokenizer.curToken().column, "continue must be called loop");
+				throw new PositionalException(tokenizer.curToken().row, tokenizer.curToken().column, "continue must be called inside the loop");
 			}
 		}
 		else if (token.type == TokenTypes.TokenType.BREAK) {
-			if (this.inLoop) {
+			if (this.inLoopCnt != 0) {
 				tokenizer.nextToken();
-				expect(tokenizer.curToken(), TokenTypes.TokenType.CONTINUE);
+				expect(tokenizer.curToken(), TokenTypes.TokenType.SEMICOLON);
+				tokenizer.nextToken();
 				return new StmtBreak();
 			} else {
-				throw new PositionalException(tokenizer.curToken().row, tokenizer.curToken().column, "break must be called in loop");
+				throw new PositionalException(tokenizer.curToken().row, tokenizer.curToken().column, "break must be called inside the loop");
 			}
 		}
 
@@ -382,8 +383,10 @@ public class Parser {
 		token = tokenizer.curToken();
 		expect(token, TokenTypes.TokenType.DO);
 		tokenizer.nextToken();
+		this.inLoopCnt++;
 		Statement stmt = parseStatement(symTable);
 		Statement result = new StmtForLoop(isDownTo, rangeStart, rangeEnd, stmt, loopCounter);
+		this.inLoopCnt--;
 		return result;
 	}
 
@@ -681,10 +684,10 @@ public class Parser {
 					}
 				}
 				else {
-					throw new UnexpectedTypeException(token.row, token.column, type, "record");
+					throw new UnexpectedTypeException(token.row, token.column, type, new SymType("record"));
 				}
 
-				result = new NodeRecordAccess(result, right, (SymType)var.getType());
+				result = new NodeRecordAccess(result, right);
 			}
 			else if (token.type == TokenTypes.TokenType.LSQB) {
 				tokenizer.nextToken();

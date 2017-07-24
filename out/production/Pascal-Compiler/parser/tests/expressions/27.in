@@ -1,0 +1,7 @@
+Type
+Vector = Record
+x, y : Integer;
+end;
+
+begin
+end;

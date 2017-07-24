@@ -1,0 +1,14 @@
+var
+	r1 : record
+		r2 : record
+			x : float;
+		end;
+	end;
+
+
+var
+	y : integer;
+
+begin
+	y := r1.r2.x;
+end;

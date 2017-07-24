@@ -1,0 +1,8 @@
+type
+a = float;
+
+var
+b : a;
+c : a;
+
+

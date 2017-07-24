@@ -1,0 +1,8 @@
+var
+	a : integer;
+
+begin
+	a := a + 1;
+	for i := 1 to 5 do
+		break;
+end;

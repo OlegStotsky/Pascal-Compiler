@@ -1,0 +1,18 @@
+BEGIN SYMTABLE
+ TYPE a : ALIAS TO
+  TYPE : integer
+ VAR
+  NAME : b
+  TYPE : ARRAY
+   START INDEX
+    1
+   END INDEX
+    10
+   ELEM TYPE
+    TYPE a : ALIAS TO
+     TYPE : integer
+ TYPE : boolean
+ TYPE : char
+ TYPE : integer
+ TYPE : float
+END SYMTABLE

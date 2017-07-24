@@ -1,0 +1,11 @@
+type
+	a = record
+		x : integer;
+	end;
+
+var
+	arr : array[1..5] of a;
+
+begin
+	arr[1].x := 5;
+end;

@@ -1,0 +1,29 @@
+BEGIN SYMTABLE
+ VAR
+  NAME : a
+  TYPE : integer
+ TYPE : boolean
+ TYPE : char
+ VAR
+  NAME : i
+  TYPE : integer
+ TYPE : integer
+ TYPE : float
+END SYMTABLE
+BEGIN STMT BLOCK
+ BEGIN STMT ASSIGN
+   a
+  :=
+    a
+   +
+    1
+ END STMT ASSIGN
+ BEGIN FOR LOOP
+  FOR i :=
+   1
+  TO
+   5
+  DO
+   BREAK
+ END FOR LOOP
+END STMT BLOCK

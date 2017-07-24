@@ -1,0 +1,16 @@
+var
+	cnt : integer;
+
+begin
+	for i := 1 to 5 do
+	begin
+		for j := i to 7 do
+		begin
+			break;
+		end;
+
+		cnt = cnt + 1;
+		break;
+	end;
+end;
+

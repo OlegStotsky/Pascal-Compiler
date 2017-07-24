@@ -1,0 +1,8 @@
+    FLOAT_CONST	           3.15               0               0               0        3,150000
+    FLOAT_CONST	          10.16               0               5               0       10,160000
+    FLOAT_CONST	        29.18e1               0              11               0      291,800000
+    FLOAT_CONST	        31.16e2               0              19               0     3116,000000
+    FLOAT_CONST	         26.1e3               1               0               0    26100,000000
+    FLOAT_CONST	           31.2               1               7               0       31,200000
+    FLOAT_CONST	         100e-3               1              12               0        0,100000
+            EOF	            EOF               1              18               0        0,000000

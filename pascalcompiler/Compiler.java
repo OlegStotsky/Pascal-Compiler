@@ -48,7 +48,7 @@ public class Compiler {
 				parser.print();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
-				System.exit(-1);
+				System.exit(0);
 			}
 			return;
 		}

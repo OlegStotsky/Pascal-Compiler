@@ -1,0 +1,10 @@
+var
+a : record
+	x : integer;
+	y : integer;
+end;
+b : integer;
+
+begin
+	a.x := b;
+end;

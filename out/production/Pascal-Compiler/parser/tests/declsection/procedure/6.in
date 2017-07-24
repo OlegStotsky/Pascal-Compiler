@@ -1,0 +1,13 @@
+function func (arg1 : integer, arg2 : integer) : float
+	begin
+		arg1 := arg1 +2;
+		arg2 := arg1 + arg2;
+		func := 1;
+	end;
+
+var
+	a : integer;
+
+begin
+	a := func(1, 2);
+end;

@@ -1,0 +1,10 @@
+procedure proc()
+begin
+end;
+
+var
+	a : integer;
+
+begin
+	proc() := a;
+end;

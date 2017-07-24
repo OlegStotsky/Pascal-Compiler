@@ -1,0 +1,5 @@
+type
+a = array[2..7] of integer;
+b = array[0..9] of float;
+c = array[1..8] of char;
+q = array[-1..3] of boolean;

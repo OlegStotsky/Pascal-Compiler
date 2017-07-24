@@ -1,0 +1,4 @@
+begin
+	for i := 1 to 5 do
+		a := a + 1;
+end;
