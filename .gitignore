@@ -2,3 +2,4 @@
 */*.jar
 .DS_Store
 META-INF/
+out/*
