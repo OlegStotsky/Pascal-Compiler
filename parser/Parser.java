@@ -21,6 +21,7 @@ public class Parser {
 	private SymTable symTable;
 	private Node root;
 	private int inLoopCnt;
+	private boolean inRepeatUntil = false;
 
 	public Parser(Tokenizer tokenizer) {
 		this.tokenizer = tokenizer;
@@ -240,8 +241,10 @@ public class Parser {
 
 	private StmtBlock parseStmtBlock(SymTable symTable) throws Exception {
 		Token token = tokenizer.curToken();
-		expect(token, TokenTypes.TokenType.BEGIN);
-		tokenizer.nextToken();
+		if (!inRepeatUntil) {
+			expect(token, TokenTypes.TokenType.BEGIN);
+			tokenizer.nextToken();
+		}
 		ArrayList<Statement> stmts = new ArrayList<>();
 		while (true) {
 			Statement stmt = parseStatement(symTable);
@@ -257,12 +260,17 @@ public class Parser {
 				expect(token, TokenTypes.TokenType.SEMICOLON);
 				break;
 			}
+			if (token.type == TokenTypes.TokenType.UNTIL) {
+				break;
+			}
 			else if (token.type == TokenTypes.TokenType.EOF) {
 				expect(token, TokenTypes.TokenType.END);
 			}
 		}
 
-		tokenizer.nextToken();
+		if (!inRepeatUntil) {
+			tokenizer.nextToken();
+		}
 		return new StmtBlock(stmts);
 	}
 
@@ -297,6 +305,9 @@ public class Parser {
 		}
 		else if (token.type == TokenTypes.TokenType.WHILE) {
 			return parseWhileLoop(symTable);
+		}
+		else if (token.type == TokenTypes.TokenType.REPEAT) {
+			return parseRepeatUntilLoop(symTable);
 		}
 		else if (token.type == TokenTypes.TokenType.CONTINUE) {
 			if (this.inLoopCnt != 0) {
@@ -393,8 +404,8 @@ public class Parser {
 		tokenizer.nextToken();
 		this.inLoopCnt++;
 		Statement stmt = parseStatement(symTable);
-		Statement result = new StmtForLoop(isDownTo, rangeStart, rangeEnd, stmt, loopCounter);
 		this.inLoopCnt--;
+		Statement result = new StmtForLoop(isDownTo, rangeStart, rangeEnd, stmt, loopCounter);
 		return result;
 	}
 
@@ -413,7 +424,32 @@ public class Parser {
 		tokenizer.nextToken();
 		this.inLoopCnt++;
 		Statement stmt = parseStatement(symTable);
+		this.inLoopCnt--;
 		Statement result = new StmtWhileLoop(condition, stmt);
+		return result;
+	}
+
+	private Statement parseRepeatUntilLoop(SymTable symTable) throws Exception {
+		this.inRepeatUntil = true;
+		Token token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.REPEAT);
+		token = tokenizer.nextToken();
+		this.inLoopCnt++;
+		Statement stmt = parseStmtBlock(symTable);
+		this.inLoopCnt--;
+		token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.UNTIL);
+		tokenizer.nextToken();
+		Node condition = parseExpression(symTable);
+		SymType conditionType = (SymType)condition.getType(symTable);
+		if (!TypeManager.getInstance().isLegalImplicitTypeCast(conditionType, SymTypeBoolean.getInstance())) {
+			throw new UnexpectedTypeException(token.row, token.column, conditionType, SymTypeBoolean.getInstance());
+		}
+		token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.SEMICOLON);
+		Statement result = new StmtRepeatUntilLoop(condition, stmt);
+		tokenizer.nextToken();
+		this.inRepeatUntil = false;
 		return result;
 	}
 

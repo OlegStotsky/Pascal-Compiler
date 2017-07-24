@@ -1,0 +1,9 @@
+var
+	i : integer;
+
+begin
+	repeat
+		i := i + 1;
+		i := i + 2;
+		until i > 20;
+end;

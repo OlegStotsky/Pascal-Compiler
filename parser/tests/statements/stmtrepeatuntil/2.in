@@ -1,0 +1,14 @@
+var
+	i : integer;
+	j : integer;
+
+begin
+	i := 0;
+	j := 0;
+	repeat
+		i := i + 1;
+		j := j + (j + i)*3;
+		if j > (i + 20) then
+			break;
+	until i > 100;
+end;

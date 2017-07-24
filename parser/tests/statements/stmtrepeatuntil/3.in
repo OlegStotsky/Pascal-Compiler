@@ -1,0 +1,12 @@
+var
+	i : integer;
+	a : integer;
+
+begin
+	a := 0;
+	i := 0;
+	repeat 
+		a := a + i;
+		i := i + 1;
+	until i;
+end;

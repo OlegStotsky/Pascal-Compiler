@@ -1,0 +1,12 @@
+var
+	a : integer;
+	b : integer;
+
+begin
+	for i := 1 to 5 do
+	begin
+		repeat
+			a := a +1;
+		until a > i;
+	end;
+end;
