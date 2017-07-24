@@ -1,5 +1,0 @@
-Type
-a = ^integer;
-b = ^float;
-c = ^char;
-d = ^boolean;

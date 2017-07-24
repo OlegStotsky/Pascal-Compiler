@@ -1,6 +1,0 @@
-var
-	cnt : integer;
-
-begin
-	break;
-end;

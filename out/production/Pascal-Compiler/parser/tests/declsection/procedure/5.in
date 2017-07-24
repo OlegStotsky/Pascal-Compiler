@@ -1,9 +1,0 @@
-function func (arg1 : integer, arg2 : integer) : integer
-	begin
-		arg1 := func;
-		func := 1;
-	end;
-
-begin
-	func(1, 2);
-end;

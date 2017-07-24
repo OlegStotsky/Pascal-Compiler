@@ -1,9 +1,0 @@
-BEGIN STMT BLOCK
- BEGIN STMT ASSIGN
-   a
-  :=
-    a
-   +
-    b
- END STMT ASSIGN
-END STMT BLOCK

@@ -1,4 +1,0 @@
-Type
-a = integer;
-b = a;
-c = b;

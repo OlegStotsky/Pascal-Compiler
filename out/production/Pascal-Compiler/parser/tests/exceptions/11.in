@@ -1,4 +1,0 @@
-procedure a (a : integer b : float)
-begin
-	a := 1;
-end;

@@ -1,6 +1,0 @@
-Type
-a = record
-a, b, c : integer;
-x, y, z : float;
-q, w, e : boolean;
-end;

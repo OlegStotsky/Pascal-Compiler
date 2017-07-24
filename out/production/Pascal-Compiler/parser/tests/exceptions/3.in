@@ -1,7 +1,0 @@
-var
-a : float;
-b : boolean;
-
-begin
-	a := b;
-end;

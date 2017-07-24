@@ -1,9 +1,0 @@
-begin
-	if a < b then
-		if q < d then
-			a := 5;
-		else 
-			c := 6;
-	else
-		d := 10;
-end;

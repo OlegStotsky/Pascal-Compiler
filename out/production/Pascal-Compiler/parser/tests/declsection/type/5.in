@@ -1,7 +1,0 @@
-Type
-a = array[1..6] of integer;
-b = integer;
-c = record
-	c1 : a;
-	c2 : b;
-end;

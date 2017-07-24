@@ -1,9 +1,0 @@
-var
-	a : record
-		x : integer;
-		y : integer;
-	end;
-
-begin
-	a.x := a.y;
-end;

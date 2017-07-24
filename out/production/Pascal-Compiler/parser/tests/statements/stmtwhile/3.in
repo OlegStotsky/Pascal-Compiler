@@ -1,5 +1,0 @@
-begin
-	while 5 > 3 do
-	begin
-	end;
-end;

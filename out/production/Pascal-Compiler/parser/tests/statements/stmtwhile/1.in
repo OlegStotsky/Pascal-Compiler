@@ -1,8 +1,0 @@
-var
-	a : boolean;
-	i : integer;
-
-begin
-	while a do 
-		i := i + 1;
-end;

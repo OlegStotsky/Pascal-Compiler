@@ -1,9 +1,0 @@
-BEGIN SYMTABLE
- VAR
-  NAME : a
-  TYPE : float
- TYPE : boolean
- TYPE : char
- TYPE : integer
- TYPE : float
-END SYMTABLE

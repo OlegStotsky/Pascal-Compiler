@@ -1,9 +1,0 @@
-type
-a = ^integer;
-
-var
-	b : integer;
-
-begin
-	b := a;
-end;

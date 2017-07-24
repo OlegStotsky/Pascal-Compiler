@@ -1,5 +1,0 @@
-type
-a = integer;
-
-var
-b : array[1..10] of a;

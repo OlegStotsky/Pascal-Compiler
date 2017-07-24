@@ -1,5 +1,0 @@
-type
-a = integer;
-
-var
-a : integer;

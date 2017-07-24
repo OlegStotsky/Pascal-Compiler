@@ -1,5 +1,0 @@
-Type
-a = record
-a : array[0..5] of integer;
-b : array[1..7] of float;
-end;

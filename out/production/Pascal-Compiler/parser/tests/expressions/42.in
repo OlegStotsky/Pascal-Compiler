@@ -1,9 +1,0 @@
-var
-	a : integer;
-	b : float;
-	c : boolean;
-	q : boolean;
-begin
-	c := (a < b) and (a > b);
-	q := (a > b) or (b < a);
-end;

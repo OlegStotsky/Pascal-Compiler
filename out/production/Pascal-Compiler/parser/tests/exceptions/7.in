@@ -1,8 +1,0 @@
-var 
-a : integer;
-b : integer;
-
-begin
-	if 3.15 then
-		a := a + 1;
-end;
