@@ -19,14 +19,12 @@ public class Compiler {
 	private static final int ERR_WRONG_NUMBER_OF_ARGS = -1;
 
 	private static void parseArgs(String[] args) throws Exception {
-		if (args[0].toLowerCase().equals("-l") || args[0].toLowerCase().equals("-s")) {
-			if (args.length < 3) {
-				System.out.println("Number of args should be 3");
-				System.exit(-1);
-			}
-			PrintStream outStream = new PrintStream(new FileOutputStream(args[2]));
-			System.setOut(outStream);
+		if (args.length < 3) {
+			System.out.println("Number of args should be 3");
+			System.exit(-1);
 		}
+		PrintStream outStream = new PrintStream(new FileOutputStream(args[2]));
+		System.setOut(outStream);
 
 		if (args[0].toLowerCase().equals("-l")) {
 			Tokenizer tokenizer = new Tokenizer(args[1]);
