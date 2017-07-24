@@ -17,7 +17,7 @@ public class UnexpectedTypeException extends HasSuffixException {
     String msg;
     String msgSuffix;
     public final int UNPOSITIONAL_PREF_LENGTH = "Error : ".length();
-    public final int PREF_LENGTH = "Error at line %d, column %d : ".length();
+    public final int POSITIONAL_PREF_LENGTH = "Error at line %d, column %d : ".length();
 
     public UnexpectedTypeException(SymType foundType, SymType ... expectedTypes) {
         StringBuilder msg = new StringBuilder(("Error : "));
@@ -30,6 +30,7 @@ public class UnexpectedTypeException extends HasSuffixException {
         }
         msg.append(String.format("expected but %s found", foundType.name));
         this.msg = msg.toString();
+        this.msgSuffix = this.msg.substring(UNPOSITIONAL_PREF_LENGTH);
         this.token = token;
         this.expectedTypes = expectedTypes;
         this.row = row;
@@ -51,7 +52,7 @@ public class UnexpectedTypeException extends HasSuffixException {
         this.row = row;
         this.column = column;
         this.msg = msg.toString();
-        this.msgSuffix = this.msg.substring(PREF_LENGTH);
+        this.msgSuffix = this.msg.substring(POSITIONAL_PREF_LENGTH);
     }
 
     public String getMessage() {
