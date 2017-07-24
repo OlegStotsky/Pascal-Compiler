@@ -46,8 +46,8 @@ public class Tokenizer {
 			System.exit(-1);
 		}
 		this.statesTable = new State[NUM_STATES][NUM_CHARS];
-		this.curColumn = 0;
-		this.curRow = 0;
+		this.curColumn = 1;
+		this.curRow = 1;
 		this.eof = false;
 		this.lastByte = (byte)input.read();
 		this.curToken = null;
