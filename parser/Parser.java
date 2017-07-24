@@ -245,6 +245,11 @@ public class Parser {
 		ArrayList<Statement> stmts = new ArrayList<>();
 		while (true) {
 			Statement stmt = parseStatement(symTable);
+			if (stmt == null && tokenizer.curToken().type != TokenTypes.TokenType.END) {
+				throw new PositionalException(tokenizer.curToken().row,
+						tokenizer.curToken().column,
+						String.format("unexpected token '%s'", tokenizer.curToken().text));
+			}
 			stmts.add(stmt);
 			token = tokenizer.curToken();
 			if (token.type == TokenTypes.TokenType.END) {
@@ -289,6 +294,9 @@ public class Parser {
 		}
 		else if (token.type == TokenTypes.TokenType.FOR) {
 			return parseForLoop(symTable);
+		}
+		else if (token.type == TokenTypes.TokenType.WHILE) {
+			return parseWhileLoop(symTable);
 		}
 		else if (token.type == TokenTypes.TokenType.CONTINUE) {
 			if (this.inLoopCnt != 0) {
@@ -387,6 +395,25 @@ public class Parser {
 		Statement stmt = parseStatement(symTable);
 		Statement result = new StmtForLoop(isDownTo, rangeStart, rangeEnd, stmt, loopCounter);
 		this.inLoopCnt--;
+		return result;
+	}
+
+	private Statement parseWhileLoop(SymTable symTable) throws Exception {
+		Token token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.WHILE);
+		tokenizer.nextToken();
+		Node condition = parseExpression(symTable);
+		SymType conditionType = (SymType)condition.getType(symTable);
+		token = tokenizer.curToken();
+		if (!TypeManager.getInstance().isLegalImplicitTypeCast(conditionType, SymTypeBoolean.getInstance())) {
+			throw new UnexpectedTypeException(token.row, token.column, conditionType, SymTypeBoolean.getInstance());
+		}
+		token = tokenizer.curToken();
+		expect(token, TokenTypes.TokenType.DO);
+		tokenizer.nextToken();
+		this.inLoopCnt++;
+		Statement stmt = parseStatement(symTable);
+		Statement result = new StmtWhileLoop(condition, stmt);
 		return result;
 	}
 

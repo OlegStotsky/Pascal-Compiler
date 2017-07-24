@@ -16,6 +16,7 @@ public class UnexpectedTypeException extends HasSuffixException {
     public int column;
     String msg;
     String msgSuffix;
+    public final int UNPOSITIONAL_PREF_LENGTH = "Error : ".length();
     public final int PREF_LENGTH = "Error at line %d, column %d : ".length();
 
     public UnexpectedTypeException(SymType foundType, SymType ... expectedTypes) {

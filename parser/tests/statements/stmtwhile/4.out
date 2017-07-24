@@ -1,0 +1,25 @@
+BEGIN SYMTABLE
+ VAR
+  NAME : a
+  TYPE : integer
+ VAR
+  NAME : b
+  TYPE : integer
+ TYPE : boolean
+ TYPE : char
+ TYPE : integer
+ TYPE : float
+END SYMTABLE
+BEGIN STMT BLOCK
+ BEGIN WHILE LOOP
+  WHILE
+     a
+    >
+     b
+   and
+    true
+  DO
+   BEGIN STMT BLOCK
+   END STMT BLOCK
+ END WHILE LOOP
+END STMT BLOCK

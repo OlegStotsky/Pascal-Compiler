@@ -1,0 +1,9 @@
+var
+	a : integer;
+	b : integer;
+
+begin
+	while (a > b) and (true) do
+	begin
+	end;
+end;

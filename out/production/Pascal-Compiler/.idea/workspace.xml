@@ -7,581 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaa6b4f7-99d5-48f1-8e39-8cae8db57848" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/.idea/artifacts/Pascal_Compiler_jar.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/Pascal-Compiler.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/Pair.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/Parser$OperationPrecedence.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/Parser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/TypeManager$BinaryOperationType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/TypeManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/HasSuffixException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/IllegalOperandTypesException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/IllegalTypeCastException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/NotCallableException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/NotFunctionException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/NotProcedureException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/NotTypeException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/NotVarException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/NullSymbolException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/PositionalException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/UnexpectedTokenException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/UnexpectedTypeException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/WrongNumberOfParamsException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/exceptions/WrongParamTypeException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/Node.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeArrayAccess.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeAssignment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeBinOperation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeBoolConst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeCharConst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeFloatConst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeFunctionCall.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeIdentifier.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeIntConst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeProcedureCall.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeRecordAccess.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeStringConst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/node/NodeUnaryOperation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/statement/Statement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/statement/StatementCall.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/statement/StmtAssign.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/statement/StmtBlock.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/statement/StmtBreak.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/statement/StmtContinue.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/statement/StmtForLoop.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/statement/StmtIfElse.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/statement/StmtProgram.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymFunc.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymProc.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymTable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymTypeAlias.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymTypeArray.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymTypeBoolean.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymTypeChar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymTypeFloat.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymTypeInteger.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymTypePointer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymTypeRecord.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymTypeScalar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymTypeString.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymVar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymVarConst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymVarGlobal.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymVarLocal.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/SymVarParam.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/symbol/Symbol.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/0.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/0.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/0.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/1.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/1.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/1.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/2.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/2.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/2.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/3.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/3.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/3.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/4.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/4.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/4.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/5.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/5.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/5.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/qwerty.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/const/tester.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/gen.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/0.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/0.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/0.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/1.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/1.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/1.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/2.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/2.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/2.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/3.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/3.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/3.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/4.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/4.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/4.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/5.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/5.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/5.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/6.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/6.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/6.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/qwerty.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/procedure/tester.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/rename.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/tester.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/0.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/0.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/0.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/1.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/1.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/1.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/2.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/2.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/2.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/3.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/3.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/3.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/4.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/4.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/4.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/5.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/5.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/5.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/6.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/6.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/6.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/qwerty.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type+var/tester.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/0.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/0.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/0.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/1.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/1.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/1.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/2.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/2.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/2.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/3.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/3.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/3.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/4.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/4.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/4.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/5.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/5.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/5.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/6.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/6.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/6.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/7.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/7.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/7.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/qwerty.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/type/tester.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/0.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/0.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/0.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/1.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/1.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/1.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/2.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/2.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/2.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/3.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/3.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/3.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/4.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/4.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/4.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/5.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/5.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/5.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/6.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/6.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/6.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/7.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/7.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/7.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/8.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/8.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/8.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/9.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/9.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/9.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/qwerty.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/declsection/var/tester.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/0.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/0.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/0.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/1.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/1.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/1.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/10.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/10.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/10.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/11.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/11.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/11.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/12.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/12.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/12.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/13.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/13.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/13.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/14.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/14.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/14.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/15.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/15.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/15.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/16.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/16.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/16.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/2.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/2.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/2.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/3.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/3.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/3.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/4.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/4.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/4.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/5.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/5.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/5.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/6.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/6.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/6.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/7.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/7.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/7.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/8.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/8.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/8.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/9.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/9.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/9.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/qwerty.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/exceptions/tester.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/0.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/0.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/0.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/1.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/1.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/1.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/10.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/10.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/10.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/11.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/11.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/11.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/12.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/12.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/12.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/13.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/13.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/13.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/14.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/14.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/14.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/15.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/15.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/15.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/16.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/16.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/16.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/17.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/17.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/17.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/18.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/18.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/18.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/19.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/19.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/19.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/2.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/2.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/2.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/20.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/20.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/20.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/21.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/21.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/21.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/22.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/22.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/22.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/23.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/23.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/23.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/24.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/24.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/24.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/25.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/25.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/25.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/26.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/26.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/26.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/27.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/27.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/27.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/28.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/28.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/28.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/29.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/29.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/29.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/3.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/3.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/3.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/30.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/30.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/30.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/31.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/31.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/31.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/32.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/32.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/32.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/33.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/33.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/33.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/34.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/34.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/34.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/35.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/35.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/35.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/36.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/36.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/36.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/37.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/37.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/37.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/38.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/38.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/38.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/39.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/39.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/39.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/4.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/4.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/4.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/40.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/40.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/40.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/41.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/41.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/41.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/42.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/42.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/42.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/43.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/43.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/43.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/44.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/44.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/44.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/45.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/45.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/45.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/46.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/46.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/46.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/47.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/47.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/47.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/48.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/48.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/48.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/5.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/5.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/5.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/6.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/6.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/6.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/7.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/7.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/7.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/8.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/8.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/8.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/9.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/9.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/9.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/qwerty.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/expressions/tester.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/0.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/0.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/0.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/1.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/1.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/1.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/10.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/10.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/10.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/2.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/2.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/2.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/3.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/3.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/3.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/4.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/4.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/4.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/5.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/5.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/5.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/6.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/6.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/6.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/7.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/7.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/7.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/8.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/8.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/8.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/9.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/9.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/9.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/qwerty.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtassign/tester.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtfor/0.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtfor/0.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtfor/1.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtfor/1.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtfor/2.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtfor/2.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtfor/3.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtfor/3.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtfor/4.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtfor/4.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtfor/5.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/0.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/0.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/0.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/1.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/1.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/1.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/2.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/2.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/2.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/3.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/3.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/3.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/4.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/4.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/4.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/5.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/5.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/5.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/6.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/6.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/6.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/7.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/7.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/7.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/8.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/qwerty.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/tests/statements/stmtifelse/tester.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/pascalcompiler/Compiler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/Token.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/TokenTypes$KeyWord.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/TokenTypes$SpecialSymbol.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/TokenTypes$SpecialSymbolPair.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/TokenTypes$TokenType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/TokenTypes.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/Tokenizer$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/Tokenizer$State.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/Tokenizer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/1.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/1.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/1.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/10.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/10.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/10.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/11.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/11.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/11.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/12.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/12.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/12.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/13.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/13.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/13.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/14.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/14.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/14.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/15.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/15.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/15.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/16.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/16.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/16.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/17.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/17.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/17.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/18.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/18.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/18.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/19.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/19.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/19.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/2.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/2.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/2.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/20.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/20.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/20.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/21.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/21.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/21.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/22.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/22.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/22.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/23.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/23.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/23.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/24.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/24.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/24.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/25.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/25.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/25.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/26.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/26.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/26.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/27.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/27.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/27.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/28.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/28.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/28.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/29.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/29.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/29.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/3.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/3.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/3.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/30.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/30.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/30.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/31.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/31.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/4.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/4.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/4.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/5.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/5.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/5.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/6.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/6.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/6.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/7.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/7.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/7.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/8.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/8.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/8.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/9.expected" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/9.in" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/9.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/tests/tester.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/parser/tests/statements/stmtfor/5.out" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/Parser.class" afterPath="$PROJECT_DIR$/out/production/Pascal-Compiler/parser/Parser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/TokenTypes$TokenType.class" afterPath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/TokenTypes$TokenType.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/TokenTypes.class" afterPath="$PROJECT_DIR$/out/production/Pascal-Compiler/tokenizer/TokenTypes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pascal-Compiler/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/Pascal-Compiler/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/Parser.java" afterPath="$PROJECT_DIR$/parser/Parser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tokenizer/TokenTypes.java" afterPath="$PROJECT_DIR$/tokenizer/TokenTypes.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -597,86 +29,45 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/parser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="382" column="26" lean-forward="false" selection-start-line="382" selection-start-column="26" selection-end-line="382" selection-end-column="26" />
+            <state relative-caret-position="-585">
+              <caret line="398" column="47" lean-forward="false" selection-start-line="398" selection-start-column="47" selection-end-line="398" selection-end-column="47" />
               <folding>
-                <element signature="e#25652#25658#0" expanded="true" />
+                <element signature="e#26120#26126#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SymTypeInteger.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser/symbol/SymTypeInteger.java">
+      <file leaf-file-name="StmtWhileLoop.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/parser/statement/StmtWhileLoop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="459">
+              <caret line="27" column="45" lean-forward="false" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TypeManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser/TypeManager.java">
+      <file leaf-file-name="StmtForLoop.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/parser/statement/StmtForLoop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TokenTypes.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tokenizer/TokenTypes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Compiler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pascalcompiler/Compiler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tokenizer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tokenizer/Tokenizer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2785">
-              <caret line="56" column="43" lean-forward="false" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Token.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tokenizer/Token.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NodeRecordAccess.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser/node/NodeRecordAccess.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="38" column="5" lean-forward="false" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+            <state relative-caret-position="298">
+              <caret line="35" column="35" lean-forward="false" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -690,8 +81,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pascalcompiler/Compiler.java" />
-        <option value="$PROJECT_DIR$/parser/Parser.java" />
         <option value="$PROJECT_DIR$/tokenizer/Tokenizer.java" />
+        <option value="$PROJECT_DIR$/tokenizer/TokenTypes.java" />
+        <option value="$PROJECT_DIR$/parser/statement/Node.java" />
+        <option value="$PROJECT_DIR$/parser/statement/StmtWhileLoop.java" />
+        <option value="$PROJECT_DIR$/parser/Parser.java" />
       </list>
     </option>
   </component>
@@ -700,6 +94,9 @@
     <option name="y" value="5" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -799,7 +196,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="out" />
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="statement" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pascal-Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pascal-Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -818,6 +237,11 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="parser.statement" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -841,7 +265,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="pascalcompiler.Compiler" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-s C:\Users\Stockiy.OV\Desktop\stuff\repos\Pascal-Compiler\parser\tests\statements\stmtfor\5.in C:\Users\Stockiy.OV\Desktop\stuff\repos\Pascal-Compiler\parser\tests\statements\stmtfor\5.out" />
+      <option name="PROGRAM_PARAMETERS" value="-s C:\Users\Stockiy.OV\Desktop\stuff\repos\Pascal-Compiler\parser\tests\statements\stmtwhile\1.in C:\Users\Stockiy.OV\Desktop\stuff\repos\Pascal-Compiler\parser\tests\statements\stmtwhile\1.out" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -1025,6 +449,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="5" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1032,10 +457,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2154171" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2154171" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18020834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18020834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1097,7 +522,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#25652#25658#0" expanded="true" />
+            <element signature="e#26120#26126#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1163,7 +588,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#25652#25658#0" expanded="true" />
+            <element signature="e#26120#26126#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1354,14 +779,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tokenizer/TokenTypes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tokenizer/Token.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -1402,12 +819,81 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/parser/node/NodeProcedureCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#565#566#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser/node/NodeIdentifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser/node/NodeFunctionCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser/node/NodeBinOperation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tokenizer/TokenTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="88" column="6" lean-forward="true" selection-start-line="88" selection-start-column="6" selection-end-line="88" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser/statement/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser/statement/StmtForLoop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="35" column="35" lean-forward="false" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser/statement/StmtWhileLoop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="45" lean-forward="false" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/parser/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="382" column="26" lean-forward="false" selection-start-line="382" selection-start-column="26" selection-end-line="382" selection-end-column="26" />
+        <state relative-caret-position="-585">
+          <caret line="398" column="47" lean-forward="false" selection-start-line="398" selection-start-column="47" selection-end-line="398" selection-end-column="47" />
           <folding>
-            <element signature="e#25652#25658#0" expanded="true" />
+            <element signature="e#26120#26126#0" expanded="true" />
           </folding>
         </state>
       </provider>

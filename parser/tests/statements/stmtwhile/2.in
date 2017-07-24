@@ -1,0 +1,8 @@
+var
+	z : integer;
+
+begin
+	while z do
+	begin
+	end;
+end;

@@ -22,7 +22,7 @@ public class TokenTypes {
 		OF, CONST, TRUE, 
 		FALSE, AND, NOT, 
 		OR, XOR, UNKNOWN, DOWNTO,
-		EQUAL, EOF
+		EQUAL, EOF, WHILE
 	}
 	
 	class KeyWord {
@@ -84,7 +84,8 @@ public class TokenTypes {
 			new KeyWord("and", TokenType.AND),
 			new KeyWord("not", TokenType.NOT),
 			new KeyWord("or", TokenType.OR),
-			new KeyWord("xor", TokenType.XOR)
+			new KeyWord("xor", TokenType.XOR),
+			new KeyWord("while", TokenType.WHILE)
 	};
 	
 	public SpecialSymbol specialSymbols[] = {
