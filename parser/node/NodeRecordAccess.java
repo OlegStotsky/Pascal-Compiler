@@ -32,6 +32,8 @@ public class NodeRecordAccess extends Node {
             return this.type;
         }
 
+        //Recursively traverse a chain of NodeRecordAcceses until we get the type
+        //Of the rightmost variable
         SymVar var = getVar(symTable);
         this.type = (SymType)var.getType();
 
@@ -39,14 +41,26 @@ public class NodeRecordAccess extends Node {
     }
 
     public SymVar getVar(SymTable symTable) throws Exception {
+        //Base case of recursion : left node is not a record access.
+        //We find a record on the left side, and get a value of right node
+        //By using this record's symbol table.
         if (this.left instanceof NodeIdentifier) {
             SymVar leftVar = symTable.getVar(((NodeIdentifier) this.left).name, true);
             return ((SymTypeRecord)leftVar.getType()).symTable.getVar(this.right.toString(), false);
         }
+        else if (this.left instanceof NodeFunctionCall) {
+            return ((SymTypeRecord)((NodeFunctionCall)this.left).getType(symTable)).symTable.getVar(this.right.toString(), false);
+        }
+        else if (this.left instanceof NodeArrayAccess) {
+            return ((SymTypeRecord)this.left.getType(symTable)).symTable.getVar(this.right.toString(), false);
+        }
+
+        //If left node is a record access, get type recursively
         else if (this.left instanceof NodeRecordAccess) {
             SymVar leftVar = ((NodeRecordAccess) this.left).getVar(symTable);
             return ((SymTypeRecord)leftVar.getType()).symTable.getVar(this.right.toString(), false);
         }
+
         return null;
     }
 }
