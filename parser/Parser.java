@@ -369,8 +369,7 @@ public class Parser {
 		Token loopCounterName = tokenizer.nextToken();
 		expect(loopCounterName, TokenTypes.TokenType.ID);
 		SymType type = SymTypeInteger.getInstance();
-		Symbol loopCounter = new SymVar(loopCounterName.text, type);
-		symTable.addSymbol(loopCounterName.text, loopCounter);
+		SymVar loopCounter = symTable.getVar(loopCounterName.text, true);
 		token = tokenizer.nextToken();
 		expect(token, TokenTypes.TokenType.ASSIGN);
 		tokenizer.nextToken();
@@ -713,10 +712,10 @@ public class Parser {
 			tokenizer.nextToken();
 			return factor;
 		}
-		throw new Exception(String.format("Syntax error at line %d, column %d : unexpected token type %s",
+		throw new Exception(String.format("Syntax error at line %d, column %d : unexpected token %s",
 				token.row,
 				token.column,
-				token.type.toString())
+				token.text)
 				);
 	}
 
