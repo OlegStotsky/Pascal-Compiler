@@ -1,0 +1,13 @@
+const
+	N = 10;
+
+var
+	arr : array[1..N] of integer;
+	tmp : integer;
+
+begin
+	for i := 1 to N do
+	begin
+		for j := 1 to i do
+			if arr[j] > arr[i] then
+				

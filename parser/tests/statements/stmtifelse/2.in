@@ -1,3 +1,7 @@
+var
+	a : integer;
+	b : integer;
+
 begin
 	if a < b then
 	begin

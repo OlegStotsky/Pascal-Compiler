@@ -1,1 +1,1 @@
-Syntax error at line 0, column 4 : unexpected token type INT_CONST
+Syntax error at line 1, column 1 : BEGIN expected but INT_CONST found

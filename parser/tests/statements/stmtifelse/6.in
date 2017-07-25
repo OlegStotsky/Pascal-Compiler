@@ -1,3 +1,10 @@
+var
+	a : integer;
+	b : integer;
+	q : integer;
+	d : integer;
+	c : integer;
+
 begin
 	if a < b then
 		if q < d then
