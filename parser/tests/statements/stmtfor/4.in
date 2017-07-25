@@ -1,0 +1,10 @@
+var
+	i : integer;
+	startVal : integer;
+	endVal : integer;
+
+begin
+	for i:=startVal to endVal do
+	begin
+	end;
+end;
