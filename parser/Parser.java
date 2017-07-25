@@ -467,10 +467,10 @@ public class Parser {
 		SymType firstType = (SymType)left.getType(symTable);
 		SymType secondType = (SymType)right.getType(symTable);
 		if (firstType == null) {
-			throw new PositionalException(token.row, token.column, "Left hand sand is not a l-value");
+			throw new PositionalException(token.row, token.column, "Left hand is not a l-value");
 		}
 		if (secondType == null) {
-			throw new PositionalException(token.row, token.column, "Right hand sand is not a r-value");
+			throw new PositionalException(token.row, token.column, "Right hand is not a r-value");
 		}
 		if (!TypeManager.getInstance().isLegalImplicitTypeCast(secondType, firstType)) {
 			throw new IllegalTypeCastException(secondType, firstType, token.row, token.column);
@@ -481,13 +481,12 @@ public class Parser {
 
 	private void parseParams(SymTable symTable, ArrayList<SymVar> params) throws Exception {
 		while (tokenizer.curToken().type != TokenTypes.TokenType.RIGHT_PARENTH) {
-			SymVar var;
 			Token name = tokenizer.curToken();
 			Token token = tokenizer.nextToken();
 			expect(token, TokenTypes.TokenType.COLON);
 			token = tokenizer.nextToken();
 			Symbol type = parseType(symTable);
-			var = new SymVar(name.text, type);
+			SymVar var = new SymVar(name.text, type);
 			params.add(var);
 			symTable.addSymbol(name.text, var);
 			token = tokenizer.curToken();
@@ -757,6 +756,10 @@ public class Parser {
 				Node index = parseExpression(symTable);
 				token = tokenizer.curToken();
 				expect(token, TokenTypes.TokenType.RSQB);
+				SymType leftType = (SymType)result.getType(symTable);
+				if (!(leftType instanceof SymTypeArray)) {
+					throw new UnexpectedTypeException(token.row, token.column, leftType, new SymType("array"));
+				}
 				result = new NodeArrayAccess(result, index);
 			} else {
 				isRecursive = false;
