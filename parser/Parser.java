@@ -207,27 +207,6 @@ public class Parser {
 		parseDeclSection(localTable);
 		StmtBlock stmt = parseStmtBlock(localTable);
 
-//		//If it's function - check that it has at least one return statement in the body, and
-//		//that return type is legal.
-//		if (!isProcedure) {
-//			boolean wasFound = false;
-//			for (Statement statement : stmt.statements) {
-//				if (statement instanceof StmtAssign) {
-//					if (((NodeIdentifier) ((NodeAssignment) ((StmtAssign) statement).nodeAssignment).left).name.equalsIgnoreCase(funcOrProcName.text)) {
-//						if (!TypeManager.getInstance().isLegalImplicitTypeCast(
-//								((SymType)(((NodeAssignment) ((StmtAssign) statement).nodeAssignment).right.getType(localTable))), (SymType)retType)) {
-//							throw new IllegalTypeCastException(((NodeAssignment) ((StmtAssign) statement).nodeAssignment).right.getType(localTable), retType,
-//									tokenizer.curToken().row, tokenizer.curToken().column);
-//						}
-//						wasFound = true;
-//					}
-//				}
-//			}
-//			if (!wasFound) {
-//				throw new Exception(String.format("Error in function %s : function should have return statement",
-//						funcOrProcName.text));
-//			}
-//		}
 		token = tokenizer.curToken();
 
 		if (isProcedure) {
