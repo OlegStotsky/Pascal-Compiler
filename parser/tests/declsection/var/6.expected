@@ -1,15 +1,1 @@
-BEGIN SYMTABLE
- VAR
-  NAME : a
-  TYPE : ARRAY
-   START INDEX
-    1
-   END INDEX
-    6
-   ELEM TYPE
-    TYPE : float
- TYPE : boolean
- TYPE : char
- TYPE : integer
- TYPE : float
-END SYMTABLE
+Syntax error at line 2, column 25 : BEGIN expected but EOF found

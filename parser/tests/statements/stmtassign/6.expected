@@ -1,1 +1,24 @@
-Error at line 5, column 12 : Left hand sand is not a l-value
+BEGIN SYMTABLE
+ VAR
+  NAME : a
+  TYPE : ARRAY
+   START INDEX
+    1
+   END INDEX
+    5
+   ELEM TYPE
+    TYPE : integer
+ TYPE : boolean
+ TYPE : char
+ TYPE : integer
+ TYPE : float
+END SYMTABLE
+BEGIN STMT BLOCK
+ BEGIN STMT ASSIGN
+    a
+   []
+    5
+  :=
+   1
+ END STMT ASSIGN
+END STMT BLOCK

@@ -1,12 +1,1 @@
-BEGIN SYMTABLE
- TYPE a : ALIAS TO
-  TYPE : integer
- VAR
-  NAME : b
-  TYPE a : ALIAS TO
-   TYPE : integer
- TYPE : boolean
- TYPE : char
- TYPE : integer
- TYPE : float
-END SYMTABLE
+Syntax error at line 6, column 0 : BEGIN expected but EOF found

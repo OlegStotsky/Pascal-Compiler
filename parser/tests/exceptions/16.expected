@@ -1,1 +1,1 @@
-Error at line 7, column 11 : can't cast type char to type float
+Error at line 8, column 11 : can't cast type float to type char

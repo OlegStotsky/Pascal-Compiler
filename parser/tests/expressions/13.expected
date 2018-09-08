@@ -1,7 +1,1 @@
-   a
-  .
-   b
- .
-  c
-.
- d
+Syntax error at line 1, column 1 : BEGIN expected but ID found

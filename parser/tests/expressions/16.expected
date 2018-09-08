@@ -1,5 +1,1 @@
- ab
-[]
-  ab
- []
-  5
+Syntax error at line 1, column 1 : BEGIN expected but LEFT_PARENTH found

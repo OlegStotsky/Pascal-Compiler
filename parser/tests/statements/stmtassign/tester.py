@@ -1,14 +1,13 @@
 from subprocess import check_output
 import sys
 
-*_, start, end = sys.argv
+_, start, end = sys.argv
 
 start, end = int(start), int(end)
 for x in range(start, end+1):
 	print(x)
 	path = './'
-	result = check_output('java -jar .\PascalCompiler.jar' +
-		' ' + '-s ' + path + str(x) + '.in' + ' ' + path + str(x) + '.out', shell=True)
+	result = check_output('java -jar ../../../../compiler.jar' + ' ' + '-s ' + path + str(x) + '.in' + ' ' + path + str(x) + '.out', shell=True)
 	
 	out = open(path+str(x)+'.out', 'r')
 	expected = open(path+str(x)+'.expected', 'r')

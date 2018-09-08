@@ -1,6 +1,6 @@
 import sys
 
-*redundant, start, end = sys.argv
+redundant, start, end = sys.argv
 
 start, end = int(start), int(end)
 for i in range(start, end+1):

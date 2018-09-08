@@ -3,7 +3,7 @@ from subprocess import check_output
 for x in range(1, 28):
 	print(x)
 	path = './'
-	result = check_output('java -jar ./PascalCompiler.jar' +
+	result = check_output('java -jar ../../../PascalCompiler.jar' +
 		' ' + path + str(x) + '.in' + ' ' + path + str(x) + '.out', shell=True)
 	
 	out = open(path+str(x)+'.out', 'r')

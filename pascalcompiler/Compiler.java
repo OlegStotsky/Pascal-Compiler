@@ -19,6 +19,7 @@ public class Compiler {
 	private static final int ERR_WRONG_NUMBER_OF_ARGS = -1;
 
 	private static void parseArgs(String[] args) throws Exception {
+		System.out.println(args);
 		if (args.length < 3) {
 			System.out.println("Number of args should be 3");
 			System.exit(-1);

@@ -7,6 +7,12 @@ BEGIN SYMTABLE
    VAR
     NAME : b
     TYPE : integer
+   VAR
+    NAME : c
+    TYPE : integer
+   VAR
+    NAME : d
+    TYPE : integer
   END SYMTABLE
   BEGIN STMT BLOCK
    BEGIN STMT ASSIGN
@@ -22,12 +28,6 @@ BEGIN SYMTABLE
   END STMT BLOCK
  END PROCEDURE q
  TYPE : boolean
- VAR
-  NAME : c
-  TYPE : integer
- VAR
-  NAME : d
-  TYPE : integer
  TYPE : char
  TYPE : integer
  TYPE : float

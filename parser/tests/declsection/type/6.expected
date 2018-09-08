@@ -1,16 +1,1 @@
-BEGIN SYMTABLE
- TYPE a : POINTER TO 
-  TYPE : integer
- TYPE b : ARRAY
-  START INDEX
-   1
-  END INDEX
-   3
-  ELEM TYPE
-   TYPE a : POINTER TO 
-    TYPE : integer
- TYPE : boolean
- TYPE : char
- TYPE : integer
- TYPE : float
-END SYMTABLE
+Syntax error at line 3, column 21 : BEGIN expected but EOF found

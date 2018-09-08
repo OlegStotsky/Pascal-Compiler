@@ -7,7 +7,7 @@ start, end = int(start), int(end)
 for x in range(start, end+1):
 	print(x)
 	path = './'
-	result = check_output('java -jar .\PascalCompiler.jar' +
+	result = check_output('java -jar ../../../../../PascalCompiler.jar' +
 		' ' + '-s ' + path + str(x) + '.in' + ' ' + path + str(x) + '.out', shell=True)
 	
 	out = open(path+str(x)+'.out', 'r')

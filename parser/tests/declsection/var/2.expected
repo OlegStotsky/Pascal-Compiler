@@ -1,9 +1,1 @@
-BEGIN SYMTABLE
- VAR
-  NAME : a
-  TYPE : float
- TYPE : boolean
- TYPE : char
- TYPE : integer
- TYPE : float
-END SYMTABLE
+Syntax error at line 2, column 10 : BEGIN expected but EOF found

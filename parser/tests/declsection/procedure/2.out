@@ -32,37 +32,10 @@ BEGIN SYMTABLE
  TYPE : float
 END SYMTABLE
 BEGIN STMT BLOCK
- BEGIN FUNCTION CALL
+ BEGIN FUNCTION func CALL
   Arg number 0
    1
   Arg number 1
    2
-  BEGIN PROCEDURE func
-   BEGIN SYMTABLE
-    VAR
-     NAME : arg2
-     TYPE : integer
-    VAR
-     NAME : func
-     TYPE : integer
-    VAR
-     NAME : arg1
-     TYPE : integer
-   END SYMTABLE
-   BEGIN STMT BLOCK
-    BEGIN STMT ASSIGN
-      arg1
-     :=
-       arg1
-      +
-       arg2
-    END STMT ASSIGN
-    BEGIN STMT ASSIGN
-      func
-     :=
-      arg1
-    END STMT ASSIGN
-   END STMT BLOCK
-  END PROCEDURE func
  END FUNCTION CALL
 END STMT BLOCK
