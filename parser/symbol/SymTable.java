@@ -52,7 +52,7 @@ public class SymTable {
 
     public SymVar getVar(String name, boolean isRecursive) throws Exception {
         Symbol var = this.getSymbol(name, isRecursive);
-        if (var == null ) {
+        if (var == null) {
             throw new NullSymbolException(name);
         }
         else if (!(var instanceof SymVar)) {
