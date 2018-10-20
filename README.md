@@ -1,5 +1,5 @@
 # Pascal-Compiler
-Compiler of Pascal Programming Langauge written in Java. Syntax tree is constructed using the recursive descent. Assembly code generation is still in progress.
+Compiler of Pascal Programming Language written in Java. Syntax tree is constructed using the recursive descent. Assembly code generation is still in progress.
 
 ## Building:
 In order to build the project you need to generate JAR file. In terminal: `bash build.sh`. 
